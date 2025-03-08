@@ -18,25 +18,60 @@
         </p>
     </nav>
     <div class="formulario">
+    <form id="maestroformulario">
         <form action="Registro_Master.html" method="POST">
             <h2>Registro <br>Maestro
             </h2>
             <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" placeholder="ejemplo@gmail.com" autocomplete="email" required>
+            <input type="email" id="email" name="Correo" placeholder="ejemplo@gmail.com" autocomplete="email" required>
           </form>
     
             <label for="password">Crear Contraseña:</label>
-            <input type="password" id="password" name="password" required placeholder="Contraseña123">
+            <input type="password" id="password" name="Contraseña" required placeholder="Contraseña123">
             <label for="password">Confirmar Contraseña:</label>
-            <input type="password" id="password" name="password" required placeholder="Contraseña123">
+            <input type="password" id="confirm-password" name="confirm-password" required placeholder="Contraseña123">
             <button type="submit">Crear cuenta</button>
             <button class="google-btn">
                 <img src="./src/logos/google.png" alt="Google Logo" class="google-logo">
-                  Registrarse con Google
+                Registrarse con Google
                 </button>
-            <a href="./Registro_Alum.html">¿Eres Alumno?<br></a>                
         </form>
+        
+        <a href="./Registro_Alum.html">¿Eres Alumno?<br></a>
         <a href="./formulario-maestro.html">Ya tienes usuario? inicia sesion aqui!</a>
+        <script>
+            document.getElementById("maestroformulario").addEventListener("submit", async function(event) {
+                event.preventDefault();
+    
+                // Obtener los valores del formulario
+                const formData = new FormData(this);
+                const datos = Object.fromEntries(formData);
+    
+                // Validar que las contraseñas coincidan
+                const password = document.getElementById("password").value;
+                const confirmPassword = document.getElementById("confirm-password").value;
+    
+                if (password !== confirmPassword) {
+                    alert("Las contraseñas no coinciden.");
+                    return;
+                }
+    
+                try {
+                    const respuesta = await fetch("http://localhost:4000/guardar", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(datos)
+                    });
+    
+                    const resultado = await respuesta.json();
+                    alert(resultado.mensaje);
+                } catch (error) {
+                    alert("Error al enviar los datos: " + error.message);
+                }
+            });
+        </script>
     </div>
     
 </body>

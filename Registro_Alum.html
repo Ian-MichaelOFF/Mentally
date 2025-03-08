@@ -18,31 +18,66 @@
         </p>
     </nav>
     <div class="formulario">
-        <form action="Registro_Alum.html" method="POST">
-            <h2>Registro <br>Alumno
-            </h2>
+        <form id="alumformulario"> 
+            <h2>Registro <br>Alumno</h2>
+            
             <label for="name">Crear Usuario:</label>
-            <input type="text" id="name" name="name" required placeholder="Usuario123">
+            <input type="text" id="name" name="Usuario" required placeholder="Usuario123">
     
             <label for="password">Crear Contraseña:</label>
-            <input type="password" id="password" name="password" required placeholder="Contraseña123">
-            <label for="password">Confirmar Contraseña:</label>
-            <input type="password" id="password" name="password" required placeholder="Contraseña123">
-            <label for="security-question">Pregunta de Seguridad:</label>
-    <select id="security-question" name="security-question" required>
-        <option value="" disabled selected>Selecciona una pregunta</option>
-        <option value="pet">¿Cuál es el nombre de tu mascota?</option>
-        <option value="mother-maiden">¿Cuál es el apellido de tu madre?</option>
-        <option value="school">¿Cuál es tu color favorito?</option>
-    </select>
+            <input type="password" id="password" name="contraseña" required placeholder="Contraseña123">
     
-    <label for="security-answer">Respuesta:</label>
-    <input type="text" id="security-answer" name="security-answer" placeholder="Tu respuesta" required>
-
-    <button type="submit">Enviar</button>
+            <label for="confirm-password">Confirmar Contraseña:</label>
+            <input type="password" id="confirm-password" required placeholder="Contraseña123">
+    
+            <label for="security-question">Pregunta de Seguridad:</label>
+            <select id="security-question" name="Pregunta_seguridad" required>
+                <option value="" disabled selected>Selecciona una pregunta</option>
+                <option value="pet">¿Cuál es el nombre de tu mascota?</option>
+                <option value="mother-maiden">¿Cuál es el apellido de tu madre?</option>
+                <option value="school">¿Cuál es tu color favorito?</option>
+            </select>
+    
+            <label for="security-answer">Respuesta:</label>
+            <input type="text" id="security-answer" name="Respuesta" placeholder="Tu respuesta" required>
+    
             <button type="submit">Crear cuenta</button>
-            <a href="./Registro_Master.html">¿Eres Maestro?</a>                
         </form>
+    
+        <script>
+            document.getElementById("alumformulario").addEventListener("submit", async function(event) {
+                event.preventDefault();
+    
+                // Obtener los valores del formulario
+                const formData = new FormData(this);
+                const datos = Object.fromEntries(formData);
+    
+                // Validar que las contraseñas coincidan
+                const password = document.getElementById("password").value;
+                const confirmPassword = document.getElementById("confirm-password").value;
+    
+                if (password !== confirmPassword) {
+                    alert("Las contraseñas no coinciden.");
+                    return;
+                }
+    
+                try {
+                    const respuesta = await fetch("http://localhost:4000/guardar", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(datos)
+                    });
+    
+                    const resultado = await respuesta.json();
+                    alert(resultado.mensaje);
+                } catch (error) {
+                    alert("Error al enviar los datos: " + error.message);
+                }
+            });
+        </script>
+        <a href="./Registro_Master.html">¿Eres Maestro?</a>  
         <a href="./formulario-alum.html">Ya tienes usuario? inicia sesion aqui!</a>
     </div>
     
