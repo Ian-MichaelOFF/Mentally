@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%; /* Asegura que el cuerpo ocupe toda la altura de la pantalla */
+}
+
+/* Contenedor principal */
+.main-container {
+  font-family: "Roboto", sans-serif;
+  line-height: 1;
+  color: rgb(0, 0, 0);
+  background: linear-gradient(90deg, #ee05ff, #eaffcb) !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; /* Distribuye los elementos de manera uniforme */
+  align-items: center; /* Centra el contenido horizontalmente */
+  padding-top: 210px; /* Ajusta este valor para dar espacio arriba */
+}
+
+/* Asegúrate de que la clase .logo esté centrada */
+@keyframes wave {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.logo-text {
+  display: inline-block;
+  margin-top: 0; /* Elimina el margen superior para evitar que se mueva demasiado arriba */
+  font-size: 100px;
+  font-weight: bold;
+  color: rgb(0, 62, 138);
+  text-align: center; /* Asegura que el texto esté centrado */
+  width: 100%; /* Asegura que ocupe el 100% del espacio del contenedor */
+}
+
+.logo-text span {
+  display: inline-block;
+  animation: wave 1.5s ease-in-out infinite;
+  animation-delay: calc(0.1s * var(--i)); /* Retraso para crear el efecto de ola */
+}
+
+.btn {
+  position: relative;
+  bottom: 264px;
+  background-color: #077007;
+  border: none;
+  color: white;
+  padding: 20px 50px;
+  font-size: 30px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.Buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: -50px;
+  gap: 250px;
+  align-items: center;
+}
+
+.btn:hover {
+  font-size: 45px;
+  background-color: rgb(47, 110, 61);
+}
+
+.sesion {
+  flex: 1; /* Toma todo el espacio disponible para centrar el logo */
+  text-align: center;
+  margin-top: 10px;
+  font-family: "Cooper hewitt", sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
