@@ -103,6 +103,13 @@ button {
   cursor: pointer;
 }
 
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+
 button:hover {
   background-color: #152e47;
 }

@@ -34,14 +34,74 @@
 
 
 /* Estilo del cuerpo */
-main {
+.Cuerpo {
   font-family: "Roboto", sans-serif;
-  line-height: 1.6;
-  color: rgb(0, 0, 0);
+  font-style: italic;
+  line-height: 1.0;
+  color: rgb(91, 2, 75);
   background: linear-gradient(90deg, rgb(110, 182, 202), rgb(249, 132, 132));
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 50px;
+}
+
+.btn-juego1 {
+  position: relative;
+  bottom: 264px;
+  background: linear-gradient(90deg, rgb(1, 135, 32), rgb(217, 247, 65));
+  border: none;
+  color: white;
+  padding: 20px 50px;
+  font-size: 67px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.btn-juego2 {
+  position: relative;
+  bottom: 264px;
+  background: linear-gradient(90deg, rgb(88, 1, 106), rgb(229, 43, 242));
+  border: none;
+  color: white;
+  padding: 20px 50px;
+  font-size: 50px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.btn-juego3 {
+  position: relative;
+  bottom: 264px;
+  background: linear-gradient(90deg, rgb(252, 60, 69), rgb(247, 148, 0));
+  border: none;
+  color: white;
+  padding: 20px 50px;
+  font-size: 50px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.BotonJuegos img {
+  width: 90px;
+  height: 90px;
+  gap: 90px;
+}
+.BotonJuegos {
+  display: flex;
+  justify-content: center;
+  margin-top: 320px;
+  gap: 90px;
+  align-items: center;
+}
+
+.btn-juego1:hover {
+  font-size: 60px;
+  background-color: rgb(45, 92, 56);
+}
+.btn-juego2:hover {
+  font-size: 40px;
+  background-color: rgb(62, 6, 79);
+}
+.btn-juego3:hover {
+  font-size: 55px;
+  background-color: rgb(0, 38, 48);
 }
 

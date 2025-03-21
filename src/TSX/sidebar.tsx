@@ -1,5 +1,7 @@
 import React from "react";
-import "../CSS/sidebar.css"; // Asegúrate que el CSS esté bien enlazado
+import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Importa el hook useNavigate
+import "../CSS/sidebar.css"; // Asegúrate de que el CSS esté bien enlazado
 
 interface SidebarProps {
   isOpen: boolean;
@@ -7,6 +9,30 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
+  const navigate = useNavigate(); // Utiliza el hook useNavigate para redirigir al usuario
+
+  // Función para cerrar sesión
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/logout");
+      if (response.data.message === "Sesión cerrada exitosamente") {
+        alert("Has cerrado sesión exitosamente");
+        navigate("/FormularioAlum"); // Redirige al login después de cerrar sesión
+      }
+    } catch (error) {
+      console.error("Error al cerrar sesión", error);
+      alert("Ocurrió un error al cerrar sesión. Intenta nuevamente.");
+    }
+  };
+
+    // Función para navegar a la página de Juegos
+    const handleNavigateToJuegos = () => {
+      navigate("/Pagina-Juegos"); // Redirige a la página de Juegos
+    };
+    const handleNavigateToInicio = () => {
+      navigate("/PaginaPrincipal"); // Redirige a la página de Juegos
+    };
+
   return (
     <>
       {/* Botón de abrir/cerrar */}
@@ -16,20 +42,21 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
 
       {/* Sidebar */}
       <div className={`sidebar ${isOpen ? "open" : ""}`}>
-
-
         <ul>
           <li>
             <a href="#">Perfil</a>
           </li>
           <li>
-            <a href="#">Juegos</a>
+          <a href="#" onClick={handleNavigateToInicio}>Inicio</a>
+          </li>
+          <li>
+          <a href="#" onClick={handleNavigateToJuegos}>Juegos</a> {/* Enlaza al hacer clic */}
           </li>
           <li>
             <a href="#">Configuración</a>
           </li>
           <li>
-            <a href="#">Salir</a>
+            <a href="#" onClick={handleLogout}>Salir</a> {/* Llama a handleLogout al hacer clic */}
           </li>
         </ul>
       </div>
