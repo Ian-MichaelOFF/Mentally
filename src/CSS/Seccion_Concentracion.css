@@ -6,7 +6,7 @@
   }
   
   /* Navbar */
-  .navbar3 {
+  .navbar5 {
     display: flex;
     justify-content: center; /* Centra horizontalmente el contenido */
     align-items: center;     /* Centra verticalmente */
@@ -15,17 +15,17 @@
     height: 60px;
   }
   
-  .logos2 {
+  .logos5 {
     display: flex;
     align-items: center;
   }
   
-  .logos2 img {
+  .logos5 img {
     width: 35px;
     height: 35px;
   }
   
-  .logos-text2 {
+  .logos-text5 {
     font-family: "Rubik bubbles", system-ui;
     font-size: 50px;
     font-weight: bold;
@@ -38,13 +38,13 @@
   
   
   /* Estilo del cuerpo */
-  .Cuerpos2 {
+  .Cuerpos5 {
     font-family: "Spicy Rice", serif;
     font-size: 40px;
     -webkit-text-stroke: 0.5px rgb(0, 0, 0);
     line-height: 1.0;
-    color: rgb(125, 76, 189);
-    background: linear-gradient(10deg, rgb(249, 103, 213), rgb(246, 247, 248));
+    color: rgb(71, 34, 255);
+    background: linear-gradient(360deg, rgb(103, 7, 98), rgb(205, 191, 206));
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -54,86 +54,85 @@
     
   }
   
-  .btn-juegos1 {
+  .btn-Concentracion1 {
     font-family: "Jersey 10", sans-serif;
     -webkit-text-stroke: 0.9px rgb(0, 0, 0);
     position: relative;
     bottom: 264px;
-    background: linear-gradient(90deg, rgb(1, 135, 32), rgb(217, 247, 65));
+    background: linear-gradient(10deg, rgb(24, 1, 106), rgb(229, 43, 242));
     border: none;
     color: white;
-    padding: 20px 80px;
-    font-size: 77px;
+    padding: 50px 60px;
+    font-size: 89px;
     border-radius: 25px;
     cursor: pointer;
     transition: 1s;
   }
-  .btn-juegos2 {
+  .btn-Concentracion2 {
     font-family: "Jersey 10", sans-serif;
     -webkit-text-stroke: 0.9px rgb(0, 0, 0);
     position: relative;
     bottom: 264px;
-    background: linear-gradient(90deg, rgb(88, 1, 106), rgb(229, 43, 242));
+    background: linear-gradient(10deg, rgb(24, 1, 106), rgb(229, 43, 242));
     border: none;
     color: white;
-    padding: 20px 50px;
-    font-size: 70px;
+    padding: 50px 60px;
+    font-size: 89px;
     border-radius: 25px;
     cursor: pointer;
     transition: 1s;
   }
-  .btn-juegos3 {
+  .btn-Concentracion3 {
     font-family: "Jersey 10", sans-serif;
     -webkit-text-stroke: 0.9px rgb(0, 0, 0);
     position: relative;
     bottom: 264px;
-    background: linear-gradient(10deg, #fe3131, rgb(255, 116, 116));
+    background: linear-gradient(10deg, rgb(24, 1, 106), rgb(229, 43, 242));
     border: none;
     color: white;
-    padding: 20px 50px;
-    font-size: 70px;
+    padding: 50px 60px;
+    font-size: 89px;
     border-radius: 25px;
     cursor: pointer;
     transition: 1s;
   }
-  .BJuegos img {
+  .JuegosConcentracion img {
     width: 90px;
     height: 90px;
     gap: 90px;
     transition: 1s;
   }
-  .BJuegos {
+  .JuegosConcentracion {
     display: flex;
     justify-content: center;
     margin-top: 320px;
     gap: 90px;
     align-items: center;
   }
-  
-  .btn-juegos1:hover {
-    font-size: 50px;
-    background-color: rgb(45, 92, 56);
+
+  .btn-Concentracion1 img:hover {
+    width: 70px;
+    height: 70px;
   }
-  .btn-juegos1 img:hover {
-    width: 60px;
-    height: 60px;
+  .btn-Concentracion2 img:hover {
+    width: 70px;
+    height: 70px;
   }
-  .btn-juegos2 img:hover {
-    width: 60px;
-    height: 60px;
-  }
-  .btn-juegos3 img:hover {
-    width: 60px;
-    height: 60px;
+  .btn-Concentracion3 img:hover {
+    width: 70px;
+    height: 70px;
   }
 
-  .btn-juegos2:hover {
-    font-size: 50px;
+  .btn-Concentracion1:hover {
+    font-size: 85px;
+    background-color: rgb(45, 92, 56);
+  }
+
+  .btn-Concentracion2:hover {
+    font-size: 85px;
     background-color: rgb(62, 6, 79);
   }
-  .btn-juegos3:hover {
-    font-size: 50px;
+  .btn-Concentracion3:hover {
+    font-size: 85px;
     background-color: rgb(0, 38, 48);
   }
-  
-  

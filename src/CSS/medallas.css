@@ -1,0 +1,112 @@
+/* Estilos para el botón de toggle INTEGRADO */
+.medallas-toggle-btn {
+    position: fixed;
+    right: 10px;
+    top: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .medallas-toggle-btn:hover {
+    transform: scale(1.3);
+
+  }
+  
+  .medalla-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  /* Sidebar de medallas */
+  .medallas-sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #073b90 100%);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    overflow-y: auto;
+    transition: 1s;
+  }
+  
+  .medallas-sidebar.open {
+    right: 0;
+  }
+
+
+.medallas-header {
+  padding: 20px;
+  background: linear-gradient(90deg, #4b6cb7 0%, #073185 100%);
+  color: white;
+  text-align: center;
+}
+
+.medallas-header h2 {
+  font-family: "Spicy Rice",serif;  
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+/* Contenedor de medallas */
+.medallas-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Items de medalla */
+.medalla-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.medalla-item.bloqueada {
+  opacity: 0.4;
+  
+}
+
+
+
+.medalla-img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.medalla-nombre {
+  font-weight: 500;
+  flex-grow: 1;
+}
+
+.medalla-bloqueada {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+
+/* Fondo oscuro */
+.medallas-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  cursor: pointer;
+}
+  
+  /* Resto de tus estilos... (igual que antes) */

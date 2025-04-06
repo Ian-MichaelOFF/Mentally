@@ -1,0 +1,84 @@
+/* Reinicio básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar4 {
+    display: flex;
+    justify-content: space-between; /* Separa el logo a la izquierda y el botón a la derecha */
+    align-items: center;
+    background: linear-gradient(90deg, rgb(255, 113, 234), rgb(249, 132, 132));
+    padding: 10px 20px;
+    height: 60px;
+    width: 100%;
+}
+
+/* Logo */
+.logos3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);    
+
+}
+
+/* Logo imagen */
+.logos3 img {
+    width: 35px;
+    height: 35px;
+}
+
+/* Texto del logo */
+.logos-text3 {
+    font-family: "Rubik bubbles", system-ui;
+    font-size: 50px;
+    font-weight: bold;
+    color: transparent;
+    background-color: rgb(0, 0, 255);
+    -webkit-text-stroke: 0.5px rgb(0, 0, 0);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Contenedor del botón */
+.botonesGrupos {
+    margin-left: 1320px; /* Empuja el botón completamente a la derecha */
+}
+
+/* Botón */
+.btn-grupo1 {
+    width: 170px;
+    height: 50px;
+    top: 15%;
+    transform: translateY(-13%);
+    background: linear-gradient(90deg, rgb(17, 192, 57), rgb(11, 55, 34));
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    font-size: 17px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-grupo1:hover {
+    background: linear-gradient(90deg, rgb(60, 255, 67), rgb(17, 192, 57));
+}
+  
+  /* Estilo del cuerpo */
+  .Cuerpo3 {
+    font-family: "Roboto", sans-serif;
+    font-style: italic;
+    line-height: 1.0;
+    color: rgb(91, 2, 75);
+    background: linear-gradient(10deg, rgb(249, 103, 213), rgb(246, 247, 248));
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+  }
+

@@ -1,0 +1,65 @@
+import React, { useState } from "react";
+import Sidebar from "../TSX/sidebar"; // Importa la sidebar
+import "../CSS/Seccion_AgilidadM.css";
+import logoCerebro from "/logos/cerebro.png";
+import logoagilidad from "/logos/cartoon-capybara.png";
+import { useNavigate } from "react-router-dom";
+import Medallas from "./Medallas";
+
+const JuegosAgilidad: React.FC = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isMedallasOpen, setIsMedallasOpen] = useState(false);
+
+  const navigate = useNavigate();
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+  const toggleMedallas = () => {
+    setIsMedallasOpen(!isMedallasOpen);
+  };
+  const handleClick = () => {
+    navigate("/Frutas_Mat");
+    navigate(0); // Esto fuerza una recarga
+  };
+
+  return (
+    <div>
+      {/* Navbar */}
+      <nav className="navbar6">
+        <div className="logos6">
+          <span className="logos-text6">MENTALLY</span>
+          <img src={logoCerebro} alt="Logo6" />
+        </div>
+      </nav>
+
+      {/* Sidebar */}
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+
+      {/* Fondo oscuro al abrir la sidebar */}
+      {isSidebarOpen && (
+        <div className="backdrop" onClick={toggleSidebar}></div>
+      )}
+      <Medallas isOpen={isMedallasOpen} toggleMedallas={toggleMedallas} />
+
+      {/* Contenido principal */}
+      <div className="Cuerpos6">
+        <h1>Bienvenido a la seccion de Agilidad Mental!</h1>
+        <div className="JuegosAgilidad">
+          <button className="btn-Agilidad1" type="button" onClick={handleClick}>
+            Operaciones <b/> Frutales
+            <img src={logoagilidad} alt="Logo Agiidad" />
+          </button>
+          <button className="btn-Agilidad2">
+            Juego 2 <img src={logoagilidad} />
+          </button>
+          <button className="btn-Agilidad3">
+            Juego 3 <img src={logoagilidad} />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default JuegosAgilidad;

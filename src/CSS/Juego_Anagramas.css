@@ -1,0 +1,177 @@
+.Cuerpo_Anagramas {
+    font-family: 'Comic Sans MS', sans-serif; /* Fuente divertida */
+    background: linear-gradient(135deg, #FFEB3B, #FF80AB); /* Fondo degradado en colores brillantes */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.Logo_Anagramas {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: #9C27B0; /* Color morado claro */
+    text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.2); /* Sombra de texto más suave */
+    font-family: 'Baloo Tamma 2', cursive; /* Fuente divertida */
+}
+
+/* Estilo contenedor de dificultad */
+#difficulty-container {
+    text-align: center;
+    background-color: #FFEB3B;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(65, 50, 50, 0.2);
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 30px;
+}
+
+#difficulty {
+    margin: 15px 0;
+    padding: 12px;
+    font-size: 1.4rem;
+    border-radius: 10px;
+    border: 2px solid #9C27B0; /* Morado claro para el borde */
+    width: 100%;
+    background-color: #FFEB3B;
+    font-family: 'Comic Sans MS', sans-serif;
+}
+
+/* Estilo botón Iniciar */
+#start-btn-Anagram {
+    padding: 14px 30px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    background-color: #9C27B0;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s;
+    width: 100%;
+    font-family: 'Comic Sans MS', sans-serif;
+}
+
+#start-btn:hover { /* Morado más oscuro al pasar el ratón */
+    transform: scale(1.1);
+}
+
+/* Estilo contenedor de juego */
+#game-container {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #FFEB3B;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 450px;
+}
+
+/* Estilo input de texto */
+.input_anagramas  {
+    padding: 15px;
+    font-size: 1.4rem;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 2px solid #9C27B0; /* Morado claro en los bordes */
+    width: 100%;
+    box-sizing: border-box;
+    transition: border 0.3s ease;
+    background-color: #FFF3E0;
+}
+
+.input_anagramas [type="text"]:focus {
+    border: 2px solid #7B1FA2; /* Morado más oscuro al enfocar el input */
+    outline: none;
+}
+
+/* Estilo botón de comprobar */
+.boton_iniciar_An {
+    padding: 5px 30px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    background-color: #9C27B0; /* Morado claro */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, transform 0.2s;
+    width: 100%;
+    font-family: 'Comic Sans MS', sans-serif;
+}
+
+.boton_iniciar_An:hover { /* Morado más oscuro al pasar el ratón */
+    transform: scale(1.1);
+}
+
+/* Estilo mensaje */
+#message {
+    font-size: 1.4rem;
+    margin-top: 15px;
+    color: #333;
+    font-family: 'Comic Sans MS', sans-serif;
+}
+
+/* Estilo temporizador */
+#timer {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #000; /* Temporizador en color negro */
+    margin-top: 15px;
+    font-family: 'Courier New', Courier, monospace; /* Tipografía monoespaciada para el temporizador */
+}
+
+/* Estilo botón de salida */
+#exit-btn {
+    font-family: "Spicy Rice", serif;
+    font-size: 20px;
+    background-color: #db2d2d;
+    padding: 15px 30px;
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 10px;
+    font-family: 'Comic Sans MS', sans-serif;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+#submit-btn {
+    padding: 5px 30px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    background-color: #9C27B0; /* Morado claro */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, transform 0.2s;
+    width: 100%;
+    font-family: 'Comic Sans MS', sans-serif;
+}
+#submit-btn:hover {
+    background-color: #7B1FA2; /* Morado más oscuro al pasar el ratón */
+    transform: scale(1.1);
+}
+
+#exit-btn:hover {
+    background-color: #d32f2f;
+    transform: scale(1.1);
+}
+
+/* Animación de transición de entrada */
+#difficulty-container, #game-container {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

@@ -30,7 +30,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
       navigate("/Pagina-Juegos"); // Redirige a la página de Juegos
     };
     const handleNavigateToInicio = () => {
-      navigate("/PaginaPrincipal"); // Redirige a la página de Juegos
+      navigate("/Pagina-Principal"); // Redirige a la página Principal
+    };
+    const handleNavigateToGrupos = () => {
+      navigate("/Pagina-Grupos"); // Redirige a la página de Grupos
+    };
+    const handleNavigateToPerfil = () => {
+      navigate("/Perfil"); // Redirige a la página de Grupos
     };
 
   return (
@@ -44,16 +50,16 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
       <div className={`sidebar ${isOpen ? "open" : ""}`}>
         <ul>
           <li>
-            <a href="#">Perfil</a>
+            <a href="#" onClick={handleNavigateToPerfil}>Perfil</a>
+          </li>
+          <li>
+            <a href="#" onClick={handleNavigateToGrupos}>Grupos</a>
           </li>
           <li>
           <a href="#" onClick={handleNavigateToInicio}>Inicio</a>
           </li>
           <li>
           <a href="#" onClick={handleNavigateToJuegos}>Juegos</a> {/* Enlaza al hacer clic */}
-          </li>
-          <li>
-            <a href="#">Configuración</a>
           </li>
           <li>
             <a href="#" onClick={handleLogout}>Salir</a> {/* Llama a handleLogout al hacer clic */}

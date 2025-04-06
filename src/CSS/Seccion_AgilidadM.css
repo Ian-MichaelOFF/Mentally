@@ -6,142 +6,131 @@
 }
 
 /* Navbar */
-.navbar2 {
+.navbar6 {
   display: flex;
   justify-content: center; /* Centra horizontalmente el contenido */
-  align-items: center;     /* Centra verticalmente */
+  align-items: center; /* Centra verticalmente */
   background: linear-gradient(90deg, rgb(255, 113, 234), rgb(249, 132, 132));
   padding: 10px 20px;
   height: 60px;
 }
 
-.logos {
+.logos6 {
   display: flex;
   align-items: center;
 }
 
-.logos img {
+.logos6 img {
   width: 35px;
   height: 35px;
 }
 
-.logos-text {
+.logos-text6 {
   font-family: "Rubik bubbles", system-ui;
   font-size: 50px;
   font-weight: bold;
   color: transparent;
   background-color: rgb(0, 0, 255);
-  -webkit-text-stroke: 0.5px rgb(20, 22, 100);
+  -webkit-text-stroke: 0.5px rgb(0, 0, 0);
   -webkit-background-clip: text;
   background-clip: text;
 }
 
-
 /* Estilo del cuerpo */
-.Cuerpo {
+.Cuerpos6 {
   font-family: "Spicy Rice", serif;
-  line-height: 1.0;
-  color: rgb(212, 89, 190);
+  font-size: 40px;
   -webkit-text-stroke: 0.5px rgb(0, 0, 0);
-  background: linear-gradient(10deg, rgb(249, 103, 213), rgb(246, 247, 248));
+  line-height: 1;
+  color: rgb(248, 95, 0);
+  background: linear-gradient(181deg, rgb(255, 228, 181), rgb(249, 65, 65));
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
   padding: 50px;
 }
 
-.btn-juego1 {
+.btn-Agilidad1 {
   font-family: "Jersey 10", sans-serif;
   -webkit-text-stroke: 0.9px rgb(0, 0, 0);
   position: relative;
   bottom: 264px;
-  background: linear-gradient(90deg, rgb(1, 135, 32), rgb(217, 247, 65));
+  background: linear-gradient(10deg, rgb(85, 37, 130),rgb(0, 102, 255));
   border: none;
   color: white;
-  padding: 20px 80px;
-  font-size: 76px;
+  padding: 50px 60px;
+  font-size: 60px;
   border-radius: 25px;
   cursor: pointer;
   transition: 1s;
 }
-.btn-juego2 {
+.btn-Agilidad2 {
   font-family: "Jersey 10", sans-serif;
   -webkit-text-stroke: 0.9px rgb(0, 0, 0);
   position: relative;
   bottom: 264px;
-  background: linear-gradient(90deg, rgb(88, 1, 106), rgb(229, 43, 242));
+  background: linear-gradient(10deg, rgb(85, 37, 130),rgb(0, 102, 255));
   border: none;
   color: white;
-  padding: 25px 40px;
-  font-size: 70px;
+  padding: 50px 60px;
+  font-size: 89px;
   border-radius: 25px;
   cursor: pointer;
   transition: 1s;
 }
-.btn-juego3 {
+.btn-Agilidad3 {
   font-family: "Jersey 10", sans-serif;
   -webkit-text-stroke: 0.9px rgb(0, 0, 0);
   position: relative;
   bottom: 264px;
-  background: linear-gradient(10deg, #fe3131, rgb(255, 116, 116));
+  background: linear-gradient(10deg, rgb(85, 37, 130),rgb(0, 102, 255));
   border: none;
   color: white;
-  padding: 20px 60px;
-  font-size: 70px;
+  padding: 50px 60px;
+  font-size: 89px;
   border-radius: 25px;
   cursor: pointer;
   transition: 1s;
 }
-.btn-juego1 img {
+.JuegosAgilidad img {
   width: 90px;
-  height: 80px;
+  height: 90px;
   gap: 90px;
   transition: 1s;
 }
-.btn-juego2 img {
-  width: 90px;
-  height: 80px;
-  gap: 90px;transition: 1s;
-}
-
-.btn-juego3 img {
-  width: 100px;
-  height: 100px;
-  gap: 100px;
-  position: relative;
-  align-items: center;
-  transition: 1s;
-}
-.BotonJuegos {
+.JuegosAgilidad {
   display: flex;
   justify-content: center;
   margin-top: 320px;
-  gap: 110px;
+  gap: 90px;
   align-items: center;
 }
 
-.btn-juego1:hover {
-  font-size: 60px;
-  background-color: rgb(45, 92, 56);
-}
-.btn-juego1 img:hover {
+.btn-Agilidad1 img:hover {
   width: 60px;
   height: 60px;
 }
-.btn-juego2:hover {
-  font-size: 60px;
-  background-color: rgb(62, 6, 79);
+.btn-Agilidad2 img:hover {
+  width: 70px;
+  height: 70px;
 }
-.btn-juego2 img:hover {
-  width: 60px;
-  height: 60px;
+.btn-Agilidad3 img:hover {
+  width: 70px;
+  height: 70px;
 }
-.btn-juego3:hover {
-  font-size: 60px;
-  background-color: rgb(0, 38, 48);
-}
-.btn-juego3 img:hover {
-  width: 60px;
-  height: 60px;
+.btn-Agilidad1:hover {
+font-size: 45px;
+background-color: rgb(45, 92, 56);
 }
 
+.btn-Agilidad2:hover {
+  font-size: 85px;
+  background-color: rgb(62, 6, 79);
+}
+.btn-Agilidad3:hover {
+  font-size: 85px;
+  background-color: rgb(0, 38, 48);
+}

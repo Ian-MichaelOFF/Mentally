@@ -25,12 +25,12 @@ const HomePage: React.FC = () => {
       <div className="Buttons">
         {/* Cambia <a> por <Link> para las rutas internas en React */}
         <Link to="/formulario-maestro"> {/* Usa la ruta relativa correcta */}
-          <button className="btn">Iniciar Sesión Maestro</button>
+          <button className="btn">Maestro</button>
         </Link>
         
         {/* Enlace al formulario de alumno */}
         <Link to="/FormularioAlum"> {/* Usa la ruta correcta aquí también */}
-          <button className="btn">Iniciar sesión Alumno</button>
+          <button className="btn">Alumno</button>
         </Link>
       </div>
     </div>

@@ -10,10 +10,10 @@ html, body {
 
 /* Contenedor principal */
 .main-container {
-  font-family: "Roboto", sans-serif;
+  font-family: "Spicy Rice", serif;
   line-height: 1;
   color: rgb(0, 0, 0);
-  background: linear-gradient(90deg, #ee05ff, #eaffcb) !important;
+  background: linear-gradient(10deg, rgb(237, 15, 181), rgb(246, 247, 248)) !important;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -36,6 +36,13 @@ html, body {
 }
 
 .logo-text {
+  font-family: "Rubik bubbles", system-ui;
+  font-weight: bold;
+  color: transparent;
+  background-color: rgb(0, 0, 255);
+  -webkit-text-stroke: 0.01px rgb(42, 27, 91);
+  -webkit-background-clip: text;
+  background-clip: text;
   display: inline-block;
   margin-top: 0; /* Elimina el margen superior para evitar que se mueva demasiado arriba */
   font-size: 100px;
@@ -54,13 +61,16 @@ html, body {
 .btn {
   position: relative;
   bottom: 264px;
-  background-color: #077007;
+  background-color: #2a952a;
   border: none;
-  color: white;
-  padding: 20px 50px;
-  font-size: 30px;
+  font-family: "Jersey 10", sans-serif;
+  color: rgb(255, 255, 255);
+  -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+  padding: 20px 90px;
+  font-size: 55px;
   border-radius: 25px;
   cursor: pointer;
+  transition: 1s;
 }
 
 .Buttons {
@@ -80,9 +90,8 @@ html, body {
   flex: 1; /* Toma todo el espacio disponible para centrar el logo */
   text-align: center;
   margin-top: 10px;
-  font-family: "Cooper hewitt", sans-serif;
-  font-size: 30px;
-  font-weight: bold;
+  font-family: "Spicy Rice", serif;
+  font-size: 40px;
   color: black;
   -webkit-background-clip: text;
   background-clip: text;

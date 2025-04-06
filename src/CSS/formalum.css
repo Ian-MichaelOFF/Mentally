@@ -18,12 +18,12 @@
 }
 
 .logoform{
-  font-family: "Cooper Hewitt", sans-serif;
+  font-family: "Rubik bubbles", system-ui;
   font-size: 50px;
   font-weight: bold;
   color: transparent;
   background-color: blue;
-  -webkit-text-stroke: 1.5px rgb(4, 0, 62);
+  -webkit-text-stroke: 0.5px rgb(29, 41, 101);
   -webkit-background-clip: text;
   background-clip: text;
   display: flex;
@@ -39,19 +39,16 @@
 }
 
 .textobienv{
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
+  font-family: "Spicy Rice", serif;
+  font-size: 25px;
   color: rgb(30, 62, 225);
-  font-weight: bold;
   text-shadow: black 2px 2px 2px; 
   margin-left: 1px;
   height: 2px;
 }
 
 .formulario-page {
-  font-family: "Roboto", sans-serif;
-  line-height: 1.5;
-  color: rgb(0, 0, 0);
+  font-family: "Spicy Rice", serif;
   background: linear-gradient(90deg, #79deff, #eaff95);
   height: 100vh;
   display: flex;
@@ -70,37 +67,75 @@
   text-align: center;
 }
 
-h2 {
+.tituloform {
   margin-bottom: 15px;
   color: #ffffff;
-  font-size: 24px;
+  -webkit-text-stroke: 0.2px rgb(0, 0, 0);
+  font-size: 20px;
 }
 
-label {
+.contraseñaform label {
   display: block;
   color: #ffffff;
+  -webkit-text-stroke: 0.4px rgb(0, 0, 0);
+  font-size: 24px;
   margin-top: 10px;
-  font-weight: bold;
+}
+.usuarioform label {
+  display: block;
+  color: #ffffff;
+  -webkit-text-stroke: 0.4px rgb(0, 0, 0);
+  font-size: 24px;
+  margin-top: 10px;
 }
 
-input {
+.contraseñaform input {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   margin-top: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #ffffff;
   border-radius: 5px;
   box-sizing: border-box;
 }
 
-button {
+.usuarioform input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.button1 {
   margin-top: 15px;
   padding: 10px;
   width: 100%;
-  background-color: #007bff;
-  color: white;
+  background-color: #2a952a;
+  border: none;
+  font-family: "Jersey 10", sans-serif;
+  -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-size: 35px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: 1s;
+}
+.button2 {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  background-color: #2a952a;
+  border: none;
+  font-family: "Jersey 10", sans-serif;
+  -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-size: 35px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 1s;
 }
 
 .error-message {
@@ -110,17 +145,52 @@ button {
 }
 
 
-button:hover {
-  background-color: #152e47;
+.button1:hover {
+  background-color: #00371e;
+  font-size: 30px;
 }
 
-a {
-  color: rgb(36, 204, 75);
+.button2:hover {
+  background-color: #00371e;
+  font-size: 30px;
+}
+
+.mast a {
+  font-size: 20px;
+  color: rgb(148, 194, 159);
+  -webkit-text-stroke: 0.9px rgb(0, 0, 0);
   display: block;
   margin-top: 10px;
   text-decoration: none;
+  transition: 0.7s;
+}
+.mast a:visited {
+  color: rgb(148, 194, 159);
 }
 
-a:hover {
+.recuperar a {
+  font-size: 20px;
+  color: rgb(148, 194, 159);
+  -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+  transition: 0.7s;
+}
+.recuperar a:visited {
+  color: rgb(148, 194, 159)
+}
+
+
+
+.recuperar a:hover {
   text-decoration: underline;
+  color: rgb(0, 44, 175);
+  font-size: 25px;
+}
+
+.mast a:hover {
+  text-decoration: underline;
+  color: rgb(0, 47, 188);
+  font-size: 25px;
 }

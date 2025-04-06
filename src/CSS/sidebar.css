@@ -26,7 +26,7 @@
 /* Botón de abrir/cerrar (fuera del sidebar) */
 .toggle-btn2 {
   position: fixed;
-  top: -10px;
+  top: 5px;
   left: 15px;
   padding: 10px 15px; /* Ajusta el padding */
   font-size: 20px;
@@ -38,6 +38,7 @@
   width: auto; /* Permite que el ancho se ajuste al contenido */
   height: 50px; /* Establece una altura fija si es necesario */
   box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+  transition: 1s;
 }
 
 /* Fondo oscuro cuando el sidebar está abierto */
