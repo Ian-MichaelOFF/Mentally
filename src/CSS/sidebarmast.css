@@ -1,0 +1,78 @@
+/* Sidebar base */
+.sidebarMast {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(90deg, #295bb1, #290832);
+    color: white;
+    padding-top: 60px;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+    transform: translateX(-100%); /* Oculto a la izquierda */
+    transition: transform 0.6s ease-in-out; /* Suaviza la animación */
+    z-index: 100;
+    overflow: hidden;
+  }
+  
+  /* Sidebar abierto */
+  .sidebarMast.open {
+    transform: translateX(0); /* Lo desliza a la vista */
+  }
+  
+  /* Botón de cerrar dentro del sidebar */
+  
+  
+  /* Botón de abrir/cerrar (fuera del sidebar) */
+  .toggle-btn3 {
+    position: fixed;
+    top: 5px;
+    left: 15px;
+    padding: 10px 15px; /* Ajusta el padding */
+    font-size: 20px;
+    background-color: #2c3492;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 101;
+    width: auto; /* Permite que el ancho se ajuste al contenido */
+    height: 50px; /* Establece una altura fija si es necesario */
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+    transition: 1s;
+  }
+  
+  /* Fondo oscuro cuando el sidebar está abierto */
+  .backdropMast {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99; /* Detrás del sidebar pero encima del contenido */
+  }
+  
+  /* Lista de navegación */
+  .sidebarMast ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .sidebarMast ul li {
+    padding: 15px;
+  }
+  
+  .sidebarMast ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 26px;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidebarMast ul li a:hover {
+    font-size: 35px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  

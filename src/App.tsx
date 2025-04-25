@@ -12,6 +12,11 @@ import JuegosAgilidad from "./TSX/Seccion_AgilidadM";
 import Anagrama from "./TSX/Anagrama";
 import FrutasMatematicas from "./TSX/Frutas_Mat";
 import PerfilAlumno from "./TSX/Perfil";
+import RegistroMaestro from "./TSX/RegistroMast";
+import LoginMaestro from "./TSX/Formulario-Mast";
+import PaginaPrinMast from "./TSX/Pagina-Principal-Mast";
+import PerfilMaestro from "./TSX/PerfilMast";
+import PaginaGruposMaestro from "./TSX/Pagina-Grupos-Mast";
 function App() {
   return (
     <Router>
@@ -29,6 +34,12 @@ function App() {
         <Route path="/Anagrama" element={<Anagrama />} />
         <Route path="/Frutas_Mat" element={<FrutasMatematicas />} />
         <Route path="/Perfil" element={<PerfilAlumno />} /> {/* Ruta para el perfil */}
+        <Route path="/RegistroMast" element={<RegistroMaestro />} /> 
+        <Route path="/Formulario-Mast" element={<LoginMaestro />} /> {/* Ruta para el formulario de maestro */}
+        <Route path="/Pagina-Principal-Mast" element={<PaginaPrinMast />} /> {/* Ruta para la página principal del maestro */}
+        <Route path="/PerfilMaestro" element={<PerfilMaestro />} /> {/* Ruta para el perfil del maestro */}
+        <Route path="/Pagina-Grupos-Mast" element={<PaginaGruposMaestro />} /> {/* Ruta para la página de grupos del maestro */}
+        {/* Puedes agregar más rutas aquí según sea necesario */}
       </Routes>
     </Router>
   );

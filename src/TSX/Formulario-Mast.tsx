@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../CSS/formalum.css";
+import "../CSS/formmaster.css"; // Puedes crear un CSS específico para maestros si lo prefieres
 
 axios.defaults.withCredentials = true;
 
-const Login: React.FC = () => {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
+const LoginMaestro: React.FC = () => {
+  const [correo, setCorreo] = useState("");
+  const [contraseña, setContraseña] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleNavigateToMaestro = () => {
-    navigate("/Formulario-Mast");
+  const handleNavigateToAlumno = () => {
+    navigate("/FormularioAlum");
   };
 
   useEffect(() => {
     const verificarSesion = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/session");
+        const res = await axios.get("http://localhost:5000/session-maestro");
         if (res.data.loggedIn) {
-          navigate("/Pagina-Principal");
+          navigate("/Pagina-Principal-Mast"); // Asegúrate de tener esta ruta
         }
       } catch (error) {
         console.error("Error al verificar sesión", error);
@@ -33,21 +33,21 @@ const Login: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!name || !password) {
+    if (!correo || !contraseña) {
       setError("Por favor, llena todos los campos.");
       return;
     }
 
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:5000/login", {
-        name,
-        password,
+      const response = await axios.post("http://localhost:5000/login-maestro", {
+        correo,
+        contraseña,
       });
 
       if (response.data.message === "Inicio de sesión exitoso") {
         alert("Sesión iniciada correctamente");
-        navigate("/Pagina-Principal");
+        navigate("/Pagina-Principal-Mast");
       } else {
         setError(response.data.message);
       }
@@ -60,46 +60,46 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="formulario-page">
-      <nav className="navbarform">
-        <div className="logoform">
+    <div className="formulario-pageM">
+      <nav className="navbarforM">
+        <div className="logoformM">
           MENTALLY
           <img src="logos/cerebro.png" alt="Logo del sitio" />
         </div>
-        <div className="textobienv">BIENVENIDO DE VUELTA!</div>
+        <div className="textobienvM">BIENVENIDO MAESTRO!</div>
       </nav>
 
-      <div className="formulario">
+      <div className="formularioM">
         <form onSubmit={handleSubmit}>
           <div className="tituloform">
-            <h2>Inicio de Sesión <br /> Alumno</h2>
+            <h2>Inicio de Sesión <br /> Maestro</h2>
           </div>
 
           {error && <p className="error-message">{error}</p>}
 
           <div className="usuarioform">
-            <label htmlFor="name">Usuario:</label>
+            <label htmlFor="correo">Correo electrónico:</label>
             <input
-              type="text"
-              id="name"
-              name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              type="email"
+              id="correo"
+              name="correo"
+              value={correo}
+              onChange={(e) => setCorreo(e.target.value)}
               required
-              placeholder="Usuario123"
+              placeholder="tucorreo@ejemplo.com"
             />
           </div>
 
           <div className="contraseñaform">
-            <label htmlFor="password">Contraseña:</label>
+            <label htmlFor="contraseña">Contraseña:</label>
             <input
               type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              id="contraseña"
+              name="contraseña"
+              value={contraseña}
+              onChange={(e) => setContraseña(e.target.value)}
               required
-              placeholder="Contraseña123"
+              placeholder="Tu contraseña"
             />
           </div>
 
@@ -111,13 +111,13 @@ const Login: React.FC = () => {
             <button className="button1" type="submit" disabled={loading}>
               {loading ? "Iniciando..." : "Iniciar Sesión"}
             </button>
-            <button className="button2" type="button" onClick={() => navigate("/RegistroAlum")}>
+            <button className="button2" type="button" onClick={() => navigate("/RegistroMast")}>
               Registrarse
             </button>
           </div>
 
           <div className="mast">
-            <a href="#" onClick={handleNavigateToMaestro}>¿Eres Maestro?</a>
+            <a href="#" onClick={handleNavigateToAlumno}>¿Eres Alumno?</a>
           </div>
         </form>
       </div>
@@ -125,4 +125,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default LoginMaestro;

@@ -3,115 +3,197 @@
     padding: 0;
     box-sizing: border-box;
   }
-  body {
-    font-family: "Roboto", sans-serif;
-    line-height: 3;
-    color: rgb(0, 0, 0);
-    background: linear-gradient(90deg, #8fd7ef, #eaff95); 
+  
+  .navegacionbarMast {
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    background: linear-gradient(90deg, rgb(50, 177, 137), rgb(136, 234, 231));
+    padding: 20px 40px;
+    height: 120px;
+    position: fixed; /* Fija la navbar en la parte superior */
+    top: 0; /* La coloca en la parte superior de la página */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    z-index: 10; /* Para que esté por encima de otros elementos */
   }
-
-.logo {
-    flex: 1; 
-    text-align: center;
-    font-family: "Cooper hewitt", sans-serif;
-    font-size: 80px;
+  
+  .logoregistMast{
+    font-family: "Rubik bubbles", system-ui;
+    font-size: 50px;
     font-weight: bold;
     color: transparent;
     background-color: blue;
-    -webkit-text-stroke: 1.5px rgb(4, 0, 62);
+    -webkit-text-stroke: 0.5px rgb(29, 41, 101);
     -webkit-background-clip: text;
     background-clip: text;
-
-    }
-
-.logo img {
+    display: flex;
+    justify-content: center; /* Centra el contenido del logo horizontalmente */
+    align-items: center; /* Centra el contenido del logo verticalmente */
+    text-align: center; /* Asegura que el texto esté centrado */
+  }
+  
+  .logoregistMast img {
     width: 40px;
-    height: 40px; 
+    height: 40px;
     margin-right: 10px;
-}
-
-.sesion {
-    flex: 1; 
-    position: relative;
-    top: -110px; 
-    text-align: center;
-    font-family: "Cooper hewitt", sans-serif;
-    font-size: 30px;
-    font-weight: bold;
-    color: rgb(245, 90, 240);
-    -webkit-text-stroke: 1px black;
-    -webkit-background-clip: text;
-    background-clip: text;
-}
-
-.formulario {
+  }
+  
+  .texto-bienvenida-Mast{
+    font-family: "Spicy Rice", serif;
+    font-size: 25px;
+    color: rgb(30, 62, 225);
+    text-shadow: black 2px 2px 2px; 
+    margin-left: 1px;
+    height: 2px;
+  }
+  
+  /* Estilos del formulario */
+  .formularioregistMast {
+    font-family: "Spicy Rice", serif;
+    background: linear-gradient(90deg, #b28aca, #b37ee1);
+    height: 103vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 150px; /* Asegura que el contenido no se solape con la navbar fija */
+  }
+  .formulario_registroMast {
     background: linear-gradient(-23deg, #0c4558, #999997);
-    position: relative;
-    top: -150px; 
-    padding: 20px; 
-    width: 500px; 
-    margin: 50px auto; 
-    border-radius: 30px; 
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+    padding: 20px;
+    width: 400px;
+    margin: 50px auto;
+    border-radius: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-}
-
-h2 {
-    line-height: 1.5;
+  }
+  
+  .formulario_registroMast h2 {
+    color: white;
+    -webkit-text-stroke: 0.8px rgb(0, 0, 0);
+    font-size: 40px;
     margin-bottom: 15px;
-    color: #ffffff;
-}
-
-label {
+  }
+  
+  .CrearUsuario label {
     display: block;
-    color: #ffffff;
-    margin-top: 10px;
-    font-weight: bold;
-}
+    color: white;
+    -webkit-text-stroke: 0.8px rgb(0, 0, 0);
+    font-size: 24px;
+    margin-top: -2px;
+  }
 
-input {
+  .CrearUsuario input:hover {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  .CrearUsuario input {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid white;
     border-radius: 5px;
-}
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: 1s;
+  }
+  .campo-formulario label {
+    display: block;
+    color: white;
+    -webkit-text-stroke: 0.8px rgb(0, 0, 0);
+    font-size: 24px;
+    margin-top: -2px;
+  }
 
-button {
+  .campo-formulario input:hover {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  .campo-formulario input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: 1s;
+  }
+  .contraseña-confirmMast label {
+    display: block;
+    color: white;
+    -webkit-text-stroke: 0.8px rgb(0, 0, 0);
+    font-size: 24px;
+    margin-top: 10px;
+    transition: 1s;
+  }
+
+  .crearcontraMast label {
+    display: block;
+    color: white;
+    -webkit-text-stroke: 0.8px rgb(0, 0, 0);
+    font-size: 24px;
+    margin-top: 10px;
+    transition: 1s;
+  }
+
+  
+  input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .BotocrearMast {
     margin-top: 15px;
     padding: 10px;
     width: 100%;
-    background-color: #007bff;
-    color: white;
+    background-color: #2a952a;
+    border: none;
+    font-family: "Jersey 10", sans-serif;
+    -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    font-size: 35px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-button:hover {
-    background-color:  #152e47;
-}
-
-a{
-    color: rgb(36, 204, 75);
-}
-
-.google-btn {
-    background-color: #110b36;
-    color: white;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-.google-btn img {
-    width: 20px;  /* Ajusta el tamaño */
-    height: 20px; /* Ajusta el tamaño */
-    margin-right: 10px;
-}
-
+    transition: 0.7s;
+  }
+  
+  .BotocrearMast:hover {
+    background-color: #00371e;
+    font-size: 30px;
+  }
+  
+  .usuariosesionMast a {
+    font-family: "Spicy Rice", serif;
+    font-size: 20px;
+    color: rgb(148, 194, 159);
+    -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    transition: 0.5s;
+  }
+  
+  .usuariosesionMast a:hover {
+    text-decoration: underline;
+    color: rgb(0, 44, 175);
+    font-size: 22px;
+  }
+  

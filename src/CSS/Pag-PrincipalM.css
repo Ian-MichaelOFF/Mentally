@@ -1,0 +1,148 @@
+/* Reinicio básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Navbar */
+  .navbarMst {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center;     /* Centra verticalmente */
+    background: linear-gradient(90deg, rgb(110, 28, 168), rgb(195, 136, 234));
+    padding: 30px 20px;
+    height: 60px;
+  }
+  
+  .logosMst {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logosMst img {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .logos-textMst {
+    font-family: "Rubik bubbles", system-ui;
+    font-size: 50px;
+    font-weight: bold;
+    color: transparent;
+    background-color: rgb(0, 0, 255);
+    -webkit-text-stroke: 0.5px rgb(20, 22, 100);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  
+  
+  /* Estilo del cuerpo */
+  .CuerpoMst {
+    font-family: "Spicy Rice", serif;
+    line-height: 1.0;
+    color: rgb(212, 89, 190);
+    -webkit-text-stroke: 0.5px rgb(0, 0, 0);
+    background: linear-gradient(10deg, rgb(9, 173, 75), rgb(246, 247, 248));
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+  }
+  
+  .btn-juego1M {
+    font-family: "Jersey 10", sans-serif;
+    -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+    position: relative;
+    bottom: 264px;
+    background: linear-gradient(90deg, rgb(1, 135, 32), rgb(217, 247, 65));
+    border: none;
+    color: white;
+    padding: 20px 80px;
+    font-size: 76px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 1s;
+  }
+  .btn-juego2M {
+    font-family: "Jersey 10", sans-serif;
+    -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+    position: relative;
+    bottom: 264px;
+    background: linear-gradient(90deg, rgb(88, 1, 106), rgb(229, 43, 242));
+    border: none;
+    color: white;
+    padding: 25px 40px;
+    font-size: 70px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 1s;
+  }
+  .btn-juego3M {
+    font-family: "Jersey 10", sans-serif;
+    -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+    position: relative;
+    bottom: 264px;
+    background: linear-gradient(10deg, #fe3131, rgb(255, 116, 116));
+    border: none;
+    color: white;
+    padding: 20px 60px;
+    font-size: 70px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 1s;
+  }
+  .btn-juego1M img {
+    width: 90px;
+    height: 80px;
+    gap: 90px;
+    transition: 1s;
+  }
+  .btn-juego2M img {
+    width: 90px;
+    height: 80px;
+    gap: 90px;transition: 1s;
+  }
+  
+  .btn-juego3M img {
+    width: 100px;
+    height: 100px;
+    gap: 100px;
+    position: relative;
+    align-items: center;
+    transition: 1s;
+  }
+  .BotonJuegosMst {
+    display: flex;
+    justify-content: center;
+    margin-top: 320px;
+    gap: 110px;
+    align-items: center;
+  }
+  
+  .btn-juego1M:hover {
+    font-size: 60px;
+    background-color: rgb(45, 92, 56);
+  }
+  .btn-juego1M img:hover {
+    width: 60px;
+    height: 60px;
+  }
+  .btn-juego2:hover {
+    font-size: 60px;
+    background-color: rgb(62, 6, 79);
+  }
+  .btn-juego2M img:hover {
+    width: 60px;
+    height: 60px;
+  }
+  .btn-juego3M:hover {
+    font-size: 60px;
+    background-color: rgb(0, 38, 48);
+  }
+  .btn-juego3M img:hover {
+    width: 60px;
+    height: 60px;
+  }
+  
+  
