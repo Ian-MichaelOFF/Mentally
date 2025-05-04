@@ -1,27 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Cooper+Hewitt:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link rel="stylesheet" href="./src/index.css" />
-    <title>Mentally</title>
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="logo">MENTALLY</div>
-    </nav>
-    <div class="sesion">
-          <p>
-            Bienenvido a Mentally una platforma con juegos y Diversion!
-          </p>
-        </div>
-    <div class="Buttons">
-        <a href="./formulario-maestro.html"><button class="btn" >Iniciar Sesion 
-        Maestro</button>
-        <a href="./formulario-alum.html"><button class="btn">Iniciar Sesion 
-        Alumno</button>
-      </div>
-  </body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Operador Misterioso</title>
+    <link rel="stylesheet" href="styless.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <h1>Operador Misterioso</h1>
+    <p>Aqui tendras que adivinar el operador que cumpla con la logica!</p>
+    <img src="Brain.png" alt="Mascota Mentally" class="mascot">
+
+    <div id="difficulty-select">
+        <label for="difficulty">Selecciona dificultad:</label>
+        <select id="difficulty">
+            <option value="facil">Fácil</option>
+            <option value="medio">Medio</option>
+            <option value="dificil">Difícil</option>
+        </select>
+        <button onclick="startGame()">Comenzar</button>
+    </div>
+    
+    <div id="score-display" style="display:none;">
+        <p id="correct-count">Aciertos: 0</p>
+        <p id="incorrect-count">Errores: 0</p>
+    </div>
+    
+    
+    <div id="back-arrow">  
+        <i class="fa-solid fa-arrow-left" onclick="goBackToMenu()"></i>
+    </div>
+    
+
+    <div id="game" style="display:none;">
+        <p id="equation"></p>
+        <div id="operator-buttons" style="margin: 20px;"></div>
+        <p id="result"></p>
+        <button id="next-button" onclick="generateEquation()">Siguiente</button>
+    </div>
+
+    <script src="game.js"></script>
+</body>
 </html>
