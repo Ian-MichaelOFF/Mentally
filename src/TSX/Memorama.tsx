@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "../CSS/memorama_css.css"; // Asegúrate de tener este archivo CSS disponible
+import { ArrowLeft } from "lucide-react";
 
 const Memorama: React.FC = () => {
   useEffect(() => {
@@ -15,9 +16,19 @@ const Memorama: React.FC = () => {
       document.body.style.backgroundColor = "#54FF8F";
     };
   }, []);
+  const goBack = () => {
+    window.history.back(); // Función para regresar a la página anterior
+  };
 
   return (
   <div className="memorama-page">
+          <button 
+        onClick={goBack} 
+        className="back-button"
+        aria-label="Regresar"
+      >
+        <ArrowLeft size={24} />
+      </button>
         <div id="selector-dificultad">
           <p id="seleccion">Elige una dificultad:</p>
           <button

@@ -104,7 +104,7 @@ const Login: React.FC = () => {
           </div>
 
           <div className="recuperar">
-            <a href="/form_recuperacion">¿Se te olvidó la contraseña?</a>
+            <a href="/Recuperar-ContraseñaAlum">¿Se te olvidó la contraseña?</a>
           </div>
 
           <div className="buttons-form">

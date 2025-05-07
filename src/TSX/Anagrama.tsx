@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "../CSS/Juego_Anagramas.css"; // Importar estilos
+import { ArrowLeft } from "lucide-react";
 
 const Anagrama = () => {
   useEffect(() => {
@@ -14,9 +15,20 @@ const Anagrama = () => {
       document.body.removeChild(script);
     };
   }, []);
+  const goBack = () => {
+    window.history.back(); // Función para regresar a la página anterior
+  };
 
   return (
     <div className="Cuerpo_Anagramas">
+      <button 
+        onClick={goBack} 
+        className="back-button"
+        aria-label="Regresar"
+      >
+        <ArrowLeft size={24} />
+      </button>
+
       <div className="Logo_Anagramas">
       <h1>Anagramas</h1>
       </div>

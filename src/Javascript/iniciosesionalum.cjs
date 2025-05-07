@@ -2,9 +2,25 @@ const express = require("express");
 const mysql = require("mysql");
 const session = require("express-session");
 const cors = require("cors");
+const multer = require("multer");
+const path = require("path");
 
 const app = express();
 const PORT = 5000;
+
+// Configuración de Multer para manejar la carga de imágenes
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage: storage });
+app.use("/uploads", express.static("uploads"));
+
 
 // Función para generar tokens (añade esto al inicio del archivo)
 function generateToken() {
@@ -21,7 +37,13 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 // Configuración de sesión CORREGIDA
 app.use(
   session({
@@ -43,6 +65,11 @@ const pool = mysql.createPool({
   user: "IanCastellanos",
   password: "Mario311-",
   connectionLimit: 10,
+  charset: 'utf8mb4'
+});
+
+pool.on('error', (err) => {
+  console.error('Error in MySQL pool:', err);
 });
 
 // Verificar conexión a la base de datos
@@ -53,6 +80,67 @@ pool.getConnection((error, connection) => {
   }
   console.log("Conexión a la base de datos exitosa");
   connection.release();
+});
+
+// -----------------------------------------------------
+// RUTAS DE REGISTRO (NUEVAS)
+// -----------------------------------------------------
+
+// Ruta para guardar alumnos
+app.post("/guardar", (req, res) => {
+  console.log("Datos recibidos:", req.body);
+  const { Usuario, contraseña, Pregunta_seguridad, Respuesta } = req.body;
+
+  const nuevoUsuario = 
+    "INSERT INTO alumnos (Usuario, contraseña, Pregunta_seguridad, Respuesta) VALUES (?, ?, ?, ?)";
+
+  pool.query(
+    nuevoUsuario,
+    [Usuario, contraseña, Pregunta_seguridad, Respuesta],
+    (err, result) => {
+      if (err) {
+        console.error("Error en la consulta:", err);
+        res.status(500).json({
+          error: "Hubo un problema al guardar el usuario",
+          detalles: err.message,
+        });
+      } else {
+        res.json({ mensaje: "Usuario guardado correctamente" });
+      }
+    }
+  );
+});
+
+// Ruta para guardar maestros
+app.post("/guardar-maestro", upload.single('imagen'), (req, res) => {
+  console.log("Datos recibidos para maestro:", req.body);
+  
+  const { correo, contraseña, nombre, apellido, fechaNacimiento } = req.body;
+  
+  // Si no se subió imagen, usar un valor por defecto o cadena vacía
+  const imagenPath = req.file ? req.file.filename : 'default.jpg';
+
+  const nuevoMaestro = `
+    INSERT INTO maestros 
+    (correo, contraseña, Imagen, Fecha, nombre, apellido) 
+    VALUES (?, ?, ?, ?, ?, ?)
+  `;
+
+  pool.query(
+    nuevoMaestro,
+    [correo, contraseña, imagenPath, fechaNacimiento, nombre, apellido],
+    (err, result) => {
+      if (err) {
+        console.error("Error en la consulta:", err);
+        res.status(500).json({
+          error: "Hubo un problema al guardar el maestro",
+          detalles: err.message,
+        });
+      } else {
+        res.json({ mensaje: "Maestro registrado correctamente" });
+      }
+    }
+  );
 });
 
 // -----------------------------------------------------
@@ -505,6 +593,199 @@ app.get('/api/mis-grupos', (req, res) => {
     res.json(results);
   });
 });
+// -----------------------------------------------------
+// RUTAS PARA RECUPERACIÓN DE CONTRASEÑA
+// -----------------------------------------------------
+// Ruta para validar datos de recuperación (usuario, pregunta y respuesta)
+app.post("/validar-recuperacion", (req, res) => {
+  const { Usuario, Pregunta_seguridad, Respuesta } = req.body;
+
+  if (!Usuario || !Pregunta_seguridad || !Respuesta) {
+    return res.status(400).json({ message: "Todos los campos son requeridos" });
+  }
+
+  // Primero verificamos si el usuario existe
+  const query = "SELECT * FROM alumnos WHERE Usuario = ?";
+  
+  pool.query(query, [Usuario], (err, results) => {
+    if (err) {
+      console.error("Error en la consulta:", err);
+      return res.status(500).json({ message: "Error en el servidor" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    // Verificamos que la pregunta y respuesta coincidan
+    const usuario = results[0];
+    
+    if (usuario.Pregunta_seguridad !== Pregunta_seguridad) {
+      return res.status(400).json({ message: "La pregunta de seguridad no coincide" });
+    }
+    
+    if (usuario.Respuesta !== Respuesta) {
+      return res.status(400).json({ message: "La respuesta es incorrecta" });
+    }
+
+    // Si todo es correcto, enviamos una respuesta positiva
+    res.json({ 
+      success: true, 
+      message: "Datos validados correctamente",
+      valido: true
+    });
+  });
+});
+
+// Ruta para obtener la pregunta de seguridad de un usuario (opcional)
+app.get("/obtener-pregunta/:usuario", (req, res) => {
+  const { usuario } = req.params;
+
+  if (!usuario) {
+    return res.status(400).json({ message: "Usuario es requerido" });
+  }
+
+  const query = "SELECT Pregunta_seguridad FROM alumnos WHERE Usuario = ?";
+  
+  pool.query(query, [usuario], (err, results) => {
+    if (err) {
+      console.error("Error en la consulta:", err);
+      return res.status(500).json({ message: "Error en el servidor" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    res.json({ 
+      pregunta: results[0].Pregunta_seguridad 
+    });
+  });
+});
+
+// Ruta para actualizar la contraseña
+app.post("/api/actualizar-password", (req, res) => {
+  const { Usuario, nuevaContraseña } = req.body;
+
+  if (!Usuario || !nuevaContraseña) {
+    return res.status(400).json({ message: "Usuario y nueva contraseña son requeridos" });
+  }
+
+  if (nuevaContraseña.length < 6) {
+    return res.status(400).json({ message: "La contraseña debe tener al menos 6 caracteres" });
+  }
+
+  const query = "UPDATE alumnos SET contraseña = ? WHERE Usuario = ?";
+  
+  pool.query(query, [nuevaContraseña, Usuario], (err, results) => {
+    if (err) {
+      console.error("Error al actualizar contraseña:", err);
+      return res.status(500).json({ message: "Error al actualizar la contraseña" });
+    }
+
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    res.json({ message: "Contraseña actualizada exitosamente" });
+  });
+});
+
+// -----------------------------------------------------
+// RUTAS PARA RECUPERACIÓN DE CONTRASEÑA MAESTROS
+// -----------------------------------------------------
+
+// Ruta para validar datos de recuperación de maestros (correo y fecha de nacimiento)
+app.post("/validar-recuperacion-maestro", (req, res) => {
+  const { correo, fechaNacimiento } = req.body;
+
+  if (!correo || !fechaNacimiento) {
+    return res.status(400).json({ message: "Todos los campos son requeridos" });
+  }
+
+  // Verificamos si el maestro existe con ese correo
+  const query = "SELECT * FROM maestros WHERE correo = ?";
+  
+  pool.query(query, [correo], (err, results) => {
+    if (err) {
+      console.error("Error en la consulta:", err);
+      return res.status(500).json({ message: "Error en el servidor" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: "Correo no encontrado" });
+    }
+
+    // Verificamos que la fecha de nacimiento coincida
+    const maestro = results[0];
+    
+    // Formatear las fechas para comparación
+    const fechaBD = new Date(maestro.Fecha).toISOString().split('T')[0];
+    const fechaInput = new Date(fechaNacimiento).toISOString().split('T')[0];
+    
+    if (fechaBD !== fechaInput) {
+      return res.status(400).json({ message: "La fecha de nacimiento no coincide" });
+    }
+
+    // Si todo es correcto, enviamos una respuesta positiva
+    res.json({ 
+      success: true, 
+      message: "Datos validados correctamente",
+      valido: true
+    });
+  });
+});
+
+// Ruta para verificar si existe un correo
+app.get("/verificar-correo-maestro/:correo", (req, res) => {
+  const { correo } = req.params;
+
+  if (!correo) {
+    return res.status(400).json({ message: "Correo es requerido" });
+  }
+
+  const query = "SELECT COUNT(*) as existe FROM maestros WHERE correo = ?";
+  
+  pool.query(query, [correo], (err, results) => {
+    if (err) {
+      console.error("Error en la consulta:", err);
+      return res.status(500).json({ message: "Error en el servidor" });
+    }
+
+    res.json({ 
+      existe: results[0].existe > 0,
+      message: results[0].existe > 0 ? "Correo encontrado" : "Correo no registrado"
+    });
+  });
+});
+
+// Ruta para actualizar la contraseña del maestro
+app.post("/api/actualizar-password-maestro", (req, res) => {
+  const { correo, nuevaContraseña } = req.body;
+
+  if (!correo || !nuevaContraseña) {
+    return res.status(400).json({ message: "Correo y nueva contraseña son requeridos" });
+  }
+
+  if (nuevaContraseña.length < 6) {
+    return res.status(400).json({ message: "La contraseña debe tener al menos 6 caracteres" });
+  }
+
+  const query = "UPDATE maestros SET contraseña = ? WHERE correo = ?";
+  
+  pool.query(query, [nuevaContraseña, correo], (err, results) => {
+    if (err) {
+      console.error("Error al actualizar contraseña:", err);
+      return res.status(500).json({ message: "Error al actualizar la contraseña" });
+    }
+
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: "Correo no encontrado" });
+    }
+
+    res.json({ message: "Contraseña actualizada exitosamente" });
+  });
+});
 
 // -----------------------------------------------------
 // Ruta para cerrar sesión
@@ -518,6 +799,7 @@ app.post("/logout", (req, res) => {
     res.json({ message: "Sesión cerrada exitosamente" });
   });
 });
+
 
 // -----------------------------------------------------
 // Manejo de errores

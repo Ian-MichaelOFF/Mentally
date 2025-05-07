@@ -4,11 +4,11 @@
     box-sizing: border-box;
   }
   
-  .navegacionbar2 {
+  .navegacionbar {
     display: flex;
     justify-content: center; /* Centra el contenido horizontalmente */
     align-items: center; /* Centra los elementos verticalmente */
-    background: linear-gradient(90deg, rgb(50, 177, 137), rgb(136, 234, 231));
+    background: linear-gradient(90deg, rgb(255, 113, 234), rgb(249, 132, 132));
     padding: 20px 40px;
     height: 120px;
     position: fixed; /* Fija la navbar en la parte superior */
@@ -48,9 +48,9 @@
   }
   
   /* Estilos del formulario */
-  .formularioregist2 {
+  .formularioregist {
     font-family: "Spicy Rice", serif;
-    background: linear-gradient(90deg, #b28aca, #b37ee1);
+    background: linear-gradient(90deg, #79deff, #eaff95);
     height: 100vh;
     display: flex;
     justify-content: center;

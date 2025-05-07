@@ -1,20 +1,17 @@
 import React, { useState } from "react";
-import Sidebar from "../TSX/sidebar"; // Importa la sidebar
-import "../CSS/Seccion_Memoria.css";
+import Sidebar from "../TSX/sidebarmast"; // Importa la sidebar
+import "../CSS/Seccion_AgilidadMst.css";
 import logoCerebro from "/logos/cerebro.png";
-import logomemoria from "/logos/memoria.png";
+import logoagilidad from "/logos/cartoon-capybara.png";
 import { useNavigate } from "react-router-dom";
 import Medallas from "./Medallas";
 import { ArrowLeft } from "lucide-react";
 
-const JuegosMemoria: React.FC = () => {
+const JuegosAgilidadMst: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMedallasOpen, setIsMedallasOpen] = useState(false);
 
-
   const navigate = useNavigate();
-
-
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -23,7 +20,7 @@ const JuegosMemoria: React.FC = () => {
     setIsMedallasOpen(!isMedallasOpen);
   };
   const handleClick = () => {
-    navigate("/Memorama");
+    navigate("/Frutas_Mat");
     navigate(0); // Esto fuerza una recarga
   };
   const goBack = () => {
@@ -33,23 +30,24 @@ const JuegosMemoria: React.FC = () => {
   return (
     <div>
       {/* Navbar */}
-      <nav className="navbar4">
-        <div className="logos4">
-          <span className="logos-text4">MENTALLY</span>
-          <img src={logoCerebro} alt="Logo4" />
+      <nav className="navbar6M">
+        <div className="logos6M">
+          <span className="logos-text6M">MENTALLY</span>
+          <img src={logoCerebro} alt="Logo6M" />
         </div>
-
       </nav>
 
       {/* Sidebar */}
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
       {/* Fondo oscuro al abrir la sidebar */}
-      {isSidebarOpen && <div className="backdrop" onClick={toggleSidebar}></div>}
+      {isSidebarOpen && (
+        <div className="backdrop" onClick={toggleSidebar}></div>
+      )}
       <Medallas isOpen={isMedallasOpen} toggleMedallas={toggleMedallas} />
 
       {/* Contenido principal */}
-      <div className="Cuerpos4">
+      <div className="Cuerpos6M">
       <button 
         onClick={goBack} 
         className="back-buttonMemoryMst"
@@ -57,17 +55,22 @@ const JuegosMemoria: React.FC = () => {
       >
         <ArrowLeft size={24} />
       </button>
-        <h1>Bienvenido a la seccion Memoria!</h1>
-        <div className="JuegosMemoria">
-        <button className="btn-Memoria1" type="button" onClick={handleClick}>
-          Memorama <img src={logomemoria}/>
+        <h1>Bienvenido a la seccion de Agilidad Mental!</h1>
+        <div className="JuegosAgilidadM">
+          <button className="btn-Agilidad1M" type="button" onClick={handleClick}>
+            Operaciones <b/> Frutales
+            <img src={logoagilidad} alt="Logo AgiidadM" />
           </button>
-          <button className="btn-Memoria2">Colores <img src={logomemoria}/></button>
-          <button className="btn-Memoria3">Juego 3 <img src={logomemoria}/></button>
+          <button className="btn-Agilidad2M">
+            Juego 2 <img src={logoagilidad} />
+          </button>
+          <button className="btn-Agilidad3M">
+            Juego 3 <img src={logoagilidad} />
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default JuegosMemoria;
+export default JuegosAgilidadMst;

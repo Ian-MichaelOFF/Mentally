@@ -17,6 +17,12 @@ import LoginMaestro from "./TSX/Formulario-Mast";
 import PaginaPrinMast from "./TSX/Pagina-Principal-Mast";
 import PerfilMaestro from "./TSX/PerfilMast";
 import PaginaGruposMaestro from "./TSX/Pagina-Grupos-Mast";
+import RecuperarContraseñaAlumno from "./TSX/Recuperar-ContraseñaAlum";
+import RecuperarContraseñaMaestro from "./TSX/Recuperar-ContraseñaMast"; // Asegúrate de tener este archivo creado
+import PaginaJuegosMast from "./TSX/Pagina-JuegosMast";
+import JuegosAgilidadMst from "./TSX/Seccion_AgilidadMaster";
+import JuegosConcentracionMst from "./TSX/Seccion_ConcentracionMaster";
+import JuegosMemoriaMst from "./TSX/Seccion_MemoriaMaster"; // Asegúrate de tener este archivo creado
 function App() {
   return (
     <Router>
@@ -39,6 +45,12 @@ function App() {
         <Route path="/Pagina-Principal-Mast" element={<PaginaPrinMast />} /> {/* Ruta para la página principal del maestro */}
         <Route path="/PerfilMaestro" element={<PerfilMaestro />} /> {/* Ruta para el perfil del maestro */}
         <Route path="/Pagina-Grupos-Mast" element={<PaginaGruposMaestro />} /> {/* Ruta para la página de grupos del maestro */}
+        <Route path="/Recuperar-ContraseñaAlum" element={<RecuperarContraseñaAlumno />} /> {/* Ruta para recuperar contraseña del alumno */}
+        <Route path="/Recuperar-ContraseñaMast" element={<RecuperarContraseñaMaestro />} /> {/* Ruta para recuperar contraseña del maestro */}
+        <Route path="/Pagina-JuegosMast" element={<PaginaJuegosMast />} /> {/* Ruta para la página de juegos del maestro */}
+        <Route path="/Seccion_AgilidadMaster" element={<JuegosAgilidadMst />} /> {/* Ruta para la sección de agilidad del maestro */}
+        <Route path="/Seccion_ConcentracionMaster" element={<JuegosConcentracionMst />} /> {/* Ruta para la sección de concentración del maestro */}
+        <Route path="/Seccion_MemoriaMaster" element={<JuegosMemoriaMst />} /> {/* Ruta para la sección de memoria del maestro */}
         {/* Puedes agregar más rutas aquí según sea necesario */}
       </Routes>
     </Router>

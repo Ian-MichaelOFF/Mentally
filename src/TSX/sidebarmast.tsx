@@ -27,7 +27,7 @@ const SidebarM: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
 
     // Función para navegar a la página de Juegos
     const handleNavigateToJuegos = () => {
-      navigate("/Pagina-Juegos"); // Redirige a la página de Juegos
+      navigate("/Pagina-JuegosMast"); // Redirige a la página de Juegos
     };
     const handleNavigateToInicio = () => {
       navigate("/Pagina-Principal-Mast"); // Redirige a la página Principal

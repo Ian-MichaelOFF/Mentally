@@ -29,7 +29,7 @@ const RegistroAlumno = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:4000/guardar", {
+      const response = await fetch("http://localhost:5000/guardar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -39,6 +39,7 @@ const RegistroAlumno = () => {
 
       const resultado = await response.json();
       alert(resultado.mensaje);
+      navigate("/FormularioAlum");
     } catch (error) {
       alert("Error al enviar los datos: " + error);
     }
@@ -89,7 +90,7 @@ const RegistroAlumno = () => {
         <input type="text" id="security-answer" name="Respuesta" placeholder="Tu respuesta" required onChange={handleChange} />
         </div>
         <div className="Crearboton">
-        <button className="Botocrear" type="submit">Crear cuenta</button>
+        <button className="Botocrear" type="submit" >Crear cuenta</button>
         </div>
       </form>
 

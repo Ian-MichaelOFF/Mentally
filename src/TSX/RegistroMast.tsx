@@ -30,7 +30,7 @@ const RegistroMaestro = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:4000/guardar-maestro", {
+      const response = await fetch("http://localhost:5000/guardar-maestro", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

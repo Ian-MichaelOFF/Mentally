@@ -5,6 +5,7 @@ import logoCerebro from "/logos/cerebro.png";
 import logoagilidad from "/logos/cartoon-capybara.png";
 import { useNavigate } from "react-router-dom";
 import Medallas from "./Medallas";
+import { ArrowLeft } from "lucide-react";
 
 const JuegosAgilidad: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -21,6 +22,9 @@ const JuegosAgilidad: React.FC = () => {
   const handleClick = () => {
     navigate("/Frutas_Mat");
     navigate(0); // Esto fuerza una recarga
+  };
+  const goBack = () => {
+    window.history.back(); // Función para regresar a la página anterior
   };
 
   return (
@@ -44,6 +48,13 @@ const JuegosAgilidad: React.FC = () => {
 
       {/* Contenido principal */}
       <div className="Cuerpos6">
+      <button 
+        onClick={goBack} 
+        className="back-buttonMemoryMst"
+        aria-label="Regresar"
+      >
+        <ArrowLeft size={24} />
+      </button>
         <h1>Bienvenido a la seccion de Agilidad Mental!</h1>
         <div className="JuegosAgilidad">
           <button className="btn-Agilidad1" type="button" onClick={handleClick}>

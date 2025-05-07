@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "../CSS/juegos-frutas.css"; // Importar los estilos
+import { ArrowLeft } from "lucide-react";
 
 const FrutasMatematicas = () => {
   useEffect(() => {
@@ -14,9 +15,20 @@ const FrutasMatematicas = () => {
       document.body.removeChild(script);
     };
   }, []);
+  const goBack = () => {
+    window.history.back(); // Función para regresar a la página anterior
+  };
 
   return (
 <div className="Fondo">
+{/* Botón de retroceso */}
+<button 
+        onClick={goBack} 
+        className="back-button"
+        aria-label="Regresar"
+      >
+        <ArrowLeft size={24} />
+      </button>
     <div className="game-container">
       <h1>Frutas Matemáticas</h1>
 

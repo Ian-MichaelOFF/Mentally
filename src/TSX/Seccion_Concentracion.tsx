@@ -5,7 +5,7 @@ import logoCerebro from "/logos/cerebro.png";
 import logoconcentracion from "/logos/rana.png";
 import { useNavigate } from "react-router-dom";
 import Medallas from "./Medallas";
-
+import { ArrowLeft } from "lucide-react";
 
 const JuegosConcentracion: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -24,6 +24,9 @@ const JuegosConcentracion: React.FC = () => {
   };
   const toggleMedallas = () => {
     setIsMedallasOpen(!isMedallasOpen);
+  };
+  const goBack = () => {
+    window.history.back(); // Función para regresar a la página anterior
   };
   return (
     <div>
@@ -44,7 +47,13 @@ const JuegosConcentracion: React.FC = () => {
 
       {/* Contenido principal */}
       <div className="Cuerpos5">
-        
+      <button 
+        onClick={goBack} 
+        className="back-buttonMemoryMst"
+        aria-label="Regresar"
+      >
+        <ArrowLeft size={24} />
+      </button>
         <h1>Bienvenido a la seccion Concentracion!</h1>
         <div className="JuegosConcentracion">
         <button className="btn-Concentracion1" type="button" onClick={handleClick}>
