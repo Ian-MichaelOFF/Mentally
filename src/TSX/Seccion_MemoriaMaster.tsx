@@ -27,6 +27,10 @@ const JuegosMemoriaMst: React.FC = () => {
     navigate("/Memorama");
     navigate(0); // Esto fuerza una recarga
   };
+  const handleClick2 = () => {
+    navigate("/Secuencia-Colores");
+    navigate(0); // Esto fuerza una recarga
+  };
   const goBack = () => {
     window.history.back(); // Función para regresar a la página anterior
   };
@@ -64,8 +68,9 @@ const JuegosMemoriaMst: React.FC = () => {
         <button className="btn-Memoria1M" type="button" onClick={handleClick}>
           Memorama <img src={logomemoria}/>
           </button>
-          <button className="btn-Memoria2M">Colores <img src={logomemoria}/></button>
-          <button className="btn-Memoria3M">Juego 3 <img src={logomemoria}/></button>
+          <button className="btn-Memoria2M" type="button" onClick={handleClick2}>
+          Secuencia Colores <img src={logomemoria}/>
+          </button>
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+
 const express = require("express");
 const mysql = require("mysql");
 const session = require("express-session");
@@ -86,17 +87,17 @@ pool.getConnection((error, connection) => {
 // RUTAS DE REGISTRO (NUEVAS)
 // -----------------------------------------------------
 
-// Ruta para guardar alumnos
+// Ruta para guardar alumnos - MODIFICADA PARA INCLUIR NOMBRE Y APELLIDO
 app.post("/guardar", (req, res) => {
   console.log("Datos recibidos:", req.body);
-  const { Usuario, contraseña, Pregunta_seguridad, Respuesta } = req.body;
+  const { nombre, apellido, Usuario, contraseña, Pregunta_seguridad, Respuesta } = req.body;
 
   const nuevoUsuario = 
-    "INSERT INTO alumnos (Usuario, contraseña, Pregunta_seguridad, Respuesta) VALUES (?, ?, ?, ?)";
+    "INSERT INTO alumnos (nombre, apellido, Usuario, contraseña, Pregunta_seguridad, Respuesta) VALUES (?, ?, ?, ?, ?, ?)";
 
   pool.query(
     nuevoUsuario,
-    [Usuario, contraseña, Pregunta_seguridad, Respuesta],
+    [nombre, apellido, Usuario, contraseña, Pregunta_seguridad, Respuesta],
     (err, result) => {
       if (err) {
         console.error("Error en la consulta:", err);
@@ -144,7 +145,7 @@ app.post("/guardar-maestro", upload.single('imagen'), (req, res) => {
 });
 
 // -----------------------------------------------------
-// Ruta para iniciar sesión CORREGIDA (usa IDalumno)
+// Ruta para iniciar sesión CORREGIDA (incluye nombre y apellido)
 // -----------------------------------------------------
 app.post("/login", (req, res) => {
   const { name, password } = req.body;
@@ -153,8 +154,8 @@ app.post("/login", (req, res) => {
     return res.status(400).json({ message: "Campos incompletos" });
   }
 
-  // Consulta CORREGIDA usando IDalumno en lugar de id
-  const query = "SELECT IDalumno, Usuario,Respuesta, Imagen FROM alumnos WHERE Usuario = ? AND contraseña = ?";
+  // Consulta CORREGIDA incluyendo nombre y apellido
+  const query = "SELECT IDalumno, nombre, apellido, Usuario, Respuesta, Imagen FROM alumnos WHERE Usuario = ? AND contraseña = ?";
 
   pool.query(query, [name, password], (err, results) => {
     if (err) {
@@ -167,8 +168,10 @@ app.post("/login", (req, res) => {
     }
 
     req.session.user = {
-      IDalumno: results[0].IDalumno, // Usando IDalumno
+      IDalumno: results[0].IDalumno,
       Usuario: results[0].Usuario,
+      nombre: results[0].nombre,
+      apellido: results[0].apellido
     };
 
     res.json({ 
@@ -176,6 +179,8 @@ app.post("/login", (req, res) => {
       user: {
         IDalumno: results[0].IDalumno,
         Usuario: results[0].Usuario,
+        nombre: results[0].nombre,
+        apellido: results[0].apellido,
         Respuesta: results[0].Respuesta,
         Imagen: results[0].Imagen
       } 
@@ -191,8 +196,8 @@ app.get("/api/alumno", (req, res) => {
     return res.status(401).json({ message: "No hay sesión activa" });
   }
 
-  // Consulta CORREGIDA usando IDalumno
-  const query = "SELECT IDalumno, Usuario,Respuesta, Imagen FROM alumnos WHERE Usuario = ?";
+  // Consulta CORREGIDA incluyendo nombre y apellido
+  const query = "SELECT IDalumno, nombre, apellido, Usuario, Respuesta, Imagen FROM alumnos WHERE Usuario = ?";
   
   pool.query(query, [req.session.user.Usuario], (err, results) => {
     if (err) {
@@ -206,6 +211,8 @@ app.get("/api/alumno", (req, res) => {
 
     res.json({
       IDalumno: results[0].IDalumno,
+      nombre: results[0].nombre,
+      apellido: results[0].apellido,
       Usuario: results[0].Usuario,
       Respuesta: results[0].Respuesta,
       Imagen: results[0].Imagen
@@ -461,7 +468,7 @@ app.post('/api/grupos/:grupoId/alumnos', (req, res) => {
   });
 });
 
-// Obtener alumnos de un grupo específico
+// Obtener alumnos de un grupo específico - MODIFICADA PARA INCLUIR NOMBRE Y APELLIDO
 app.get('/api/grupos/:grupoId/alumnos', (req, res) => {
   if (!req.session.user || req.session.user.tipo !== "maestro") {
     return res.status(401).json({ message: "No autorizado" });
@@ -470,7 +477,7 @@ app.get('/api/grupos/:grupoId/alumnos', (req, res) => {
   const { grupoId } = req.params;
 
   const query = `
-    SELECT a.IDalumno, a.Usuario, a.Imagen
+    SELECT a.IDalumno, a.nombre, a.apellido, a.Usuario, a.Imagen
     FROM alumnos a
     JOIN grupo_alumnos ga ON a.IDalumno = ga.alumno_id
     WHERE ga.grupo_id = ?
@@ -514,6 +521,57 @@ app.delete('/api/grupos/:grupoId', (req, res) => {
     });
   });
 });
+// Eliminar alumno de un grupo
+app.delete('/api/grupos/:grupoId/alumnos/:alumnoId', (req, res) => {
+  if (!req.session.user || req.session.user.tipo !== "maestro") {
+    return res.status(401).json({ message: "No autorizado" });
+  }
+
+  const { grupoId, alumnoId } = req.params;
+
+  // Verificar que el grupo pertenece al maestro
+  const verifyQuery = "SELECT id FROM grupos WHERE id = ? AND maestro_id = ?";
+  
+  pool.query(verifyQuery, [grupoId, req.session.user.IDmaestro], (err, results) => {
+    if (err || results.length === 0) {
+      return res.status(404).json({ message: "Grupo no encontrado o no autorizado" });
+    }
+
+    const deleteQuery = "DELETE FROM grupo_alumnos WHERE grupo_id = ? AND alumno_id = ?";
+    
+    pool.query(deleteQuery, [grupoId, alumnoId], (err, results) => {
+      if (err) {
+        console.error("Error al eliminar alumno del grupo:", err);
+        return res.status(500).json({ message: "Error al eliminar alumno del grupo" });
+      }
+
+      if (results.affectedRows === 0) {
+        return res.status(404).json({ message: "Alumno no encontrado en este grupo" });
+      }
+
+      res.json({ message: "Alumno eliminado del grupo exitosamente" });
+    });
+  });
+});
+
+// Añadir una ruta para obtener todos los alumnos disponibles - MODIFICADA PARA INCLUIR NOMBRE Y APELLIDO
+app.get('/api/alumnos', (req, res) => {
+  if (!req.session.user || req.session.user.tipo !== "maestro") {
+    return res.status(401).json({ message: "No autorizado" });
+  }
+
+  const query = "SELECT IDalumno, nombre, apellido, Usuario, Imagen FROM alumnos";
+  
+  pool.query(query, (err, results) => {
+    if (err) {
+      console.error("Error al obtener alumnos:", err);
+      return res.status(500).json({ message: "Error al obtener alumnos" });
+    }
+
+    res.json(results);
+  });
+});
+
 
 // -----------------------------------------------------
 // RUTAS PARA GRUPOS (ALUMNOS)

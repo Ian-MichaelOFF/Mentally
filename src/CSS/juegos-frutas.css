@@ -66,32 +66,24 @@
     margin-bottom: 20px;
 }
 
-.level-selector button {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-#easy-btn {
+/* Aplicar estilos de botones por posición en lugar de ID */
+.level-selector button:nth-child(1) {
     background-color: #a2ff00;
     color: #006b7d;
 }
 
-#normal-btn {
+.level-selector button:nth-child(2) {
     background-color: #ffcc00;
     color: #b34700;
 }
 
-#hard-btn {
+.level-selector button:nth-child(3) {
     background-color: #ff6666;
     color: white;
 }
-/* ... MOdo GOOOOOOD... */
 
-#god-btn {
+/* Modo GOD - si se implementa más adelante */
+.level-selector button:nth-child(4) {
     background-color: #6a096d;
     color: #ff0000;
     font-weight: bold;
@@ -99,7 +91,7 @@
     box-shadow: 0 0 10px #ff0000;
 }
 
-#god-btn:hover {
+.level-selector button:nth-child(4):hover {
     background-color: #4a0252;
     transform: scale(1.1);
     box-shadow: 0 0 15px #ff0000;
@@ -119,8 +111,19 @@
     font-weight: bold;
 }
 
+/* Estilos para el indicador de rondas */
+.round-indicator {
+    background-color: #ffcc00;
+    color: #6a096d;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 2px dashed #6a096d;
+}
 
-#combo {
+.combo {
     color: #00ff00;
     animation: glow 1s infinite alternate;
 }
@@ -130,24 +133,17 @@
     to { text-shadow: 0 0 15px #00ff00; }
 }
 
-
 /* Efectos */
-
-
 @keyframes float {
     0% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
     100% { transform: translateY(0); }
 }
 
-
-
 @keyframes pulse {
     from { box-shadow: 0 0 5px #ff0000; }
     to { box-shadow: 0 0 20px #ff00ff; }
 }
-
-
 
 @keyframes shake {
     0% { transform: translateX(0); }
@@ -156,18 +152,13 @@
     100% { transform: translateX(0); }
 }
 
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
-}
-
 .level-selector button:hover {
     transform: scale(1.05);
 }
 
+/* Importante: Cambiado de display: none a display: block para React */
 .game-area {
-    display: none;
+    display: block;
 }
 
 .timer {
@@ -194,7 +185,9 @@
     font-size: 2.9rem; 
 }
 
-
+.fruit-values p:first-child {
+    font-size: 1.1rem;
+}
 
 .equation {
     font-size: 2.5rem;
@@ -205,8 +198,6 @@
     gap: 5px; /* Reducir espacio entre cajas */
     flex-wrap: wrap;
 }
-
-
 
 .fruit {
     font-size: 2.8rem;
@@ -229,7 +220,7 @@
     background-color: #f8fff9;
 }
 
-.level-selector button{
+.level-selector button {
     padding: 10px;
     font-size: 1.1rem;
     border: none;
@@ -238,6 +229,7 @@
     transition: all 0.2s;
     font-weight: bold;
 }
+
 .controls button {
     padding: 10px;
     font-size: 1.1rem;
@@ -246,14 +238,15 @@
     cursor: pointer;
     transition: all 0.2s;
     font-weight: bold;
-}
-
-#verify-btn {
     background-color: #11ff00;
     color: #ffffff;
     border: 2px solid #06810c;
 }
 
+.controls button:hover {
+    transform: scale(1.05);
+    background-color: #0ed000;
+}
 
 .feedback {
     min-height: 25px;
@@ -304,14 +297,13 @@
     margin-top: 15px;
 }
 
-#correct-count {
+.score span span {
     color: #4caf50;
     font-weight: bold;
 }
 
-#incorrect-count {
+.score span:last-child span {
     color: #f44336;
-    font-weight: bold;
 }
 
 .timer.urgent {
@@ -326,3 +318,80 @@
     100% { opacity: 1; }
 }
 
+/* Estilos para la pantalla de resultados */
+.results-screen {
+    background-color: #ffebf3;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.results-screen h2 {
+    color: #6a096d;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.results-content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.results-content p {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.correct-count {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.incorrect-count {
+    color: #f44336;
+    font-weight: bold;
+}
+
+.final-score {
+    font-size: 1.4rem !important;
+    margin: 15px 0 !important;
+    color: #6a096d;
+    background-color: #f0f0f0;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.encouragement {
+    font-style: italic;
+    color: #ff6bcd;
+    font-size: 1.3rem !important;
+}
+
+.play-again-btn {
+    background-color: #11ff00;
+    color: #fff;
+    border: 2px solid #06810c;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.play-again-btn:hover {
+    transform: scale(1.05);
+    background-color: #0ed000;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}

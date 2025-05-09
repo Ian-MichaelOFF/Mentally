@@ -1,0 +1,286 @@
+/* Estilos para el componente OperadorMisterioso */
+
+.cuerpoJuego {
+    font-family: 'Chewy', cursive;
+    background-color: #ffd6e0;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cuerpoJuego h1 {
+    font-size: 4rem;
+    color: #54b3f3;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .cuerpoJuego h1:hover {
+    animation: bounce 0.2s infinite alternate;
+  }
+  
+  .cuerpoJuego p {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  /* Modificamos este selector para excluir el back button */
+  .cuerpoJuego button:not(.back-button), 
+  .cuerpoJuego .operator-button {
+    background-color: #9ad0ec;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 25px;
+    font-size: 1.5rem;
+    margin: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+  }
+  
+  /* Modificamos este selector también para mantener consistencia */
+  .cuerpoJuego button:not(.back-button):hover, 
+  .cuerpoJuego .operator-button:hover {
+    transform: scale(1.05);
+  }
+  
+  .cuerpoJuego .game-container {
+    background-color: #fff0f5;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2rem;
+  }
+  
+  .cuerpoJuego .mascot {
+    width: 150px;
+    height: 150px;
+    margin: 15px auto;
+    display: block;
+  }
+  
+  .cuerpoJuego .mascot:hover {
+    animation: bounce 0.2s infinite alternate;
+  } 
+  
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  /* Quitamos estas reglas que podrían interferir con el nuevo back-button */
+  /* .cuerpoJuego .back-arrow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 3rem;
+    cursor: pointer;
+    color: #444;
+    z-index: 10;
+  }
+  
+  .cuerpoJuego .back-arrow i {
+    transition: transform 0.2s;
+  }
+  
+  .cuerpoJuego .back-arrow i:hover {
+    transform: scale(1.1);
+  } */
+  
+  .cuerpoJuego .feedback {
+    font-size: 1.8rem;
+    margin: 20px;
+  }
+  
+  .cuerpoJuego .score-display {
+    background-color: #eeb6c4;
+    padding: 5px 15px;
+    margin-top: 5px;
+    border-radius: 10px;
+  }
+  
+  .cuerpoJuego .round-info {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin: 5px 0;
+  }
+  
+  .cuerpoJuego .correct-count {
+    color: rgb(40, 162, 40);
+    font-weight: bold;
+    margin: 5px 0;
+  }
+  
+  .cuerpoJuego .incorrect-count {
+    color: rgb(227, 62, 62);
+    font-weight: bold;
+    margin: 5px 0;
+  }
+  
+  .cuerpoJuego label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+    margin-right: 10px;
+  }
+  
+  .cuerpoJuego select {
+    padding: 10px;
+    font-size: 1.2rem;
+    border: 2px solid #54b3f3;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .cuerpoJuego .difficulty1-select1 {
+    display: inline-block;
+  }
+  
+  .cuerpoJuego .difficulty1-select1 select {
+    padding: 10px 35px 10px 15px; 
+    font-size: 1.5rem;
+    border-radius: 6px;
+    border: 2px solid #54b3f3;
+    background-color: #fff;
+    color: #1d1c1c;
+    cursor: pointer;
+  }
+  
+  .cuerpoJuego .operator-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .cuerpoJuego .equation {
+    font-size: 2rem;
+    margin: 20px 0;
+  }
+  
+  .cuerpoJuego .result {
+    font-size: 1.8rem;
+    height: 2em;
+  }
+  
+  .cuerpoJuego .game {
+    display: block;
+  }
+  
+  .cuerpoJuego .final-score-container {
+    background-color: #fff0f5;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .cuerpoJuego .final-score-container h2 {
+    font-size: 2.5rem;
+    color: #54b3f3;
+    margin-bottom: 20px;
+  }
+  
+  .cuerpoJuego .final-score {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff0099;
+    margin: 15px 0;
+    padding: 10px 20px;
+    background-color: #ffe6f2;
+    border-radius: 10px;
+    border: 2px dashed #ff0099;
+  }
+  
+  /* Media Queries */
+  @media screen and (max-width: 600px) {
+    .cuerpoJuego h1 {
+      font-size: 2.5rem;
+    }
+    
+    .cuerpoJuego p, 
+    .cuerpoJuego button:not(.back-button), 
+    .cuerpoJuego .operator-button {
+      font-size: 1.2rem;
+      padding: 12px;
+    }
+    
+    .cuerpoJuego .feedback {
+      font-size: 1.5rem;
+    }
+    
+    .cuerpoJuego .mascot {
+      max-width: 120px;
+      max-height: 120px;
+    }
+  }
+  
+  /* Estilos para el botón de flecha de retroceso - ahora aseguramos que tengan prioridad */
+  .back-button {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 45px;
+      height: 45px;
+      background-color: #ff0099;
+      border: 3px solid #810666;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      /* Añadimos mayor especificidad */
+      padding: initial;
+      margin: initial;
+      font-size: initial;
+  }
+  
+  /* Añadimos mayor especificidad para evitar conflictos */
+  .cuerpoJuego .back-button {
+      background-color: #ff0099;
+      border: 3px solid #810666;
+      border-radius: 50%;
+      padding: initial;
+  }
+  
+  .back-button:hover {
+      transform: scale(1.1);
+      background-color: #e4009c;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .back-button svg {
+      color: #ffffff;
+      font-size: 24px;
+      filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+  }
+  
+  .back-button:active {
+      transform: scale(0.95);
+  }

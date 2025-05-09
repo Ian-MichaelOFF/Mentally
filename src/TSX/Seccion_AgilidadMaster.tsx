@@ -23,6 +23,10 @@ const JuegosAgilidadMst: React.FC = () => {
     navigate("/Frutas_Mat");
     navigate(0); // Esto fuerza una recarga
   };
+  const handleClick2 = () => {
+    navigate("/OperadorMate");
+    navigate(0); // Esto fuerza una recarga
+  };
   const goBack = () => {
     window.history.back(); // Función para regresar a la página anterior
   };
@@ -61,11 +65,8 @@ const JuegosAgilidadMst: React.FC = () => {
             Operaciones <b/> Frutales
             <img src={logoagilidad} alt="Logo AgiidadM" />
           </button>
-          <button className="btn-Agilidad2M">
-            Juego 2 <img src={logoagilidad} />
-          </button>
-          <button className="btn-Agilidad3M">
-            Juego 3 <img src={logoagilidad} />
+          <button className="btn-Agilidad2M" type="button" onClick={handleClick2}>
+            Operador Misterioso <img src={logoagilidad} />
           </button>
         </div>
       </div>

@@ -8,6 +8,8 @@ import logoCerebro from "/logos/cerebro.png";
 
 interface Alumno {
   IDalumno: number;
+  nombre: string;  // Añadido el campo nombre
+  apellido: string; // Añadido el campo apellido
   Usuario: string;
   Respuesta: string;
   Imagen: string;
@@ -110,6 +112,7 @@ const PerfilAlumno: React.FC = () => {
                     ✏️
                   </button>
                 </div>
+                <h2 className="perfil-nombre">Nombre: <br/> {alumno.nombre} {alumno.apellido}</h2>
                 <h2 className="perfil-username">Usuario: <br/> {alumno.Usuario}</h2>
                 <h2 className="perfil-id">ID: <br/>{alumno.IDalumno}</h2>
                 <h2 className="Respuesta">Respuesta De Seguridad: <br/> {alumno.Respuesta}</h2>

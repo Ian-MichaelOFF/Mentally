@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import "../CSS/RegistAlum.css";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +7,8 @@ const RegistroAlumno = () => {
   const navigate = useNavigate(); // Mover useNavigate dentro del componente
 
   const [formData, setFormData] = useState({
+    nombre: "",
+    apellido: "",
     Usuario: "",
     contraseña: "",
     confirmPassword: "",
@@ -63,34 +66,46 @@ const RegistroAlumno = () => {
       <form onSubmit={handleSubmit}>
         <h2>Registro Alumno</h2>
         
+        <div className="CrearNombre">
+          <label htmlFor="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre" onChange={handleChange} />
+        </div>
+        
+        <div className="CrearApellido">
+          <label htmlFor="apellido">Apellido:</label>
+          <input type="text" id="apellido" name="apellido" required placeholder="Tu apellido" onChange={handleChange} />
+        </div>
+        
         <div className="CrearUsuario">
-        <label htmlFor="name">Crear Usuario:</label>
-        <input type="text" id="name" name="Usuario" required placeholder="Usuario123" onChange={handleChange} />
+          <label htmlFor="name">Crear Usuario:</label>
+          <input type="text" id="name" name="Usuario" required placeholder="Usuario123" onChange={handleChange} />
         </div>
+        
         <div className="CrearContraseña">
-        <label htmlFor="password">Crear Contraseña:</label>
-        <input type="password" id="password" name="contraseña" required placeholder="Contraseña123" onChange={handleChange} />
+          <label htmlFor="password">Crear Contraseña:</label>
+          <input type="password" id="password" name="contraseña" required placeholder="Contraseña123" onChange={handleChange} />
         </div>
+        
         <div className="ConfirmarContraseña">
-        <label htmlFor="confirm-password">Confirmar Contraseña:</label>
-        <input type="password" id="confirm-password" name="confirmPassword" required placeholder="Contraseña123" onChange={handleChange} />
+          <label htmlFor="confirm-password">Confirmar Contraseña:</label>
+          <input type="password" id="confirm-password" name="confirmPassword" required placeholder="Contraseña123" onChange={handleChange} />
         </div>
+        
         <div className="preguntaseguridad">
-        <label htmlFor="security-question">Pregunta de Seguridad:</label>
-        <select id="security-question" name="Pregunta_seguridad" required onChange={handleChange}>
-          <option value="" disabled selected>Selecciona una pregunta</option>
-          <option value="pet">¿Cuál es el nombre de tu mascota?</option>
-          <option value="mother-maiden">¿Cuál es el apellido de tu madre?</option>
-          <option value="school">¿Cuál es tu color favorito?</option>
-        </select>
-        
-        
-        
-        <label htmlFor="security-answer">Respuesta:</label>
-        <input type="text" id="security-answer" name="Respuesta" placeholder="Tu respuesta" required onChange={handleChange} />
+          <label htmlFor="security-question">Pregunta de Seguridad:</label>
+          <select id="security-question" name="Pregunta_seguridad" required onChange={handleChange}>
+            <option value="" disabled selected>Selecciona una pregunta</option>
+            <option value="pet">¿Cuál es el nombre de tu mascota?</option>
+            <option value="mother-maiden">¿Cuál es el apellido de tu madre?</option>
+            <option value="school">¿Cuál es tu color favorito?</option>
+          </select>
+          
+          <label htmlFor="security-answer">Respuesta:</label>
+          <input type="text" id="security-answer" name="Respuesta" placeholder="Tu respuesta" required onChange={handleChange} />
         </div>
+        
         <div className="Crearboton">
-        <button className="Botocrear" type="submit" >Crear cuenta</button>
+          <button className="Botocrear" type="submit">Crear cuenta</button>
         </div>
       </form>
 

@@ -60,7 +60,6 @@ const JuegosConcentracion: React.FC = () => {
           Anagramas <img src={logoconcentracion}/>
           </button>
           <button className="btn-Concentracion2">Juego 2 <img src={logoconcentracion}/></button>
-          <button className="btn-Concentracion3">Juego 3 <img src={logoconcentracion}/></button>
         </div>
       </div>
     </div>

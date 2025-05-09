@@ -23,6 +23,8 @@ import PaginaJuegosMast from "./TSX/Pagina-JuegosMast";
 import JuegosAgilidadMst from "./TSX/Seccion_AgilidadMaster";
 import JuegosConcentracionMst from "./TSX/Seccion_ConcentracionMaster";
 import JuegosMemoriaMst from "./TSX/Seccion_MemoriaMaster"; // Asegúrate de tener este archivo creado
+import OperadorMisterioso from "./TSX/OperadorMate";
+import SecuenciaColores from "./TSX/Secuencia-Colores";
 function App() {
   return (
     <Router>
@@ -51,6 +53,8 @@ function App() {
         <Route path="/Seccion_AgilidadMaster" element={<JuegosAgilidadMst />} /> {/* Ruta para la sección de agilidad del maestro */}
         <Route path="/Seccion_ConcentracionMaster" element={<JuegosConcentracionMst />} /> {/* Ruta para la sección de concentración del maestro */}
         <Route path="/Seccion_MemoriaMaster" element={<JuegosMemoriaMst />} /> {/* Ruta para la sección de memoria del maestro */}
+        <Route path="/OperadorMate" element={<OperadorMisterioso />} /> {/* Ruta para el juego de operador misterioso */}
+        <Route path="/Secuencia-Colores" element={<SecuenciaColores />} /> {/* Ruta para el juego de secuencia de colores */}
         {/* Puedes agregar más rutas aquí según sea necesario */}
       </Routes>
     </Router>

@@ -118,3 +118,164 @@
     flex-direction: column;
     gap: 20px;
   }
+  .grupo-detalle {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    margin: 20px 0;
+    width: 100%;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .grupo-detalle-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 16px;
+  }
+  
+  .btn-volver {
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-volver:hover {
+    background-color: #e6e6e6;
+  }
+  
+  .grupo-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    background-color: #f9f9f9;
+    padding: 16px;
+    border-radius: 12px;
+  }
+  
+  .grupo-info-token {
+    flex: 1;
+  }
+  
+  .token-text {
+    background-color: #eaeaea;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  
+  .btn-copiar {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-copiar:hover {
+    background-color: #45a049;
+  }
+  
+  .grupo-acciones {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .no-alumnos {
+    color: #777;
+    font-style: italic;
+    text-align: center;
+    margin: 40px 0;
+  }
+  
+  /* Estilos para la tabla de alumnos */
+  .alumnos-tabla {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 16px;
+  }
+  
+  .alumnos-tabla table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .alumnos-tabla th, 
+  .alumnos-tabla td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #f2f2f2;
+  }
+  
+  .alumnos-tabla th {
+    background-color: #f7f7f7;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .alumnos-tabla tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .alumnos-tabla tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .alumno-avatar-tabla {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .btn-eliminar-alumno {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-eliminar-alumno:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* Hacer más visibles los grupo-card cuando son clickeables */
+  .grupo-card {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .grupo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Animación para la transición entre vistas */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
