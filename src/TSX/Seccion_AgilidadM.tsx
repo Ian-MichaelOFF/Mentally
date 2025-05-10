@@ -4,21 +4,18 @@ import "../CSS/Seccion_AgilidadM.css";
 import logoCerebro from "/logos/cerebro.png";
 import logoagilidad from "/logos/cartoon-capybara.png";
 import { useNavigate } from "react-router-dom";
-import Medallas from "./Medallas";
+
 import { ArrowLeft } from "lucide-react";
 
 const JuegosAgilidad: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMedallasOpen, setIsMedallasOpen] = useState(false);
 
   const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-  const toggleMedallas = () => {
-    setIsMedallasOpen(!isMedallasOpen);
-  };
+
   const handleClick = () => {
     navigate("/Frutas_Mat");
     navigate(0); // Esto fuerza una recarga
@@ -48,24 +45,27 @@ const JuegosAgilidad: React.FC = () => {
       {isSidebarOpen && (
         <div className="backdrop" onClick={toggleSidebar}></div>
       )}
-      <Medallas isOpen={isMedallasOpen} toggleMedallas={toggleMedallas} />
 
       {/* Contenido principal */}
       <div className="Cuerpos6">
-      <button 
-        onClick={goBack} 
-        className="back-buttonMemoryMst"
-        aria-label="Regresar"
-      >
-        <ArrowLeft size={24} />
-      </button>
+        <button
+          onClick={goBack}
+          className="back-buttonMemoryMst"
+          aria-label="Regresar"
+        >
+          <ArrowLeft size={24} />
+        </button>
         <h1>Bienvenido a la seccion de Agilidad Mental!</h1>
         <div className="JuegosAgilidad">
           <button className="btn-Agilidad1" type="button" onClick={handleClick}>
-            Operaciones <b/> Frutales
+            Operaciones <b /> Frutales
             <img src={logoagilidad} alt="Logo Agiidad" />
           </button>
-          <button className="btn-Agilidad2" type="button" onClick={handleClick2}>
+          <button
+            className="btn-Agilidad2"
+            type="button"
+            onClick={handleClick2}
+          >
             Operador Misterioso <img src={logoagilidad} />
           </button>
         </div>

@@ -19,6 +19,7 @@ const Memorama = () => {
   const [showFailed, setShowFailed] = useState(false);
   const [showSelector, setShowSelector] = useState(true);
   const [difficulty, setDifficulty] = useState("facil");
+  const [saveStatus, setSaveStatus] = useState("");
   
   // Refs for cards and timer
   const firstCardRef = useRef(null);
@@ -26,6 +27,60 @@ const Memorama = () => {
   const boardLockedRef = useRef(false);
   const timerRef = useRef(null);
   const boardRef = useRef(null);
+  const scoreRef = useRef(0);
+  const saveAttemptedRef = useRef(false); // Nueva referencia para evitar guardar duplicados
+
+  // Función para guardar la partida en el backend
+  const guardarPartida = async () => {
+    // Evitar guardar partida si ya se intentó
+    if (saveAttemptedRef.current) {
+      console.log('Guardado ya intentado, evitando duplicado');
+      return;
+    }
+    
+    // Marcar que se ha intentado guardar
+    saveAttemptedRef.current = true;
+    
+    try {
+      // ID fijo para el juego Memorama
+      const IDjuego = 4; 
+      
+      // Usamos el valor actual de scoreRef en lugar de confiar en el estado
+      const puntuacion = scoreRef.current;
+      
+      console.log('Enviando datos al servidor:', {
+        IDjuego,
+        dificultad: difficulty,
+        puntuacion
+      });
+      
+      const response = await fetch('http://localhost:5000/api/guardar-partida', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          IDjuego,
+          dificultad: difficulty,
+          puntuacion
+        }),
+        credentials: 'include'
+      });
+
+      const data = await response.json();
+      console.log('Respuesta del servidor:', data);
+      
+      if (response.ok) {
+        setSaveStatus("Partida guardada correctamente");
+      } else {
+        setSaveStatus(`Error: ${data.message || 'No se pudo guardar la partida'}`);
+        console.error('Error desde el servidor:', data);
+      }
+    } catch (error) {
+      console.error('Error al guardar partida:', error);
+      setSaveStatus("Error al conectar con el servidor");
+    }
+  };
 
   // Go back function
   const goBack = () => {
@@ -34,23 +89,33 @@ const Memorama = () => {
 
   // Function to start the game
   const startGame = (columns, rows, difficultyLevel) => {
+    // Reset saveAttempted flag for new game
+    saveAttemptedRef.current = false;
+    
     // Calculate total number of matches needed
     const totalCards = columns * rows;
     const matchesNeeded = totalCards / 2;
     
     console.log(`Game started with ${columns}x${rows} grid (${totalCards} cards, ${matchesNeeded} matches needed)`);
     
+    // Asegurar que tenemos un valor válido para totalMatches
+    console.log(`Setting totalMatches to ${matchesNeeded}`);
+    
     // Reset game state with all values
-    setShowInfo(true);
-    setShowBoard(true);
-    setShowSelector(false);
-    setShowCompleted(false);
-    setShowFailed(false);
     setDifficulty(difficultyLevel);
     setMatches(0);
     setAttempts(0);
     setTotalMatches(matchesNeeded);
     setTime(0);
+    setSaveStatus("");
+    scoreRef.current = 0;
+    
+    // Cambiar estos después para asegurar que totalMatches se establezca primero
+    setShowInfo(true);
+    setShowBoard(true);
+    setShowSelector(false);
+    setShowCompleted(false);
+    setShowFailed(false);
     
     // Clear previous timer
     if (timerRef.current) {
@@ -154,11 +219,15 @@ const Memorama = () => {
         console.log(`Matches found: ${newMatches} of ${totalMatches} needed`);
         
         // Check if all matches have been found
-        if (newMatches >= totalMatches) {
-          console.log("All matches found, completing game");
+        // Usamos directamente los valores actuales y comprobamos si es la última coincidencia
+        if (newMatches >= totalMatches && totalMatches > 0) {
+          console.log(`All matches found: ${newMatches}/${totalMatches}, completing game`);
+          // Aplicar un pequeño retraso para que se vea la última carta volteada
           setTimeout(() => {
+            // Bloqueamos el tablero para evitar más interacciones
+            boardLockedRef.current = true;
             gameCompleted();
-          }, 500);
+          }, 300);
         }
         
         return newMatches;
@@ -172,25 +241,33 @@ const Memorama = () => {
   const gameCompleted = () => {
     console.log("Game completed called");
     
+    // Detener el temporizador inmediatamente
     if (timerRef.current) {
       clearInterval(timerRef.current);
+      timerRef.current = null;
     }
     
     // Calculate final score - lower attempts is better
     const calculatedScore = Math.max(0, totalMatches * 10 - attempts * 3);
-    setFinalScore(calculatedScore);
     
-    // Using setTimeout to ensure state updates properly before showing completion screen
-    setTimeout(() => {
-      if (boardRef.current) {
-        boardRef.current.innerHTML = "";
-      }
-      
-      setShowInfo(false);
-      setShowBoard(false);
-      setShowCompleted(true);
-      console.log("Game completion screen shown");
-    }, 300);
+    // Actualizar tanto el estado como la referencia
+    setFinalScore(calculatedScore);
+    scoreRef.current = calculatedScore;
+    
+    console.log("Puntaje calculado:", calculatedScore);
+    
+    // Guardar la partida una sola vez
+    guardarPartida();
+    
+    if (boardRef.current) {
+      boardRef.current.innerHTML = "";
+    }
+    
+    // Mostrar pantalla de finalización
+    setShowInfo(false);
+    setShowBoard(false);
+    setShowCompleted(true);
+    console.log("Game completion screen shown with score:", scoreRef.current);
   };
 
   // Function to disable matching cards
@@ -266,14 +343,26 @@ const Memorama = () => {
       clearInterval(timerRef.current);
     }
     
-    if (boardRef.current) {
-      boardRef.current.innerHTML = "";
-    }
+    // Guardar la partida incluso si se perdió
+    const calculatedScore = Math.max(0, matches * 10 - attempts * 3);
     
-    setShowInfo(false);
-    setShowBoard(false);
-    setShowCompleted(false);
-    setShowFailed(true);
+    // Actualizar tanto el estado como la referencia
+    setFinalScore(calculatedScore);
+    scoreRef.current = calculatedScore;
+    
+    setTimeout(() => {
+      // Guardar la partida después de que el estado se haya actualizado
+      guardarPartida();
+      
+      if (boardRef.current) {
+        boardRef.current.innerHTML = "";
+      }
+      
+      setShowInfo(false);
+      setShowBoard(false);
+      setShowCompleted(false);
+      setShowFailed(true);
+    }, 300);
   };
 
   // Reset game function
@@ -282,11 +371,15 @@ const Memorama = () => {
       clearInterval(timerRef.current);
     }
     
+    // Resetear el flag de guardado para poder guardar en la próxima partida
+    saveAttemptedRef.current = false;
+    
     setShowSelector(true);
     setShowInfo(false);
     setShowBoard(false);
     setShowCompleted(false);
     setShowFailed(false);
+    setSaveStatus("");
   };
 
   // Format time
@@ -304,6 +397,14 @@ const Memorama = () => {
       }
     };
   }, []);
+  
+  // Efecto para monitorear cuando se completan todas las coincidencias
+  useEffect(() => {
+    if (matches > 0 && totalMatches > 0 && matches >= totalMatches) {
+      console.log(`Effect detected game completion: ${matches}/${totalMatches}`);
+      gameCompleted();
+    }
+  }, [matches, totalMatches]);
 
   // Get message based on score
   const getScoreMessage = () => {
@@ -317,20 +418,6 @@ const Memorama = () => {
       return "¡Excelente! ¡Eres un genio! 🏆";
     }
   };
-  
-  // Debug useEffect to monitor critical state changes
-  useEffect(() => {
-    console.log(`State update - Matches: ${matches}/${totalMatches}, ShowCompleted: ${showCompleted}`);
-    // Add additional debug information
-    if (matches === totalMatches && totalMatches > 0) {
-      console.log("Match condition met for game completion");
-    }
-  }, [matches, totalMatches, showCompleted]);
-  
-  // Monitor totalMatches specifically to debug issues
-  useEffect(() => {
-    console.log(`Total matches required updated to: ${totalMatches}`);
-  }, [totalMatches]);
 
   return (
     <div className="memorama-container">
@@ -394,7 +481,7 @@ const Memorama = () => {
             style={{ 
               gridTemplateColumns: difficulty === "dificil" ? "repeat(5, 1fr)" : "repeat(4, 1fr)" 
             }}
-            data-total-matches={totalMatches} // Add data attribute for debugging
+            data-total-matches={totalMatches}
           ></div>
         </div>
       )}
@@ -410,6 +497,12 @@ const Memorama = () => {
             Puntaje final: {finalScore}
           </p>
           <p className="message-text">{getScoreMessage()}</p>
+          {saveStatus && (
+            <p className={saveStatus.includes("Error") ? "error-message" : "success-message"} 
+               style={{ color: saveStatus.includes("Error") ? 'red' : 'green' }}>
+              {saveStatus}
+            </p>
+          )}
           <button
             className="play-again-button"
             onClick={resetGame}
@@ -425,6 +518,15 @@ const Memorama = () => {
           <p className="result-text">
             Se terminó el tiempo, ¡inténtalo de nuevo!
           </p>
+          <p className="score-text">
+            Puntaje final: {finalScore}
+          </p>
+          {saveStatus && (
+            <p className={saveStatus.includes("Error") ? "error-message" : "success-message"} 
+               style={{ color: saveStatus.includes("Error") ? 'red' : 'green' }}>
+              {saveStatus}
+            </p>
+          )}
           <button
             className="play-again-button"
             onClick={resetGame}

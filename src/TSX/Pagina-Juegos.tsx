@@ -8,18 +8,13 @@ import logoagilidad from "/logos/cartoon-capybara.png";
 import { useNavigate } from "react-router-dom";
 import Medallas from "../TSX/Medallas";
 
-
-
 const PaginaJuegos: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMedallasOpen, setIsMedallasOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-  const toggleMedallas = () => {
-    setIsMedallasOpen(!isMedallasOpen);
-  };
+
   const navigate = useNavigate();
 
   return (
@@ -30,29 +25,41 @@ const PaginaJuegos: React.FC = () => {
           <span className="logos-text2">MENTALLY</span>
           <img src={logoCerebro} alt="Logo2" />
         </div>
-
       </nav>
 
       {/* Sidebar */}
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
       {/* Fondo oscuro al abrir la sidebar */}
-      {isSidebarOpen && <div className="backdrop" onClick={toggleSidebar}></div>}
-      <Medallas isOpen={isMedallasOpen} toggleMedallas={toggleMedallas} />
+      {isSidebarOpen && (
+        <div className="backdrop" onClick={toggleSidebar}></div>
+      )}
+
       {/* Contenido principal */}
       <div className="Cuerpos2">
-        
         <h1>QUE JUGARAS HOY??</h1>
         <div className="BJuegos">
-          <button className="btn-juegos1" type="button" onClick={() => navigate("/Seccion_Memoria")}>
+          <button
+            className="btn-juegos1"
+            type="button"
+            onClick={() => navigate("/Seccion_Memoria")}
+          >
             Memoria
             <img src={logomemoria} alt="Logo Memoria" />
           </button>
-          <button className="btn-juegos2" type="button" onClick={() => navigate("/Seccion_Concentracion")}>
+          <button
+            className="btn-juegos2"
+            type="button"
+            onClick={() => navigate("/Seccion_Concentracion")}
+          >
             Concentracion
             <img src={logoconcentracion} alt="Logo concentracion" />
           </button>
-          <button className="btn-juegos3" type="button" onClick={() => navigate("/Seccion_AgilidadM")}>
+          <button
+            className="btn-juegos3"
+            type="button"
+            onClick={() => navigate("/Seccion_AgilidadM")}
+          >
             Agilidad Mental
             <img src={logoagilidad} alt="Logo agilidad" />
           </button>

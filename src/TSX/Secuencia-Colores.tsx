@@ -11,7 +11,7 @@ const SecuenciaColores: React.FC = () => {
   const [incorrect, setIncorrect] = useState<number>(0);
   const [gridSize, setGridSize] = useState<number>(3);
   const [showGame, setShowGame] = useState<boolean>(false);
-  const [gameStatus, setGameStatus] = useState<string>("waiting"); // "waiting", "showing", "userTurn"
+  const [gameStatus, setGameStatus] = useState<string>("waiting");
   const [currentRound, setCurrentRound] = useState<number>(1);
   const [showResults, setShowResults] = useState<boolean>(false);
   const [finalScore, setFinalScore] = useState<number>(0);
@@ -29,6 +29,40 @@ const SecuenciaColores: React.FC = () => {
     facil: 5,
     normal: 10,
     dificil: 15,
+  };
+
+  // Función para guardar la partida en el backend
+  const guardarPartida = async () => {
+    try {
+      const IDjuego = 6; // ID para Secuencia de Colores (ajusta según tu base de datos)
+      const puntuacion = finalScore;
+      const dificultad = currentDifficulty;
+      
+      console.log('Guardando partida:', {
+        IDjuego,
+        dificultad,
+        puntuacion
+      });
+      
+      const response = await fetch('http://localhost:5000/api/guardar-partida', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          IDjuego,
+          dificultad,
+          puntuacion
+        }),
+        credentials: 'include'
+      });
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || 'Error al guardar partida');
+      console.log('Partida guardada:', data);
+    } catch (error) {
+      console.error('Error al guardar partida:', error);
+    }
   };
   
   const startGame = () => {
@@ -52,7 +86,6 @@ const SecuenciaColores: React.FC = () => {
     setCurrentDifficulty(e.target.value);
   };
   
-  // Crear las celdas de la cuadrícula usando React en lugar de manipulación directa del DOM
   const renderGrid = () => {
     const cells = [];
     for (let i = 0; i < gridSize * gridSize; i++) {
@@ -79,7 +112,6 @@ const SecuenciaColores: React.FC = () => {
     setSequence(newSequence);
     setUserSequence([]);
     
-    // Pequeña pausa antes de mostrar la secuencia
     setTimeout(() => {
       setGameStatus("showing");
       showSequence(newSequence);
@@ -90,7 +122,6 @@ const SecuenciaColores: React.FC = () => {
     let delay = 0;
     
     seq.forEach(({ index, color }, i) => {
-      // Mostrar color
       setTimeout(() => {
         const cell = document.querySelector(`.cell[data-index="${index}"]`);
         if (cell) {
@@ -98,14 +129,12 @@ const SecuenciaColores: React.FC = () => {
         }
       }, delay);
       
-      // Ocultar color después de 500ms
       setTimeout(() => {
         const cell = document.querySelector(`.cell[data-index="${index}"]`);
         if (cell) {
           cell.classList.remove(`color-${color}`);
         }
         
-        // Si es la última celda, permitir que el usuario haga clic
         if (i === seq.length - 1) {
           setTimeout(() => {
             setGameStatus("userTurn");
@@ -117,31 +146,15 @@ const SecuenciaColores: React.FC = () => {
     });
   };
   
-  const checkGameCompletion = () => {
-    if (currentRound >= roundsPerDifficulty[currentDifficulty]) {
-      // Calcular puntaje final: aciertos * 3 - errores * 2
-      const score = (correct * 3) - (incorrect * 2);
-      setFinalScore(score);
-      setShowResults(true);
-      setGameStatus("completed");
-      return true;
-    }
-    return false;
-  };
-  
   const handleCellClick = (idx: number) => {
-    // Solo procesar clics cuando es el turno del usuario
     if (gameStatus !== "userTurn") return;
     
-    // Agregar el índice al array de la secuencia del usuario
     const newUserSequence = [...userSequence, idx];
     setUserSequence(newUserSequence);
     
-    // Obtener el paso actual y la información correspondiente de la secuencia original
     const currentStep = newUserSequence.length - 1;
     const currentSequenceItem = sequence[currentStep];
     
-    // Iluminar la celda con su color correspondiente de la secuencia
     const cell = document.querySelector(`.cell[data-index="${idx}"]`);
     if (cell) {
       cell.classList.add(`color-${currentSequenceItem.color}`, 'active');
@@ -149,33 +162,44 @@ const SecuenciaColores: React.FC = () => {
       setTimeout(() => {
         cell.classList.remove(`color-${currentSequenceItem.color}`, 'active');
         
-        // Verificar si la secuencia está completa
         if (newUserSequence.length === sequence.length) {
           setGameStatus("waiting");
           
-          // Comparar cada elemento de la secuencia
           const allCorrect = newUserSequence.every(
             (clickedIndex, i) => clickedIndex === sequence[i].index
           );
           
+          // Actualiza los contadores antes de calcular el score final
           if (allCorrect) {
-            setCorrect(prev => prev + 1);
+            setCorrect(prev => {
+              const newCorrect = prev + 1;
+              return newCorrect;
+            });
           } else {
-            setIncorrect(prev => prev + 1);
+            setIncorrect(prev => {
+              const newIncorrect = prev + 1;
+              return newIncorrect;
+            });
           }
           
-          // Avanzar a la siguiente ronda
           const nextRound = currentRound + 1;
           setCurrentRound(nextRound);
           
-          // Verificar si el juego ha terminado
+          // Si es el último round, calcula el puntaje final y muestra resultados
           if (nextRound > roundsPerDifficulty[currentDifficulty]) {
-            // Calcular puntaje final: aciertos * 3 - errores * 2
-            const score = (correct * 3) - (incorrect * 2);
+            // Calculamos el score directamente para evitar problemas con estados no actualizados
+            const updatedCorrect = allCorrect ? correct + 1 : correct;
+            const updatedIncorrect = allCorrect ? incorrect : incorrect + 1;
+            const score = (updatedCorrect * 3) - (updatedIncorrect * 2);
+            
             setFinalScore(score);
             setShowResults(true);
+            
+            // Guardamos la partida después de actualizar el puntaje final
+            setTimeout(() => {
+              guardarPartida();
+            }, 500);
           } else {
-            // Generar nueva secuencia después de una pausa
             setTimeout(() => {
               generateSequence();
             }, 1500);
@@ -185,7 +209,13 @@ const SecuenciaColores: React.FC = () => {
     }
   };
   
-  // Iniciar el juego cuando cambia showGame o gridSize
+  // Effect para guardar el puntaje final cuando termina el juego
+  useEffect(() => {
+    if (showResults && finalScore !== 0) {
+      guardarPartida();
+    }
+  }, [showResults, finalScore]);
+  
   useEffect(() => {
     if (showGame && !showResults) {
       setTimeout(() => {
@@ -195,7 +225,7 @@ const SecuenciaColores: React.FC = () => {
   }, [showGame, gridSize]);
 
   const goBack = () => {
-    window.history.back(); // Función para regresar a la página anterior
+    window.history.back();
   };
 
   return (

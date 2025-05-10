@@ -1,63 +1,324 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Sidebar from "../TSX/sidebar"; // Importa la sidebar
 import "../CSS/PaginaGrupos.css";
-import logoCerebro from "/logos/cerebro.png"; // Asegúrate de que la ruta sea correcta
-import Medallas from "./Medallas";
-import UnirseGrupoModal from "./Grupo";
+import logoCerebro from "/logos/cerebro.png";
+import { useNavigate } from "react-router-dom";
 
+// Definición de tipos
+interface Alumno {
+  IDalumno: number;
+  nombre: string;
+  apellido: string;
+  Usuario: string;
+  Imagen: string;
+}
 
+interface Maestro {
+  IDmaestro: number;
+  nombre: string;
+  apellido: string;
+}
 
-const PaginaGrupos: React.FC = () => {
+interface Grupo {
+  id: number;
+  nombre: string;
+  token: string;
+  fecha_creacion: string;
+  maestro_nombre: string;
+  maestro_apellido: string;
+}
+
+interface GrupoDetalle {
+  grupo: {
+    id: number;
+    nombre: string;
+    token: string;
+    fecha_creacion: string;
+    IDmaestro: number;
+    maestro_nombre: string;
+    maestro_apellido: string;
+  };
+  alumnos: Alumno[];
+}
+
+const GruposAlumnos: React.FC = () => {
+  // Estados
+  const [token, setToken] = useState('');
+  const [grupos, setGrupos] = useState<Grupo[]>([]);
+  const [grupoSeleccionado, setGrupoSeleccionado] = useState<GrupoDetalle | null>(null);
+  const [error, setError] = useState('');
+  const [mensaje, setMensaje] = useState('');
+  const [cargando, setCargando] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMedallasOpen, setIsMedallasOpen] = useState(false);
-  const [showVentana, setShowVentana] = useState(false);
-
+  
+  const navigate = useNavigate();
+  
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-  const toggleMedallas = () => {
-    setIsMedallasOpen(!isMedallasOpen);
+
+  // Cargar grupos al iniciar
+  useEffect(() => {
+    cargarGrupos();
+  }, []);
+
+  // Función para cargar los grupos del alumno
+  const cargarGrupos = async () => {
+    try {
+      setCargando(true);
+      const respuesta = await axios.get('http://localhost:5000/api/mis-grupos', { withCredentials: true });
+      setGrupos(respuesta.data);
+      setGrupoSeleccionado(null);
+      setCargando(false);
+    } catch (error) {
+      setCargando(false);
+      setError('Error al cargar los grupos');
+      console.error('Error al cargar grupos:', error);
+    }
   };
-  
+
+  // Función para unirse a un grupo
+  const unirseAGrupo = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!token.trim()) {
+      setError('El token es requerido');
+      return;
+    }
+
+    try {
+      setCargando(true);
+      const respuesta = await axios.post(
+        'http://localhost:5000/api/unirse-grupo',
+        { token },
+        { withCredentials: true }
+      );
+      
+      setMensaje(respuesta.data.message);
+      setToken('');
+      setError('');
+      // Recargar la lista de grupos
+      cargarGrupos();
+      setCargando(false);
+    } catch (error: any) {
+      setCargando(false);
+      setError(error.response?.data?.message || 'Error al unirse al grupo');
+      console.error('Error al unirse al grupo:', error);
+    }
+  };
+
+  // Función para ver detalles de un grupo
+  const verDetallesGrupo = async (grupoId: number) => {
+    try {
+      setCargando(true);
+      const respuesta = await axios.get(`http://localhost:5000/api/grupo/${grupoId}`, { 
+        withCredentials: true 
+      });
+      setGrupoSeleccionado(respuesta.data);
+      setError('');
+      setMensaje('');
+      setCargando(false);
+    } catch (error) {
+      setCargando(false);
+      setError('Error al cargar los detalles del grupo');
+      console.error('Error al cargar detalles del grupo:', error);
+    }
+  };
+
+  // Función para salir de un grupo
+  const salirDeGrupo = async (grupoId: number) => {
+    if (!window.confirm('¿Estás seguro de que quieres salir de este grupo?')) {
+      return;
+    }
+
+    try {
+      setCargando(true);
+      const respuesta = await axios.delete(`http://localhost:5000/api/salir-grupo/${grupoId}`, {
+        withCredentials: true
+      });
+      
+      setMensaje(respuesta.data.message);
+      // Si estábamos viendo ese grupo, cerramos los detalles
+      if (grupoSeleccionado?.grupo.id === grupoId) {
+        setGrupoSeleccionado(null);
+      }
+      // Recargar la lista de grupos
+      cargarGrupos();
+      setCargando(false);
+    } catch (error: any) {
+      setCargando(false);
+      setError(error.response?.data?.message || 'Error al salir del grupo');
+      console.error('Error al salir del grupo:', error);
+    }
+  };
+
+  // Función para volver a la lista de grupos
+  const volverALista = () => {
+    setGrupoSeleccionado(null);
+    setError('');
+    setMensaje('');
+  };
 
   return (
     <div>
       {/* Navbar */}
-      <nav className="navbar4">
-        <div className="logos3">
-          <span className="logos-text3">MENTALLY</span>
-          <img src={logoCerebro} alt="Logo3" />
-          </div>
-          <div className="botonesGrupos">
-          <button 
-        className="btn-grupo1" 
-        onClick={() => setShowVentana(true)}
-      >
-        UNIRSE A UN GRUPO
-      </button>
-      {showVentana && (
-        <UnirseGrupoModal onClose={() => setShowVentana(false)} />
-      )}
-
+      <nav className="navbar-grupos">
+        <div className="logos-grupos">
+          <span className="logos-text-grupos">MENTALLY</span>
+          <img src={logoCerebro} alt="Logo" />
         </div>
-        
-
       </nav>
 
       {/* Sidebar */}
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      
 
       {/* Fondo oscuro al abrir la sidebar */}
-      {isSidebarOpen && <div className="backdrop" onClick={toggleSidebar}></div>}
-      <Medallas isOpen={isMedallasOpen} toggleMedallas={toggleMedallas} />
+      {isSidebarOpen && (
+        <div className="backdrop" onClick={toggleSidebar}></div>
+      )}
+
       {/* Contenido principal */}
-      <div className="Cuerpo3">
+      <div className="cuerpo-grupos">
+        <h1>MIS GRUPOS</h1>
         
-        <h1>Grupos:(0)</h1>
+        {/* Formulario para unirse a grupo */}
+        <div className="contenedor-formulario">
+          <h2>Unirse a un Grupo</h2>
+          <form onSubmit={unirseAGrupo} className="form-unirse">
+            <input
+              type="text"
+              placeholder="Ingresa el token del grupo"
+              value={token}
+              onChange={(e) => setToken(e.target.value)}
+              className="input-token"
+            />
+            <button 
+              type="submit" 
+              className="btn-unirse"
+              disabled={cargando}
+            >
+              {cargando ? 'Procesando...' : 'Unirse al Grupo'}
+            </button>
+          </form>
+        </div>
+
+        {/* Mensajes de error o éxito */}
+        {error && <div className="mensaje-error">{error}</div>}
+        {mensaje && <div className="mensaje-exito">{mensaje}</div>}
+
+        {/* Vista de detalles de un grupo o lista de grupos */}
+        <div className="contenedor-principal">
+          {grupoSeleccionado ? (
+            <div className="detalles-grupo">
+              <div className="cabecera-detalles">
+                <h2>Detalles del Grupo</h2>
+                <button 
+                  onClick={volverALista}
+                  className="btn-volver"
+                >
+                  Volver a la lista
+                </button>
+              </div>
+              
+              <div className="info-grupo">
+                <p className="nombre-grupo">{grupoSeleccionado.grupo.nombre}</p>
+                <p className="detalle-grupo">
+                  <span className="etiqueta">Profesor:</span> {grupoSeleccionado.grupo.maestro_nombre} {grupoSeleccionado.grupo.maestro_apellido}
+                </p>
+                <p className="detalle-grupo">
+                  <span className="etiqueta">Token:</span> {grupoSeleccionado.grupo.token}
+                </p>
+                <p className="detalle-grupo">
+                  <span className="etiqueta">Fecha de creación:</span> {new Date(grupoSeleccionado.grupo.fecha_creacion).toLocaleDateString()}
+                </p>
+              </div>
+
+              <div className="seccion-alumnos">
+                <div className="cabecera-alumnos">
+                  <h3>Alumnos en este grupo ({grupoSeleccionado.alumnos.length})</h3>
+                  <button 
+                    onClick={() => salirDeGrupo(grupoSeleccionado.grupo.id)}
+                    className="btn-salir"
+                    disabled={cargando}
+                  >
+                    {cargando ? 'Procesando...' : 'Salir del grupo'}
+                  </button>
+                </div>
+                
+                <div className="lista-alumnos-container">
+                  {grupoSeleccionado.alumnos.length > 0 ? (
+                    <ul className="lista-alumnos">
+                      {grupoSeleccionado.alumnos.map(alumno => (
+                        <li key={alumno.IDalumno} className="alumno-item">
+                          <div className="avatar-alumno">
+                            {alumno.Imagen ? (
+                              <img 
+                                src={`http://localhost:5000/uploads/${alumno.Imagen}`} 
+                                alt={`${alumno.nombre} ${alumno.apellido}`}
+                              />
+                            ) : (
+                              <div className="avatar-placeholder">
+                                {alumno.nombre.charAt(0)}{alumno.apellido.charAt(0)}
+                              </div>
+                            )}
+                          </div>
+                          <div className="info-alumno">
+                            <p className="nombre-alumno">{alumno.nombre} {alumno.apellido}</p>
+                            <p className="usuario-alumno">@{alumno.Usuario}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="mensaje-vacio">No hay alumnos en este grupo</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* Lista de grupos */
+            <div className="lista-grupos-container">
+              <h2>Mis Grupos</h2>
+              {cargando ? (
+                <p className="mensaje-cargando">Cargando grupos...</p>
+              ) : grupos.length > 0 ? (
+                <div className="grupos-grid">
+                  {grupos.map(grupo => (
+                    <div key={grupo.id} className="tarjeta-grupo">
+                      <h3 className="titulo-tarjeta">{grupo.nombre}</h3>
+                      <p className="profesor-tarjeta">Profesor: {grupo.maestro_nombre} {grupo.maestro_apellido}</p>
+                      <p className="fecha-tarjeta">
+                        Creado: {new Date(grupo.fecha_creacion).toLocaleDateString()}
+                      </p>
+                      <div className="acciones-tarjeta">
+                        <button 
+                          onClick={() => verDetallesGrupo(grupo.id)}
+                          className="btn-ver"
+                        >
+                          Ver detalles
+                        </button>
+                        <button 
+                          onClick={() => salirDeGrupo(grupo.id)}
+                          className="btn-salir-tarjeta"
+                        >
+                          Salir
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="mensaje-vacio">
+                  No estás en ningún grupo. Únete a uno utilizando un token válido.
+                </p>
+              )}
+            </div>
+          )}
         </div>
       </div>
+    </div>
   );
 };
 
-export default PaginaGrupos;
+export default GruposAlumnos;

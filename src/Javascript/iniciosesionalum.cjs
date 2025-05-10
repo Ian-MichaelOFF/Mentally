@@ -577,45 +577,51 @@ app.get('/api/alumnos', (req, res) => {
 // RUTAS PARA GRUPOS (ALUMNOS)
 // -----------------------------------------------------
 
-// Unirse a un grupo usando token
-app.post('/api/grupos/unirse', (req, res) => {
+
+// Ruta para que un alumno se una a un grupo usando un token
+app.post('/api/unirse-grupo', (req, res) => {
   if (!req.session.user || !req.session.user.IDalumno) {
     return res.status(401).json({ message: "No autorizado" });
   }
 
   const { token } = req.body;
+  
   if (!token) {
     return res.status(400).json({ message: "Token es requerido" });
   }
 
-  // 1. Buscar el grupo por token
+  // Primero verificamos si el grupo existe con ese token
   const findGroupQuery = "SELECT id FROM grupos WHERE token = ?";
   
   pool.query(findGroupQuery, [token], (err, results) => {
-    if (err || results.length === 0) {
-      return res.status(404).json({ message: "Grupo no encontrado" });
+    if (err) {
+      console.error("Error al buscar grupo:", err);
+      return res.status(500).json({ message: "Error al buscar grupo" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: "No se encontró ningún grupo con ese token" });
     }
 
     const grupoId = results[0].id;
-    const alumnoId = req.session.user.IDalumno;
 
-    // 2. Verificar si el alumno ya está en el grupo
-    const checkQuery = "SELECT * FROM grupo_alumnos WHERE grupo_id = ? AND alumno_id = ?";
+    // Verificamos si el alumno ya está en el grupo
+    const checkMembershipQuery = "SELECT * FROM grupo_alumnos WHERE grupo_id = ? AND alumno_id = ?";
     
-    pool.query(checkQuery, [grupoId, alumnoId], (err, results) => {
+    pool.query(checkMembershipQuery, [grupoId, req.session.user.IDalumno], (err, results) => {
       if (err) {
         console.error("Error al verificar membresía:", err);
-        return res.status(500).json({ message: "Error al unirse al grupo" });
+        return res.status(500).json({ message: "Error al verificar membresía en el grupo" });
       }
 
       if (results.length > 0) {
-        return res.status(400).json({ message: "Ya estás en este grupo" });
+        return res.status(400).json({ message: "Ya eres miembro de este grupo" });
       }
 
-      // 3. Añadir alumno al grupo
-      const insertQuery = "INSERT INTO grupo_alumnos (grupo_id, alumno_id) VALUES (?, ?)";
+      // Si no está en el grupo, lo agregamos
+      const joinGroupQuery = "INSERT INTO grupo_alumnos (grupo_id, alumno_id) VALUES (?, ?)";
       
-      pool.query(insertQuery, [grupoId, alumnoId], (err, results) => {
+      pool.query(joinGroupQuery, [grupoId, req.session.user.IDalumno], (err, results) => {
         if (err) {
           console.error("Error al unirse al grupo:", err);
           return res.status(500).json({ message: "Error al unirse al grupo" });
@@ -627,15 +633,15 @@ app.post('/api/grupos/unirse', (req, res) => {
   });
 });
 
-// Obtener grupos a los que pertenece un alumno
+// Obtener todos los grupos a los que pertenece un alumno
 app.get('/api/mis-grupos', (req, res) => {
   if (!req.session.user || !req.session.user.IDalumno) {
     return res.status(401).json({ message: "No autorizado" });
   }
 
   const query = `
-    SELECT g.id, g.nombre, g.token, m.nombre as maestro_nombre, 
-           m.apellido as maestro_apellido, g.fecha_creacion
+    SELECT g.id, g.nombre, g.token, g.fecha_creacion,
+           m.nombre as maestro_nombre, m.apellido as maestro_apellido
     FROM grupos g
     JOIN grupo_alumnos ga ON g.id = ga.grupo_id
     JOIN maestros m ON g.maestro_id = m.IDmaestro
@@ -651,6 +657,97 @@ app.get('/api/mis-grupos', (req, res) => {
     res.json(results);
   });
 });
+
+// Obtener detalles de un grupo específico incluyendo la lista de alumnos
+app.get('/api/grupo/:grupoId', (req, res) => {
+  if (!req.session.user || !req.session.user.IDalumno) {
+    return res.status(401).json({ message: "No autorizado" });
+  }
+
+  const { grupoId } = req.params;
+
+  // Verificar que el alumno pertenece al grupo
+  const checkMembershipQuery = "SELECT * FROM grupo_alumnos WHERE grupo_id = ? AND alumno_id = ?";
+  
+  pool.query(checkMembershipQuery, [grupoId, req.session.user.IDalumno], (err, memberResults) => {
+    if (err) {
+      console.error("Error al verificar membresía:", err);
+      return res.status(500).json({ message: "Error al verificar membresía en el grupo" });
+    }
+
+    if (memberResults.length === 0) {
+      return res.status(403).json({ message: "No tienes acceso a este grupo" });
+    }
+
+    // Obtener datos generales del grupo
+    const grupoQuery = `
+      SELECT g.id, g.nombre, g.token, g.fecha_creacion,
+             m.IDmaestro, m.nombre as maestro_nombre, m.apellido as maestro_apellido
+      FROM grupos g
+      JOIN maestros m ON g.maestro_id = m.IDmaestro
+      WHERE g.id = ?
+    `;
+
+    pool.query(grupoQuery, [grupoId], (err, grupoResults) => {
+      if (err) {
+        console.error("Error al obtener detalles del grupo:", err);
+        return res.status(500).json({ message: "Error al obtener detalles del grupo" });
+      }
+
+      if (grupoResults.length === 0) {
+        return res.status(404).json({ message: "Grupo no encontrado" });
+      }
+
+      const grupoData = grupoResults[0];
+
+      // Obtener alumnos del grupo
+      const alumnosQuery = `
+        SELECT a.IDalumno, a.nombre, a.apellido, a.Usuario, a.Imagen
+        FROM alumnos a
+        JOIN grupo_alumnos ga ON a.IDalumno = ga.alumno_id
+        WHERE ga.grupo_id = ?
+      `;
+
+      pool.query(alumnosQuery, [grupoId], (err, alumnosResults) => {
+        if (err) {
+          console.error("Error al obtener alumnos del grupo:", err);
+          return res.status(500).json({ message: "Error al obtener alumnos del grupo" });
+        }
+
+        // Devolver toda la información
+        res.json({
+          grupo: grupoData,
+          alumnos: alumnosResults
+        });
+      });
+    });
+  });
+});
+
+// Salir de un grupo
+app.delete('/api/salir-grupo/:grupoId', (req, res) => {
+  if (!req.session.user || !req.session.user.IDalumno) {
+    return res.status(401).json({ message: "No autorizado" });
+  }
+
+  const { grupoId } = req.params;
+
+  const query = "DELETE FROM grupo_alumnos WHERE grupo_id = ? AND alumno_id = ?";
+  
+  pool.query(query, [grupoId, req.session.user.IDalumno], (err, results) => {
+    if (err) {
+      console.error("Error al salir del grupo:", err);
+      return res.status(500).json({ message: "Error al salir del grupo" });
+    }
+
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: "No eres miembro de este grupo" });
+    }
+
+    res.json({ message: "Has salido del grupo exitosamente" });
+  });
+});
+
 // -----------------------------------------------------
 // RUTAS PARA RECUPERACIÓN DE CONTRASEÑA
 // -----------------------------------------------------
@@ -844,6 +941,65 @@ app.post("/api/actualizar-password-maestro", (req, res) => {
     res.json({ message: "Contraseña actualizada exitosamente" });
   });
 });
+
+// Ruta para guardar los resultados de una partida
+app.post("/api/guardar-partida", (req, res) => {
+  if (!req.session.user || !req.session.user.IDalumno) {
+    return res.status(401).json({ message: "No autorizado" });
+  }
+
+  const { IDjuego, dificultad, puntuacion } = req.body;
+  
+  if (!IDjuego || !dificultad || !puntuacion) {
+    return res.status(400).json({ message: "Datos incompletos" });
+  }
+
+  const query = `
+    INSERT INTO partidas (IDalumno, IDjuego, dificultad, puntuacion) 
+    VALUES (?, ?, ?, ?)
+  `;
+
+  pool.query(
+    query, 
+    [req.session.user.IDalumno, IDjuego, dificultad, puntuacion],
+    (err, results) => {
+      if (err) {
+        console.error("Error al guardar partida:", err);
+        return res.status(500).json({ message: "Error al guardar partida" });
+      }
+      
+      res.json({ message: "Partida guardada exitosamente" });
+    }
+  );
+});
+// Ruta para obtener el historial de partidas de un alumno
+app.get("/api/historial/:alumnoId", (req, res) => {
+  if (!req.session.user || req.session.user.tipo !== "maestro") {
+    return res.status(401).json({ message: "No autorizado" });
+  }
+
+  const { alumnoId } = req.params;
+
+  const query = `
+    SELECT p.IDpartida, j.nombre as juego, p.dificultad, p.puntuacion, p.fecha_partida
+    FROM partidas p
+    JOIN juegos j ON p.IDjuego = j.IDjuego
+    WHERE p.IDalumno = ?
+    ORDER BY p.fecha_partida DESC
+    LIMIT 5
+  `;
+
+  pool.query(query, [alumnoId], (err, results) => {
+    if (err) {
+      console.error("Error al obtener historial:", err);
+      return res.status(500).json({ message: "Error al obtener historial" });
+    }
+
+    res.json(results);
+  });
+});
+
+
 
 // -----------------------------------------------------
 // Ruta para cerrar sesión

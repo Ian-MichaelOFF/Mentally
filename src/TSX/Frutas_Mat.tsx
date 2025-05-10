@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../CSS/juegos-frutas.css"; // Importar los estilos
+import "../CSS/juegos-frutas.css";
 import { ArrowLeft } from "lucide-react";
 
 const FrutasMatematicas = () => {
@@ -17,6 +17,7 @@ const FrutasMatematicas = () => {
   const [showResults, setShowResults] = useState(false);
   const [finalScore, setFinalScore] = useState(0);
   const [totalRounds, setTotalRounds] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Referencias para elementos DOM
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -37,14 +38,66 @@ const FrutasMatematicas = () => {
 
   // Límites de tiempo por nivel
   const timeLimits = {
-    easy: 0, normal: 0, hard: 60, 
+    facil: 0, normal: 0, dificil: 60, 
   };
 
   // Número de rondas por nivel
   const roundsPerLevel = {
-    easy: 5,
+    facil: 5,
     normal: 10,
-    hard: 15,
+    dificil: 15,
+  };
+
+  // Verificar si el usuario está logueado al cargar el componente
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/check-session', {
+          method: 'GET',
+          credentials: 'include'
+        });
+        
+        if (response.ok) {
+          setIsLoggedIn(true);
+        }
+      } catch (error) {
+        console.error('Error verificando sesión:', error);
+      }
+    };
+    
+    checkLoginStatus();
+  }, []);
+
+  // Función para guardar la partida en el backend
+  const guardarPartida = async () => {
+    try {
+      const IDjuego = 3; // ID para Frutas Matemáticas
+      const puntuacion = finalScore;
+      const dificultad = currentLevel;
+      
+      console.log('Guardando partida:', { IDjuego, dificultad, puntuacion });
+      
+      const response = await fetch('http://localhost:5000/api/guardar-partida', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          IDjuego,
+          dificultad,
+          puntuacion
+        }),
+        credentials: 'include'
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || 'Error al guardar partida');
+      }
+      console.log('Partida guardada exitosamente:', data);
+    } catch (error) {
+      console.error('Error al guardar partida:', error);
+    }
   };
 
   // Función para obtener una fruta aleatoria
@@ -99,6 +152,7 @@ const FrutasMatematicas = () => {
       const score = (correctCount * 3) - (incorrectCount * 2);
       setFinalScore(score);
       setShowResults(true);
+      guardarPartida(); // Guardar la partida al finalizar
       return true;
     }
     return false;
@@ -115,6 +169,7 @@ const FrutasMatematicas = () => {
       const score = (correctCount * 3) - (incorrectCount * 2);
       setFinalScore(score);
       setShowResults(true);
+      guardarPartida(); // Guardar la partida al finalizar
     } else {
       generateProblem(currentLevel);
     }
@@ -133,7 +188,7 @@ const FrutasMatematicas = () => {
     let operators;
 
     switch (level) {
-      case 'easy':
+      case 'facil':
         numFruits = 2;
         operators = levelOperators.easy;
         break;
@@ -141,7 +196,7 @@ const FrutasMatematicas = () => {
         numFruits = 3;
         operators = levelOperators.normal;
         break;
-      case 'hard':
+      case 'dificil':
         numFruits = 3;
         operators = levelOperators.hard;
         break;
@@ -192,7 +247,7 @@ const FrutasMatematicas = () => {
     setCurrentProblem(newProblem);
 
     // Iniciar temporizador solo para nivel difícil
-    if (level === 'hard' || level === 'god') {
+    if (level === 'dificil') {
       const initialTime = timeLimits[level as keyof typeof timeLimits];
       setTimeLeft(initialTime);
 
@@ -304,9 +359,9 @@ const FrutasMatematicas = () => {
 
         {!gameVisible && !showResults && (
           <div className="level-selector">
-            <button onClick={() => startGame('easy')}>Sencillo</button>
+            <button onClick={() => startGame('facil')}>facil</button>
             <button onClick={() => startGame('normal')}>Normal</button>
-            <button onClick={() => startGame('hard')}>Difícil</button>
+            <button onClick={() => startGame('dificil')}>Difícil</button>
           </div>
         )}
 
@@ -371,7 +426,7 @@ const FrutasMatematicas = () => {
           <div className="results-screen">
             <h2>¡Juego Completado!</h2>
             <div className="results-content">
-              <p>Nivel: <strong>{currentLevel === 'easy' ? 'Sencillo' : currentLevel === 'normal' ? 'Normal' : 'Difícil'}</strong></p>
+              <p>Nivel: <strong>{currentLevel === 'facil' ? 'facil' : currentLevel === 'normal' ? 'Normal' : 'Difícil'}</strong></p>
               <p>Aciertos: <span className="correct-count">{correctCount}</span></p>
               <p>Errores: <span className="incorrect-count">{incorrectCount}</span></p>
               <p className="final-score">Puntaje Final: <strong>{finalScore}</strong></p>

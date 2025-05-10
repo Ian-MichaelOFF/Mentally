@@ -3,7 +3,7 @@ import PaginaPrincipal from "./TSX/Pagina-Principal";
 import PaginaInicio from "./TSX/Pagina-Inicio";
 import FormularioAlum from "./TSX/formulario-alum"; // Asegúrate de tener este archivo creado
 import PaginaJuegos from "./TSX/Pagina-Juegos";  
-import PaginaGrupos from "./TSX/Pagina-Grupos";
+import GruposAlumno from "./TSX/Pagina-Grupos"; // Asegúrate de tener este archivo creado
 import RegistroAlumno from "./TSX/RegistroAlum";
 import Memorama from "./TSX/Memorama";
 import JuegosMemoria from "./TSX/Seccion_Memoria";
@@ -25,6 +25,7 @@ import JuegosConcentracionMst from "./TSX/Seccion_ConcentracionMaster";
 import JuegosMemoriaMst from "./TSX/Seccion_MemoriaMaster"; // Asegúrate de tener este archivo creado
 import OperadorMisterioso from "./TSX/OperadorMate";
 import SecuenciaColores from "./TSX/Secuencia-Colores";
+import SopaDeLetras from "./TSX/SopaLetras";
 function App() {
   return (
     <Router>
@@ -33,7 +34,6 @@ function App() {
         <Route path="/Pagina-Principal" element={<PaginaPrincipal />} />
         <Route path="/FormularioAlum" element={<FormularioAlum />} />
         <Route path="/Pagina-Juegos" element={<PaginaJuegos />} />
-        <Route path="/Pagina-Grupos" element={<PaginaGrupos />} />
         <Route path="/RegistroAlum" element={<RegistroAlumno />} />
         <Route path="/Memorama" element={<Memorama />} />
         <Route path="/Seccion_Memoria" element={<JuegosMemoria />} />
@@ -55,6 +55,8 @@ function App() {
         <Route path="/Seccion_MemoriaMaster" element={<JuegosMemoriaMst />} /> {/* Ruta para la sección de memoria del maestro */}
         <Route path="/OperadorMate" element={<OperadorMisterioso />} /> {/* Ruta para el juego de operador misterioso */}
         <Route path="/Secuencia-Colores" element={<SecuenciaColores />} /> {/* Ruta para el juego de secuencia de colores */}
+        <Route path="/SopaLetras" element={<SopaDeLetras />} /> {/* Ruta para el juego de sopa de letras */}
+        <Route path="/Pagina-Grupos" element={<GruposAlumno />} /> {/* Ruta para la página de grupos del alumno */}
         {/* Puedes agregar más rutas aquí según sea necesario */}
       </Routes>
     </Router>

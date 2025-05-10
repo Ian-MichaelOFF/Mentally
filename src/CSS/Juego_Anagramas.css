@@ -1,177 +1,133 @@
-.Cuerpo_Anagramas {
-    font-family: 'Comic Sans MS', sans-serif; /* Fuente divertida */
-    background: linear-gradient(135deg, #FFEB3B, #FF80AB); /* Fondo degradado en colores brillantes */
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    padding: 20px;
+/* Estilos para el juego de Anagramas */
+
+#main-wrapper {
+  height: 100vh;
+  background-color: #ffe6f0; /* Fondo general rosa claro */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', cursive, sans-serif;
 }
 
-.Logo_Anagramas {
-    font-size: 4rem;
-    margin-bottom: 20px;
-    color: #9C27B0; /* Color morado claro */
-    text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.2); /* Sombra de texto más suave */
-    font-family: 'Baloo Tamma 2', cursive; /* Fuente divertida */
+.main-title {
+  font-size: 40px;
+  color: #ff66a3;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-/* Estilo contenedor de dificultad */
-#difficulty-container {
-    text-align: center;
-    background-color: #FFEB3B;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 10px rgba(65, 50, 50, 0.2);
-    width: 100%;
-    max-width: 450px;
-    margin-bottom: 30px;
-}
-
-#difficulty {
-    margin: 15px 0;
-    padding: 12px;
-    font-size: 1.4rem;
-    border-radius: 10px;
-    border: 2px solid #9C27B0; /* Morado claro para el borde */
-    width: 100%;
-    background-color: #FFEB3B;
-    font-family: 'Comic Sans MS', sans-serif;
-}
-
-/* Estilo botón Iniciar */
-#start-btn-Anagram {
-    padding: 14px 30px;
-    font-size: 1.3rem;
-    cursor: pointer;
-    background-color: #9C27B0;
-    color: white;
-    border: none;
-    transition: background-color 0.3s ease, transform 0.2s;
-    width: 100%;
-    font-family: 'Comic Sans MS', sans-serif;
-}
-
-#start-btn:hover { /* Morado más oscuro al pasar el ratón */
-    transform: scale(1.1);
-}
-
-/* Estilo contenedor de juego */
 #game-container {
-    display: none;
-    text-align: center;
-    margin-top: 20px;
-    background-color: #FFEB3B;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 450px;
+  width: 90%;
+  max-width: 500px;
+  padding: 30px;
+  background-color: wheat;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
 }
 
-/* Estilo input de texto */
-.input_anagramas  {
-    padding: 15px;
-    font-size: 1.4rem;
-    margin-top: 20px;
-    border-radius: 10px;
-    border: 2px solid #9C27B0; /* Morado claro en los bordes */
-    width: 100%;
-    box-sizing: border-box;
-    transition: border 0.3s ease;
-    background-color: #FFF3E0;
+.menu-button,
+.submit-button {
+  margin: 10px;
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #85c1ff;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
 }
 
-.input_anagramas [type="text"]:focus {
-    border: 2px solid #7B1FA2; /* Morado más oscuro al enfocar el input */
-    outline: none;
+.menu-button:hover,
+.submit-button:hover {
+  background-color: #5dade2;
 }
 
-/* Estilo botón de comprobar */
-.boton_iniciar_An {
-    padding: 5px 30px;
-    font-size: 1.3rem;
-    cursor: pointer;
-    background-color: #9C27B0; /* Morado claro */
-    color: white;
-    border: none;
-    border-radius: 10px;
-    margin-top: 15px;
-    transition: background-color 0.3s ease, transform 0.2s;
-    width: 100%;
-    font-family: 'Comic Sans MS', sans-serif;
+.welcome,
+.description,
+.instructions {
+  font-size: 16px;
+  margin: 8px 0;
+  color: #444;
 }
 
-.boton_iniciar_An:hover { /* Morado más oscuro al pasar el ratón */
-    transform: scale(1.1);
+.level-title {
+  font-size: 26px;
+  color: #3498db;
+  margin-top: 10px;
 }
 
-/* Estilo mensaje */
-#message {
-    font-size: 1.4rem;
-    margin-top: 15px;
-    color: #333;
-    font-family: 'Comic Sans MS', sans-serif;
+.timer-display {
+  font-size: 24px;
+  margin: 10px 0;
+  color: #e67e22;
 }
 
-/* Estilo temporizador */
-#timer {
-    font-size: 2.2rem;
-    font-weight: bold;
-    color: #000; /* Temporizador en color negro */
-    margin-top: 15px;
-    font-family: 'Courier New', Courier, monospace; /* Tipografía monoespaciada para el temporizador */
+.anagram-box {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 20px 0;
+  background-color: #fff2f7;
+  border: 2px dashed #ff66a3;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
 }
 
-/* Estilo botón de salida */
-#exit-btn {
-    font-family: "Spicy Rice", serif;
-    font-size: 20px;
-    background-color: #db2d2d;
-    padding: 15px 30px;
-    margin-top: 20px;
-    width: 100%;
-    border-radius: 10px;
-    font-family: 'Comic Sans MS', sans-serif;
-    transition: background-color 0.3s ease, transform 0.2s;
-}
-#submit-btn {
-    padding: 5px 30px;
-    font-size: 1.3rem;
-    cursor: pointer;
-    background-color: #9C27B0; /* Morado claro */
-    color: white;
-    border: none;
-    border-radius: 10px;
-    margin-top: 15px;
-    transition: background-color 0.3s ease, transform 0.2s;
-    width: 100%;
-    font-family: 'Comic Sans MS', sans-serif;
-}
-#submit-btn:hover {
-    background-color: #7B1FA2; /* Morado más oscuro al pasar el ratón */
-    transform: scale(1.1);
+.answer-input {
+  padding: 12px;
+  width: 80%;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  margin-bottom: 15px;
 }
 
-#exit-btn:hover {
-    background-color: #d32f2f;
-    transform: scale(1.1);
+.feedback-text {
+  font-size: 18px;
+  margin-top: 10px;
+  color: #27ae60;
 }
 
-/* Animación de transición de entrada */
-#difficulty-container, #game-container {
-    opacity: 0;
-    animation: fadeIn 1s forwards;
+.result-message {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #8e44ad;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.hidden {
+  display: none;
+}
+
+.game-image {
+  width: 80%; /* Tamaño de la imagen */
+  max-width: 200px; /* Máximo tamaño */
+  margin-bottom: 20px; /* Espacio entre la imagen y el texto de bienvenida */
+  border-radius: 10px; /* Bordes redondeados */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-section {
+  width: 100%;
+}
+
+.result-section {
+  width: 100%;
 }

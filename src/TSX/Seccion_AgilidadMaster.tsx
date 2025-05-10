@@ -4,21 +4,18 @@ import "../CSS/Seccion_AgilidadMst.css";
 import logoCerebro from "/logos/cerebro.png";
 import logoagilidad from "/logos/cartoon-capybara.png";
 import { useNavigate } from "react-router-dom";
-import Medallas from "./Medallas";
+
 import { ArrowLeft } from "lucide-react";
 
 const JuegosAgilidadMst: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMedallasOpen, setIsMedallasOpen] = useState(false);
 
   const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-  const toggleMedallas = () => {
-    setIsMedallasOpen(!isMedallasOpen);
-  };
+
   const handleClick = () => {
     navigate("/Frutas_Mat");
     navigate(0); // Esto fuerza una recarga
@@ -48,24 +45,31 @@ const JuegosAgilidadMst: React.FC = () => {
       {isSidebarOpen && (
         <div className="backdrop" onClick={toggleSidebar}></div>
       )}
-      <Medallas isOpen={isMedallasOpen} toggleMedallas={toggleMedallas} />
 
       {/* Contenido principal */}
       <div className="Cuerpos6M">
-      <button 
-        onClick={goBack} 
-        className="back-buttonMemoryMst"
-        aria-label="Regresar"
-      >
-        <ArrowLeft size={24} />
-      </button>
+        <button
+          onClick={goBack}
+          className="back-buttonMemoryMst"
+          aria-label="Regresar"
+        >
+          <ArrowLeft size={24} />
+        </button>
         <h1>Bienvenido a la seccion de Agilidad Mental!</h1>
         <div className="JuegosAgilidadM">
-          <button className="btn-Agilidad1M" type="button" onClick={handleClick}>
-            Operaciones <b/> Frutales
+          <button
+            className="btn-Agilidad1M"
+            type="button"
+            onClick={handleClick}
+          >
+            Operaciones <b /> Frutales
             <img src={logoagilidad} alt="Logo AgiidadM" />
           </button>
-          <button className="btn-Agilidad2M" type="button" onClick={handleClick2}>
+          <button
+            className="btn-Agilidad2M"
+            type="button"
+            onClick={handleClick2}
+          >
             Operador Misterioso <img src={logoagilidad} />
           </button>
         </div>

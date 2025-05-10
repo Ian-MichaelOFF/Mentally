@@ -15,7 +15,17 @@ interface Grupo {
 interface Alumno {
   IDalumno: number;
   Usuario: string;
+  nombre: string;
+  apellido: string;
   Imagen: string;
+}
+
+interface Partida {
+  IDpartida: number;
+  juego: string;
+  dificultad: string;
+  puntuacion: number;
+  fecha_partida: string;
 }
 
 const PaginaGruposMaestro: React.FC = () => {
@@ -30,6 +40,9 @@ const PaginaGruposMaestro: React.FC = () => {
   const [alumnosEnGrupo, setAlumnosEnGrupo] = useState<Alumno[]>([]);
   const [alumnosDisponibles, setAlumnosDisponibles] = useState<Alumno[]>([]);
   const [showDetallesGrupo, setShowDetallesGrupo] = useState(false);
+  const [historialPartidas, setHistorialPartidas] = useState<Partida[]>([]);
+  const [alumnoSeleccionadoId, setAlumnoSeleccionadoId] = useState<number | null>(null);
+  const [cargandoHistorial, setCargandoHistorial] = useState(false);
   const navigate = useNavigate();
 
   // Cargar grupos del maestro
@@ -93,6 +106,9 @@ const PaginaGruposMaestro: React.FC = () => {
   const abrirDetallesGrupo = (grupo: Grupo) => {
     setGrupoSeleccionado(grupo);
     setShowDetallesGrupo(true);
+    // Limpiar el historial y el alumno seleccionado al cambiar de grupo
+    setHistorialPartidas([]);
+    setAlumnoSeleccionadoId(null);
   };
 
   const crearNuevoGrupo = async () => {
@@ -199,6 +215,12 @@ const PaginaGruposMaestro: React.FC = () => {
       
       setGrupos(updatedGrupos);
       
+      // Si el alumno eliminado es el que tiene el historial abierto, cerrar el historial
+      if (alumnoSeleccionadoId === alumnoId) {
+        setAlumnoSeleccionadoId(null);
+        setHistorialPartidas([]);
+      }
+      
     } catch (error) {
       console.error("Error:", error);
       alert("Error al eliminar alumno del grupo");
@@ -235,6 +257,38 @@ const PaginaGruposMaestro: React.FC = () => {
   const copiarToken = (token: string) => {
     navigator.clipboard.writeText(token);
     alert("Token copiado al portapapeles");
+  };
+
+  // Nueva función para cargar el historial de partidas
+  const cargarHistorialAlumno = async (alumnoId: number) => {
+    // Si ya está seleccionado, deseleccionar (toggle)
+    if (alumnoSeleccionadoId === alumnoId) {
+      setAlumnoSeleccionadoId(null);
+      setHistorialPartidas([]);
+      return;
+    }
+    
+    setAlumnoSeleccionadoId(alumnoId);
+    setCargandoHistorial(true);
+    
+    try {
+      const response = await fetch(`http://localhost:5000/api/historial/${alumnoId}`, {
+        credentials: "include"
+      });
+      
+      if (!response.ok) {
+        throw new Error("Error al cargar historial");
+      }
+      
+      const data = await response.json();
+      setHistorialPartidas(data);
+    } catch (error) {
+      console.error("Error al cargar historial:", error);
+      alert("Error al cargar historial del alumno");
+      setHistorialPartidas([]);
+    } finally {
+      setCargandoHistorial(false);
+    }
   };
 
   return (
@@ -370,33 +424,74 @@ const PaginaGruposMaestro: React.FC = () => {
                 <table>
                   <thead>
                     <tr>
-                      <th>Foto</th>
                       <th>ID</th>
                       <th>Usuario</th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
                     {alumnosEnGrupo.map((alumno) => (
-                      <tr key={alumno.IDalumno}>
-                        <td>
-                          <img 
-                            src={`/imagenes-perfil/${alumno.Imagen}`} 
-                            alt={alumno.Usuario} 
-                            className="alumno-avatar-tabla"
-                          />
-                        </td>
-                        <td>{alumno.IDalumno}</td>
-                        <td>{alumno.Usuario}</td>
-                        <td>
-                          <button 
-                            className="btn-eliminar-alumno"
-                            onClick={() => eliminarAlumnoDeGrupo(alumno.IDalumno)}
-                          >
-                            Eliminar
-                          </button>
-                        </td>
-                      </tr>
+                      <React.Fragment key={alumno.IDalumno}>
+                        <tr>
+                          <td>{alumno.IDalumno}</td>
+                          <td>{alumno.Usuario}</td>
+                          <td>{alumno.nombre}</td>
+                          <td>{alumno.apellido}</td>
+                          <td>
+                            <button 
+                              className="btn-eliminar-alumno"
+                              onClick={() => eliminarAlumnoDeGrupo(alumno.IDalumno)}
+                            >
+                              Eliminar
+                            </button>
+                            <button 
+                              className={`btn-historial-alumno ${alumnoSeleccionadoId === alumno.IDalumno ? 'active' : ''}`}
+                              onClick={() => cargarHistorialAlumno(alumno.IDalumno)}
+                            >
+                              {alumnoSeleccionadoId === alumno.IDalumno ? 'Ocultar historial' : 'Ver historial'}
+                            </button>
+                          </td>
+                        </tr>
+                        
+                        {/* Panel desplegable para mostrar el historial */}
+                        {alumnoSeleccionadoId === alumno.IDalumno && (
+                          <tr className="historial-row">
+                            <td colSpan={5}>
+                              <div className="historial-panel">
+                                <h4>Historial de partidas recientes</h4>
+                                {cargandoHistorial ? (
+                                  <p>Cargando historial...</p>
+                                ) : historialPartidas.length > 0 ? (
+                                  <table className="historial-table">
+                                    <thead>
+                                      <tr>
+                                        <th>Juego</th>
+                                        <th>Dificultad</th>
+                                        <th>Puntuación</th>
+                                        <th>Fecha</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {historialPartidas.map((partida) => (
+                                        <tr key={partida.IDpartida}>
+                                          <td>{partida.juego}</td>
+                                          <td>{partida.dificultad}</td>
+                                          <td>{partida.puntuacion}</td>
+                                          <td>{new Date(partida.fecha_partida).toLocaleString()}</td>
+                                        </tr>
+                                      ))}
+                                    </tbody>
+                                  </table>
+                                ) : (
+                                  <p>Este alumno no tiene partidas registradas.</p>
+                                )}
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+                      </React.Fragment>
                     ))}
                   </tbody>
                 </table>
@@ -448,7 +543,7 @@ const PaginaGruposMaestro: React.FC = () => {
                 <h4>Buscar alumno</h4>
                 <input
                   type="text"
-                  placeholder="Buscar alumno..."
+                  placeholder="Buscar por ID, nombre o apellido..."
                   value={busquedaAlumno}
                   onChange={(e) => setBusquedaAlumno(e.target.value)}
                 />
@@ -458,9 +553,9 @@ const PaginaGruposMaestro: React.FC = () => {
                   {alumnosDisponibles
                     .filter(
                       (alumno) =>
-                        alumno.Usuario.toLowerCase().includes(
-                          busquedaAlumno.toLowerCase()
-                        ) || alumno.IDalumno.toString().includes(busquedaAlumno)
+                        alumno.IDalumno.toString().includes(busquedaAlumno) ||
+                        alumno.nombre.toLowerCase().includes(busquedaAlumno.toLowerCase()) ||
+                        alumno.apellido.toLowerCase().includes(busquedaAlumno.toLowerCase())
                     )
                     .filter(
                       (alumno) =>
@@ -476,13 +571,8 @@ const PaginaGruposMaestro: React.FC = () => {
                           setIdAlumno(alumno.IDalumno.toString());
                         }}
                       >
-                        <img
-                          src={`/imagenes-perfil/${alumno.Imagen}`}
-                          alt={alumno.Usuario}
-                          className="alumno-avatar"
-                        />
                         <span>
-                          {alumno.Usuario} (ID: {alumno.IDalumno})
+                          {alumno.nombre} {alumno.apellido} ({alumno.Usuario}) - ID: {alumno.IDalumno}
                         </span>
                       </div>
                     ))}

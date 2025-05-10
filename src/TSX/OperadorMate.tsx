@@ -28,6 +28,34 @@ export default function OperadorMisterioso() {
     dificil: ["+", "-", "x"]
   };
 
+  // Función para guardar la partida en el backend - CORREGIDA
+  const guardarPartida = async () => {
+    try {
+      const IDjuego = 5; // ID para Operador Misterioso
+      const puntuacion = finalScore;
+      
+      // URL base corregida para apuntar al servidor backend
+      const response = await fetch('http://localhost:5000/api/guardar-partida', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          IDjuego,
+          dificultad: currentDifficulty,
+          puntuacion
+        }),
+        credentials: 'include'
+      });
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || 'Error al guardar partida');
+      console.log('Partida guardada:', data);
+    } catch (error) {
+      console.error('Error al guardar partida:', error);
+    }
+  };
+
   const getRandomInt = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
@@ -169,6 +197,8 @@ export default function OperadorMisterioso() {
       const totalScore = (correctAnswers*3) - (incorrectAnswers*2);
       setFinalScore(totalScore);
       setShowFinalScore(true);
+      // Asegúrate de llamar a guardarPartida después de calcular el puntaje
+      setTimeout(() => guardarPartida(), 300); // Pequeño delay para asegurar que finalScore esté actualizado
     }
   };
 
@@ -177,9 +207,16 @@ export default function OperadorMisterioso() {
       generateEquation();
     }
   }, [currentDifficulty, isPlaying]);
+
+  // Añadir un efecto para guardar la partida cuando se muestra el puntaje final
+  useEffect(() => {
+    if (showFinalScore && finalScore !== 0) {
+      guardarPartida();
+    }
+  }, [showFinalScore, finalScore]);
   
   const goBack = () => {
-    window.history.back(); // Función para regresar a la página anterior
+    window.history.back();
   };
 
   return (
@@ -196,37 +233,37 @@ export default function OperadorMisterioso() {
       <img src="/public/logos/Cerebrin.png" alt="Mascota Mentally" className="mascot" />
 
       {!isPlaying ? (
-  <div id="difficulty1-select1" className="difficulty1-select1">
-    <label htmlFor="difficulty">Selecciona dificultad:</label>
-    <select 
-      id="difficulty1" 
-      value={currentDifficulty}
-      onChange={(e) => setCurrentDifficulty(e.target.value)}
-    >
-      <option value="facil">Fácil</option>
-      <option value="medio">Medio</option>
-      <option value="dificil">Difícil</option>
-    </select>
-    <button onClick={startGame}>Comenzar</button>
-  </div>
-) : showFinalScore ? (
-  <div className="final-score-container">
-    <h2>¡Juego terminado!</h2>
-    <p>Total de rondas: {roundsPerDifficulty[currentDifficulty as keyof typeof roundsPerDifficulty]}</p>
-    <p className="correct-count">Aciertos: {correctAnswers}</p>
-    <p className="incorrect-count">Errores: {incorrectAnswers}</p>
-    <p className="final-score">Puntaje Final: <strong>{finalScore}</strong></p>
-    {finalScore <= 0 ? (
-      <p className="encouragement">¡Sigue practicando! 💪</p>
-    ) : finalScore < 5 ? (
-      <p className="encouragement">¡Buen trabajo! 👍</p>
-    ) : (
-      <p className="encouragement">¡Excelente! ¡Eres un genio! 🏆</p>
-    )}
-    <button onClick={goBackToMenu}>Volver a jugar</button>
-  </div>
-) : (
-  <>
+        <div id="difficulty1-select1" className="difficulty1-select1">
+          <label htmlFor="difficulty">Selecciona dificultad:</label>
+          <select 
+            id="difficulty1" 
+            value={currentDifficulty}
+            onChange={(e) => setCurrentDifficulty(e.target.value)}
+          >
+            <option value="facil">Fácil</option>
+            <option value="medio">Medio</option>
+            <option value="dificil">Difícil</option>
+          </select>
+          <button onClick={startGame}>Comenzar</button>
+        </div>
+      ) : showFinalScore ? (
+        <div className="final-score-container">
+          <h2>¡Juego terminado!</h2>
+          <p>Total de rondas: {roundsPerDifficulty[currentDifficulty as keyof typeof roundsPerDifficulty]}</p>
+          <p className="correct-count">Aciertos: {correctAnswers}</p>
+          <p className="incorrect-count">Errores: {incorrectAnswers}</p>
+          <p className="final-score">Puntaje Final: <strong>{finalScore}</strong></p>
+          {finalScore <= 0 ? (
+            <p className="encouragement">¡Sigue practicando! 💪</p>
+          ) : finalScore < 5 ? (
+            <p className="encouragement">¡Buen trabajo! 👍</p>
+          ) : (
+            <p className="encouragement">¡Excelente! ¡Eres un genio! 🏆</p>
+          )}
+          <button onClick={goBackToMenu}>Volver a jugar</button>
+        </div>
+      ) : (
+        <>
           {showBackArrow && (
             <div className="back-arrow">
               <i className="fa-solid fa-arrow-left" onClick={goBackToMenu}></i>

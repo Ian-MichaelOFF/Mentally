@@ -22,7 +22,6 @@ const PerfilMaestro: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState("");
   const [loading, setLoading] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMedallasOpen, setIsMedallasOpen] = useState(false);
 
   // Imágenes disponibles (asegúrate que existan en public/logos/)
   const imagenes = ["rana.png", "cartoon-capybara.png", "memoria.png"];
@@ -30,19 +29,16 @@ const PerfilMaestro: React.FC = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-  const toggleMedallas = () => {
-    setIsMedallasOpen(!isMedallasOpen);
-  };
 
   // Cargar datos del maestro
   const fetchMaestroData = useCallback(async () => {
     try {
       setLoading(true);
       const response = await axios.get("http://localhost:5000/api/maestro", {
-        withCredentials: true
+        withCredentials: true,
       });
       setMaestro(response.data);
-      setSelectedImage(response.data.Imagen || 'default.png');
+      setSelectedImage(response.data.Imagen || "default.png");
     } catch (error) {
       console.error("Error al obtener datos:", error);
     } finally {
@@ -63,7 +59,7 @@ const PerfilMaestro: React.FC = () => {
 
     try {
       await axios.put(
-        "http://localhost:5000/api/maestro", 
+        "http://localhost:5000/api/maestro",
         { imagen: selectedImage },
         { withCredentials: true }
       );
@@ -94,8 +90,9 @@ const PerfilMaestro: React.FC = () => {
 
       {/* Sidebar */}
       <SidebarM isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      {isSidebarOpen && <div className="backdrop" onClick={toggleSidebar}></div>}
-      <Medallas isOpen={isMedallasOpen} toggleMedallas={toggleMedallas} />
+      {isSidebarOpen && (
+        <div className="backdrop" onClick={toggleSidebar}></div>
+      )}
 
       {/* Contenido principal */}
       <div className="perfil-backgroundM">
@@ -105,23 +102,30 @@ const PerfilMaestro: React.FC = () => {
               <div className="perfil-headerM">
                 <div className="avatar-containerM">
                   <img
-                    src={`/logos/${maestro.Imagen || 'default.png'}`}
+                    src={`/logos/${maestro.Imagen || "default.png"}`}
                     alt={`Perfil de ${maestro.nombre}`}
                     className="perfil-avatarM"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = '/logos/default.png';
+                      (e.target as HTMLImageElement).src = "/logos/default.png";
                     }}
                   />
-                  <button 
+                  <button
                     className="edit-buttonM"
                     onClick={() => setShowModal(true)}
                   >
                     ✏️
                   </button>
                 </div>
-                <h2 className="perfil-usernameM">Nombre: <br/> {maestro.nombre} {maestro.apellido}</h2>
-                <h2 className="perfil-idM">ID: <br/>{maestro.IDmaestro}</h2>
-                <h2 className="CorreoM">Correo: <br/> {maestro.correo}</h2>
+                <h2 className="perfil-usernameM">
+                  Nombre: <br /> {maestro.nombre} {maestro.apellido}
+                </h2>
+                <h2 className="perfil-idM">
+                  ID: <br />
+                  {maestro.IDmaestro}
+                </h2>
+                <h2 className="CorreoM">
+                  Correo: <br /> {maestro.correo}
+                </h2>
               </div>
 
               <Modal
@@ -140,33 +144,29 @@ const PerfilMaestro: React.FC = () => {
                       className="preview-imageM"
                     />
                   </div>
-                  
+
                   <div className="image-optionsM">
                     {imagenes.map((img) => (
-                      <div 
+                      <div
                         key={img}
-                        className={`image-optionM ${selectedImage === img ? 'selected' : ''}`}
+                        className={`image-optionM ${
+                          selectedImage === img ? "selected" : ""
+                        }`}
                         onClick={() => handleImageChange(img)}
                       >
-                        <img
-                          src={`/logos/${img}`}
-                          alt={`Opción ${img}`}
-                        />
+                        <img src={`/logos/${img}`} alt={`Opción ${img}`} />
                       </div>
                     ))}
                   </div>
 
                   <div className="modal-actionsM">
-                    <button 
+                    <button
                       className="cancel-buttonM"
                       onClick={() => setShowModal(false)}
                     >
                       Cancelar
                     </button>
-                    <button
-                      className="confirm-buttonM"
-                      onClick={saveChanges}
-                    >
+                    <button className="confirm-buttonM" onClick={saveChanges}>
                       Guardar Cambios
                     </button>
                   </div>
