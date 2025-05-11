@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import "../CSS/Juego_Anagramas.css";
 import { ArrowLeft } from "lucide-react";
-import cerebrin from "/public/logos/CEREBRITIN.png";
+import cerebrin from "/logos/CEREBRITIN.png";
 
 const Anagrama: React.FC = () => {
   // Definición de los conjuntos de palabras

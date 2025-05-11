@@ -26,6 +26,7 @@ import JuegosMemoriaMst from "./TSX/Seccion_MemoriaMaster"; // Asegúrate de ten
 import OperadorMisterioso from "./TSX/OperadorMate";
 import SecuenciaColores from "./TSX/Secuencia-Colores";
 import SopaDeLetras from "./TSX/SopaLetras";
+import Medallas from "./TSX/Medallas";
 function App() {
   return (
     <Router>
@@ -57,6 +58,7 @@ function App() {
         <Route path="/Secuencia-Colores" element={<SecuenciaColores />} /> {/* Ruta para el juego de secuencia de colores */}
         <Route path="/SopaLetras" element={<SopaDeLetras />} /> {/* Ruta para el juego de sopa de letras */}
         <Route path="/Pagina-Grupos" element={<GruposAlumno />} /> {/* Ruta para la página de grupos del alumno */}
+        <Route path="/Medallas" element={<Medallas />} /> {/* Ruta para la página de medallas */}
         {/* Puedes agregar más rutas aquí según sea necesario */}
       </Routes>
     </Router>

@@ -38,6 +38,7 @@ const SidebarM: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
     const handleNavigateToPerfil = () => {
       navigate("/PerfilMaestro"); // Redirige a la página de Grupos
     };
+    
 
   return (
     <>

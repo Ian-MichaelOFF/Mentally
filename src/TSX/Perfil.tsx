@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import api from "../api/config";
 import "../CSS/Perfil.css";
 import Sidebar from "../TSX/sidebar";
-import Medallas from "../TSX/Medallas";
+
 import logoCerebro from "/logos/cerebro.png";
 
 interface Alumno {

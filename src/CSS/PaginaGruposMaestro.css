@@ -351,3 +351,33 @@
   color: #6c757d;
   padding: 10px;
 }
+ /* Navbar */
+  .navbar55 {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center;     /* Centra verticalmente */
+    background: linear-gradient(90deg, rgb(255, 113, 234), rgb(249, 132, 132));
+    padding: 10px 20px;
+    height: 60px;
+  }
+  
+  .logos55 {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logos55 img {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .logos-text55 {
+    font-family: "Rubik bubbles", system-ui;
+    font-size: 50px;
+    font-weight: bold;
+    color: transparent;
+    background-color: rgb(0, 0, 255);
+    -webkit-text-stroke: 0.5px rgb(0, 0, 0);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }

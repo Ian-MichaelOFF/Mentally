@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import axios from "axios";
 import "../CSS/PerfilMast.css";
 import SidebarM from "../TSX/sidebarmast";
-import Medallas from "../TSX/Medallas";
+
 import logoCerebro from "/logos/cerebro.png";
 
 interface Maestro {

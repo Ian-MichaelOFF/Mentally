@@ -1,112 +1,324 @@
-/* Estilos para el botón de toggle INTEGRADO */
-.medallas-toggle-btn {
-    position: fixed;
-    right: 10px;
-    top: 4px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1001;
-    padding: 10px;
-    transition: transform 0.3s ease;
-  }
-  
-  .medallas-toggle-btn:hover {
-    transform: scale(1.3);
+/* Estilos para la página de medallas */
+.navbarMedallas {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente el contenido */
+  align-items: center;     /* Centra verticalmente */
+  background: linear-gradient(90deg, rgb(255, 113, 234), rgb(249, 132, 132));
+  padding: 10px 20px;
+  height: 60px;
+}
 
-  }
-  
-  .medalla-icon {
-    width: 40px;
-    height: 40px;
-  }
-  
-  /* Sidebar de medallas */
-  .medallas-sidebar {
-    position: fixed;
-    top: 0;
-    right: -300px;
-    width: 300px;
-    height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa 0%, #073b90 100%);
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-    transition: right 0.3s ease-in-out;
-    z-index: 1000;
-    overflow-y: auto;
-    transition: 1s;
-  }
-  
-  .medallas-sidebar.open {
-    right: 0;
-  }
+.logosMed {
+  display: flex;
+  align-items: center;
+}
 
+.logosMed img {
+  width: 35px;
+  height: 35px;
+}
+
+.logos-textMed {
+  font-family: "Rubik bubbles", system-ui;
+  font-size: 50px;
+  font-weight: bold;
+  color: transparent;
+  background-color: rgb(0, 0, 255);
+  -webkit-text-stroke: 0.5px rgb(20, 22, 100);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+
+
+.medallas-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 80vh;
+}
 
 .medallas-header {
-  padding: 20px;
-  background: linear-gradient(90deg, #4b6cb7 0%, #073185 100%);
-  color: white;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
-.medallas-header h2 {
-  font-family: "Spicy Rice",serif;  
-  margin: 0;
-  font-size: 1.7rem;
+.medallas-header h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
 }
 
-/* Contenedor de medallas */
-.medallas-container {
-  padding: 20px;
+/* Estadísticas y progreso */
+.medallas-stats {
+  margin: 1.5rem auto;
+  max-width: 400px;
+}
+
+.progress-container {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-}
-
-/* Items de medalla */
-.medalla-item {
-  display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 10px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.medalla-item.bloqueada {
-  opacity: 0.4;
-  
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
 }
 
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffd700, #ff9d00);
+  border-radius: 6px;
+  transition: width 0.5s ease;
+}
 
+.progress-text {
+  font-size: 1rem;
+  color: #666;
+}
 
-.medalla-img {
-  width: 50px;
-  height: 50px;
+/* Filtros */
+.medallas-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filter-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.filter-select {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: white;
+  font-size: 1rem;
+  min-width: 200px;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.filter-btn.active {
+  background-color: #4a6cf7;
+  color: white;
+  border-color: #4a6cf7;
+}
+
+/* Grid de medallas */
+.medallas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.medalla-card {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.medalla-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.medalla-card.obtenida {
+  border: 2px solid #ffd700;
+}
+
+.medalla-card.bloqueada {
+  opacity: 0.7;
+  filter: grayscale(0.8);
+}
+
+.medalla-imagen-container {
+  height: 180px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
+  overflow: hidden;
+}
+
+.medalla-imagen {
+  max-height: 150px;
+  max-width: 150px;
   object-fit: contain;
+  transition: transform 0.3s ease;
 }
 
-.medalla-nombre {
-  font-weight: 500;
-  flex-grow: 1;
+.medalla-card.obtenida .medalla-imagen {
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
 }
 
-.medalla-bloqueada {
-  font-size: 0.8rem;
-  color: #888;
+.medalla-card:hover .medalla-imagen {
+  transform: scale(1.1);
 }
 
-
-/* Fondo oscuro */
-.medallas-backdrop {
-  position: fixed;
+.medalla-lock {
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  color: white;
 }
+
+.medalla-info {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.medalla-nombre {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.medalla-descripcion {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: #666;
+  flex-grow: 1;
+}
+
+.medalla-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.medalla-juego {
+  font-size: 0.9rem;
+  color: #444;
+  font-weight: 500;
+}
+
+.medalla-dificultad {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.dificultad-facil {
+  background-color: #e7f4e4;
+  color: #2e7d32;
+}
+
+.dificultad-medio {
+  background-color: #fff8e1;
+  color: #ff8f00;
+}
+
+.dificultad-dificil {
+  background-color: #fbe9e7;
+  color: #d32f2f;
+}
+
+/* Estado de carga */
+.medallas-page.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #4a6cf7;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.no-medallas {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+  .medallas-page {
+    padding: 1rem;
+  }
   
-  /* Resto de tus estilos... (igual que antes) */
+  .medallas-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+  
+  .medallas-filters {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .filter-group {
+    width: 100%;
+  }
+  
+  .filter-select {
+    width: 100%;
+  }
+}

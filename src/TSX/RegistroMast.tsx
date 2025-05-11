@@ -56,19 +56,22 @@ const RegistroMaestro = () => {
   };
 
   return (
-    <div className="formularioregistMast">
-      <nav className="navegacionbarMast">
-        <div className="logoregistMast">
+    <div className="formulario_maestro">
+      <nav className="navbarra">
+        <div className="logomentally">
+          <img src="/logos/mascota2.png" alt="Logo del sitio" />
           MENTALLY
-          <img src="/logos/cerebro.png" alt="Logo del sitio" />
         </div>
-        <div className="texto-bienvenida-Mast">BIENVENIDO MAESTRO!</div>
+        <div className="anuncio_maestro">
+          ¡BIENVENIDO MAESTRO!
+          <img src="/logos/tc3v2.png" alt="Logo del anuncio" />
+        </div>
       </nav>
-      <div className="formulario_registroMast">
+      <div className="forma_form_maestro">
         <form onSubmit={handleSubmit}>
-          <h2>Registro Maestro</h2>
+          <h2>Registro de Maestro</h2>
 
-          <div className="campo-formulario">
+          <div className="campo_form_maestro">
             <label htmlFor="nombre">Nombre:</label>
             <input
               type="text"
@@ -80,7 +83,7 @@ const RegistroMaestro = () => {
             />
           </div>
 
-          <div className="campo-formulario">
+          <div className="campo_form_maestro">
             <label htmlFor="apellido">Apellido:</label>
             <input
               type="text"
@@ -92,7 +95,7 @@ const RegistroMaestro = () => {
             />
           </div>
 
-          <div className="campo-formulario">
+          <div className="campo_form_maestro">
             <label htmlFor="correo">Correo electrónico:</label>
             <input
               type="email"
@@ -104,7 +107,7 @@ const RegistroMaestro = () => {
             />
           </div>
 
-          <div className="crearcontraMast">
+          <div className="campo_form_maestro">
             <label htmlFor="contraseña">Contraseña:</label>
             <input
               type="password"
@@ -116,7 +119,7 @@ const RegistroMaestro = () => {
             />
           </div>
 
-          <div className="contraseña-confirmMast">
+          <div className="campo_form_maestro">
             <label htmlFor="confirmPassword">Confirmar Contraseña:</label>
             <input
               type="password"
@@ -128,25 +131,25 @@ const RegistroMaestro = () => {
             />
           </div>
 
-          <div className="campo-formulario">
-            <label htmlFor="fechaNacimiento">Fecha de nacimiento:</label>
-            <input
-              type="date"
-              id="fechaNacimiento"
-              name="fechaNacimiento"
-              required
-              onChange={handleChange}
-            />
-          </div>
+            <div className="campo_form_maestro  ">
+              <label htmlFor="fechaNacimiento">Fecha de nacimiento:</label>
+              <input
+                type="date"
+                id="fechaNacimiento"
+                name="fechaNacimiento"
+                required
+                onChange={handleChange}
+              />
+            </div>
 
-          <div className="boton-crearMast">
-            <button className="BotocrearMast" type="submit">
+          <div className="crear_maestro">
+            <button className="boton_crear_maestro" type="submit">
               Registrarse
             </button>
           </div>
         </form>
 
-        <div className="usuariosesionMast">
+        <div className="inicio_sesion_maestro">
           <a href="usuariosesion" onClick={handleNavigateToSesion}>
             ¿Ya tienes cuenta? Inicia sesión aquí
           </a>

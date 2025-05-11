@@ -167,16 +167,18 @@ const RecuperarContraseñaAlumno = () => {
   };
 
   return (
-    <div className="formularioregist">
-      <nav className="navegacionbar">
-        <div className="logoregist">
+    <div className="formulario_alumno">
+      <nav className="navbarra">
+        <div className="logomentally">
+          <img src="/logos/mascota2.png" alt="Logo del sitio" />
           MENTALLY
-          <img src="/logos/cerebro.png" alt="Logo del sitio" />
         </div>
-        <div className="texto-bienvenida">RECUPERA TU ACCESO!</div>
+        <div className="anuncio_alumno">RECUPERA TU ACCESO!
+          <img src="/logos/std2v2.png" alt="Logo del anuncio" />
+        </div>
       </nav>
 
-      <div className="formulario_registro">
+      <div className="forma_form_alumno">
         {error && <div className="error-message">{error}</div>}
         {mensaje && <div className="success-message">{mensaje}</div>}
 
@@ -184,7 +186,7 @@ const RecuperarContraseñaAlumno = () => {
           <form onSubmit={handleSubmitValidacion}>
             <h2>Recuperar Contraseña</h2>
 
-            <div className="CrearUsuario">
+            <div className="campo_form_alumno">
               <label htmlFor="usuario">Usuario:</label>
               <input
                 type="text"
@@ -198,7 +200,7 @@ const RecuperarContraseñaAlumno = () => {
               />
             </div>
 
-            <div className="preguntaseguridad">
+            <div className="campo_form_alumno">
               <label htmlFor="security-question">Pregunta de Seguridad:</label>
               <select
                 id="security-question"
@@ -207,6 +209,7 @@ const RecuperarContraseñaAlumno = () => {
                 value={formData.Pregunta_seguridad}
                 onChange={handleChange}
                 disabled={preguntaObtenida}
+                style={{fontSize: '19px' }}
               >
                 <option value="" disabled>
                   {cargando ? "Cargando pregunta..." : "Selecciona tu pregunta de seguridad"}
@@ -222,7 +225,7 @@ const RecuperarContraseñaAlumno = () => {
                 </option>
               </select>
 
-              <label htmlFor="security-answer">Respuesta:</label>
+              <label htmlFor="campo_form_alumno">Respuesta:</label>
               <input
                 type="text"
                 id="security-answer"
@@ -234,8 +237,8 @@ const RecuperarContraseñaAlumno = () => {
               />
             </div>
 
-            <div className="Crearboton">
-              <button className="Botocrear" type="submit" disabled={cargando}>
+            <div className="boton_validar">
+              <button className="boton_validar_datos_alumno" type="submit" disabled={cargando}>
                 {cargando ? "Validando..." : "Validar Datos"}
               </button>
             </div>
@@ -248,7 +251,7 @@ const RecuperarContraseñaAlumno = () => {
               <p><strong>Usuario:</strong> {formData.Usuario}</p>
             </div>
 
-            <div className="CrearContraseña">
+            <div className="campo_form_alumno">
               <label htmlFor="nueva-contraseña">Nueva Contraseña:</label>
               <input
                 type="password"
@@ -262,7 +265,7 @@ const RecuperarContraseñaAlumno = () => {
               />
             </div>
 
-            <div className="ConfirmarContraseña">
+            <div className="campo_form_alumno">
               <label htmlFor="confirmar-nueva-contraseña">Confirmar Nueva Contraseña:</label>
               <input
                 type="password"
@@ -275,15 +278,15 @@ const RecuperarContraseñaAlumno = () => {
               />
             </div>
 
-            <div className="Crearboton">
-              <button className="Botocrear" type="submit" disabled={cargando}>
+            <div className="boton_actualizar">
+              <button className="boton_actualizar_datos_alumno" type="submit" disabled={cargando}>
                 {cargando ? "Actualizando..." : "Actualizar Contraseña"}
               </button>
             </div>
           </form>
         )}
 
-        <div className="usuariosesion">
+        <div className="inicio_sesion_alumno">
           <Link to="/FormularioAlum">Volver a Iniciar Sesión</Link>
         </div>
       </div>

@@ -54,62 +54,64 @@ const RegistroAlumno = () => {
   };
 
   return (
-    <div className="formularioregist">
-      <nav className="navegacionbar">
-        <div className="logoregist">
+    <div className="formulario_alumno">
+      <nav className="navbarra">
+        <div className="logomentally">
+          <img src="/logos/mascota2.png" alt="Logo del sitio" />
           MENTALLY
-          <img src="/logos/cerebro.png" alt="Logo del sitio" />
         </div>
-        <div className="texto-bienvenida">BIENVENIDO DE VUELTA!</div>
+        <div className="anuncio_alumno">¡BIENVENIDO ALUMNO!
+          <img src="/logos/std2v2.png" alt="Logo del anuncio" />
+        </div>
       </nav>
-      <div className="formulario_registro">
+      <div className="forma_form_alumno">
       <form onSubmit={handleSubmit}>
         <h2>Registro Alumno</h2>
         
-        <div className="CrearNombre">
+        <div className="campo_form_alumno">
           <label htmlFor="nombre">Nombre:</label>
           <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre" onChange={handleChange} />
         </div>
         
-        <div className="CrearApellido">
+        <div className="campo_form_alumno">
           <label htmlFor="apellido">Apellido:</label>
           <input type="text" id="apellido" name="apellido" required placeholder="Tu apellido" onChange={handleChange} />
         </div>
         
-        <div className="CrearUsuario">
+        <div className="campo_form_alumno">
           <label htmlFor="name">Crear Usuario:</label>
           <input type="text" id="name" name="Usuario" required placeholder="Usuario123" onChange={handleChange} />
         </div>
         
-        <div className="CrearContraseña">
+        <div className="campo_form_alumno">
           <label htmlFor="password">Crear Contraseña:</label>
           <input type="password" id="password" name="contraseña" required placeholder="Contraseña123" onChange={handleChange} />
         </div>
         
-        <div className="ConfirmarContraseña">
+        <div className="campo_form_alumno">
           <label htmlFor="confirm-password">Confirmar Contraseña:</label>
           <input type="password" id="confirm-password" name="confirmPassword" required placeholder="Contraseña123" onChange={handleChange} />
         </div>
         
-        <div className="preguntaseguridad">
+        <div className="campo_form_alumno">
           <label htmlFor="security-question">Pregunta de Seguridad:</label>
-          <select id="security-question" name="Pregunta_seguridad" required onChange={handleChange}>
+          <select id="security-question" name="Pregunta_seguridad" required onChange={handleChange} style={{fontSize: '19px' }}>
             <option value="" disabled selected>Selecciona una pregunta</option>
             <option value="pet">¿Cuál es el nombre de tu mascota?</option>
             <option value="mother-maiden">¿Cuál es el apellido de tu madre?</option>
             <option value="school">¿Cuál es tu color favorito?</option>
           </select>
           
-          <label htmlFor="security-answer">Respuesta:</label>
+          <label htmlFor="campo_form_alumno">Respuesta:</label>
           <input type="text" id="security-answer" name="Respuesta" placeholder="Tu respuesta" required onChange={handleChange} />
         </div>
         
-        <div className="Crearboton">
-          <button className="Botocrear" type="submit">Crear cuenta</button>
+        <div className="crear_alumno">
+          <button className="boton_crear_alumno" type="submit">Crear cuenta</button>
         </div>
       </form>
 
-      <div className="usuariosesion">
+      <div className="inicio_sesion_alumno">
         <a href="usuariosesion" onClick={handleNavigateToSesion}>Ya tienes usuario? inicia sesión aquí!</a>
       </div>
       </div>

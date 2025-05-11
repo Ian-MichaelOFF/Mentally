@@ -10,6 +10,8 @@ interface Grupo {
   token: string;
   total_alumnos: number;
   fecha_creacion: string;
+  Nombre_Escuela: string; // Nuevos campos
+  Descripcion: string;    // Nuevos campos
 }
 
 interface Alumno {
@@ -34,6 +36,8 @@ const PaginaGruposMaestro: React.FC = () => {
   const [showModalCrear, setShowModalCrear] = useState(false);
   const [showModalAgregarAlumno, setShowModalAgregarAlumno] = useState(false);
   const [nombreGrupo, setNombreGrupo] = useState("");
+  const [nombreEscuela, setNombreEscuela] = useState(""); // Nuevo estado
+  const [descripcionGrupo, setDescripcionGrupo] = useState(""); // Nuevo estado
   const [grupoSeleccionado, setGrupoSeleccionado] = useState<Grupo | null>(null);
   const [idAlumno, setIdAlumno] = useState("");
   const [busquedaAlumno, setBusquedaAlumno] = useState("");
@@ -121,7 +125,11 @@ const PaginaGruposMaestro: React.FC = () => {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify({ nombre: nombreGrupo }),
+        body: JSON.stringify({ 
+          nombre: nombreGrupo,
+          Nombre_Escuela: nombreEscuela,  // Incluir nuevos campos
+          Descripcion: descripcionGrupo 
+        }),
       });
 
       if (!response.ok) throw new Error("Error al crear grupo");
@@ -129,6 +137,8 @@ const PaginaGruposMaestro: React.FC = () => {
       const nuevoGrupo = await response.json();
       setGrupos([...grupos, nuevoGrupo.grupo]);
       setNombreGrupo("");
+      setNombreEscuela("");       // Limpiar campos
+      setDescripcionGrupo("");    // Limpiar campos
       setShowModalCrear(false);
     } catch (error) {
       console.error("Error al crear grupo:", error);
@@ -294,10 +304,10 @@ const PaginaGruposMaestro: React.FC = () => {
   return (
     <div>
       {/* Navbar */}
-      <nav className="navbar4">
-        <div className="logos3">
-          <span className="logos-text3">MENTALLY</span>
-          <img src={logoCerebro} alt="Logo3" />
+      <nav className="navbar55">
+        <div className="logos55">
+          <span className="logos-text55">MENTALLY</span>
+          <img src={logoCerebro} alt="Logo55" />
         </div>
       </nav>
 
@@ -328,6 +338,8 @@ const PaginaGruposMaestro: React.FC = () => {
             {grupos.map((grupo) => (
               <div key={grupo.id} className="grupo-card" onClick={() => abrirDetallesGrupo(grupo)}>
                 <h3>{grupo.nombre}</h3>
+                {grupo.Nombre_Escuela && <p className="escuela-grupo">Escuela: {grupo.Nombre_Escuela}</p>}
+                {grupo.Descripcion && <p className="descripcion-grupo">Descripción: {grupo.Descripcion}</p>}
                 <p>
                   Token:{" "}
                   <strong
@@ -377,6 +389,8 @@ const PaginaGruposMaestro: React.FC = () => {
                 ← Volver a Grupos
               </button>
               <h2>{grupoSeleccionado?.nombre}</h2>
+              {grupoSeleccionado?.Nombre_Escuela && <p className="escuela-detalle">Escuela: {grupoSeleccionado.Nombre_Escuela}</p>}
+              {grupoSeleccionado?.Descripcion && <p className="descripcion-detalle">Descripción: {grupoSeleccionado.Descripcion}</p>}
             </div>
             
             <div className="grupo-info">
@@ -508,14 +522,31 @@ const PaginaGruposMaestro: React.FC = () => {
             <h2>Crear nuevo grupo</h2>
             <input
               type="text"
-              placeholder="Nombre del grupo"
+              placeholder="Nombre del grupo *"
               value={nombreGrupo}
               onChange={(e) => setNombreGrupo(e.target.value)}
-              onKeyPress={(e) => e.key === "Enter" && crearNuevoGrupo()}
+              required
             />
+            <input
+              type="text"
+              placeholder="Nombre de la escuela"
+              value={nombreEscuela}
+              onChange={(e) => setNombreEscuela(e.target.value)}
+            />
+            <textarea
+              placeholder="Descripción del grupo"
+              value={descripcionGrupo}
+              onChange={(e) => setDescripcionGrupo(e.target.value)}
+              rows={3}
+            ></textarea>
             <div className="modal-buttons">
-              <button onClick={crearNuevoGrupo}>Crear</button>
-              <button onClick={() => setShowModalCrear(false)}>Cancelar</button>
+              <button onClick={crearNuevoGrupo} disabled={!nombreGrupo.trim()}>Crear</button>
+              <button onClick={() => {
+                setShowModalCrear(false);
+                setNombreGrupo("");
+                setNombreEscuela("");
+                setDescripcionGrupo("");
+              }}>Cancelar</button>
             </div>
           </div>
         </div>

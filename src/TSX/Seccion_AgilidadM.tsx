@@ -4,7 +4,6 @@ import "../CSS/Seccion_AgilidadM.css";
 import logoCerebro from "/logos/cerebro.png";
 import logoagilidad from "/logos/cartoon-capybara.png";
 import { useNavigate } from "react-router-dom";
-
 import { ArrowLeft } from "lucide-react";
 
 const JuegosAgilidad: React.FC = () => {

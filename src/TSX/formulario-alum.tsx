@@ -60,24 +60,24 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="formulario-page">
-      <nav className="navbarform">
-        <div className="logoform">
+    <div className="formulario_alumno">
+      <nav className="navbarra">
+        <div className="logomentally">
+          <img src="/logos/mascota2.png" alt="Logo del sitio" />
           MENTALLY
-          <img src="logos/cerebro.png" alt="Logo del sitio" />
         </div>
-        <div className="textobienv">BIENVENIDO DE VUELTA!</div>
+        <div className="anuncio_alumno">¡BIENVENIDO ALUMNO!
+          <img src="/logos/std2v2.png" alt="Logo del anuncio" />
+        </div>
       </nav>
 
-      <div className="formulario">
+      <div className="forma_form_alumno">
         <form onSubmit={handleSubmit}>
-          <div className="tituloform">
-            <h2>Inicio de Sesión <br /> Alumno</h2>
-          </div>
+            <h2>Inicio de Sesión de Alumno</h2>
 
           {error && <p className="error-message">{error}</p>}
 
-          <div className="usuarioform">
+          <div className="campo_form_alumno">
             <label htmlFor="name">Usuario:</label>
             <input
               type="text"
@@ -90,7 +90,7 @@ const Login: React.FC = () => {
             />
           </div>
 
-          <div className="contraseñaform">
+          <div className="campo_form_alumno">
             <label htmlFor="password">Contraseña:</label>
             <input
               type="password"
@@ -103,20 +103,20 @@ const Login: React.FC = () => {
             />
           </div>
 
-          <div className="recuperar">
+          <div className="recuperar_contra_alumno">
             <a href="/Recuperar-ContraseñaAlum">¿Se te olvidó la contraseña?</a>
           </div>
 
           <div className="buttons-form">
-            <button className="button1" type="submit" disabled={loading}>
+            <button className="boton_iniciar_sesion_alumno" type="submit" disabled={loading}>
               {loading ? "Iniciando..." : "Iniciar Sesión"}
             </button>
-            <button className="button2" type="button" onClick={() => navigate("/RegistroAlum")}>
+            <button className="boton_registro_alumno" type="button" onClick={() => navigate("/RegistroAlum")}>
               Registrarse
             </button>
           </div>
 
-          <div className="mast">
+          <div className="eres_maestro">
             <a href="#" onClick={handleNavigateToMaestro}>¿Eres Maestro?</a>
           </div>
         </form>

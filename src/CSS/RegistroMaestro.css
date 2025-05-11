@@ -1,14 +1,14 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
   
-  .navegacionbarMast {
+  .navbarra {
     display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
+    justify-content: space-between; /* Centra el contenido horizontalmente */
     align-items: center; /* Centra los elementos verticalmente */
-    background: linear-gradient(90deg, rgb(50, 177, 137), rgb(136, 234, 231));
+    background: #FFB6C1;
     padding: 20px 40px;
     height: 120px;
     position: fixed; /* Fija la navbar en la parte superior */
@@ -17,134 +17,96 @@
     z-index: 10; /* Para que esté por encima de otros elementos */
   }
   
-  .logoregistMast{
-    font-family: "Rubik bubbles", system-ui;
+  .logomentally img {
+    width: 85px;
+    height: 85px;
+    margin-right: 10px;
+  }
+
+  .logomentally{
+    font-family: "Aclonica", sans-serif;
     font-size: 50px;
     font-weight: bold;
     color: transparent;
-    background-color: blue;
-    -webkit-text-stroke: 0.5px rgb(29, 41, 101);
+    background-color: rgb(255, 255, 255);
+    /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
     -webkit-background-clip: text;
     background-clip: text;
     display: flex;
-    justify-content: center; /* Centra el contenido del logo horizontalmente */
+    justify-content: left; /* Centra el contenido del logo horizontalmente */
     align-items: center; /* Centra el contenido del logo verticalmente */
-    text-align: center; /* Asegura que el texto esté centrado */
+    text-align: left; /* Asegura que el texto esté centrado */
   }
   
-  .logoregistMast img {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
+  .anuncio_maestro{
+    font-family: "Contrail One", sans-serif;
+    font-size: 50px ;
+    color: #30a830;
+    background-color: rgb(255, 255, 255);
+    /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+    -webkit-background-clip: text;
+    background-clip: text;
+    display: flex;
+    justify-content: right; /* Centra el contenido del logo horizontalmente */
+    align-items: center; /* Centra el contenido del logo verticalmente */
+    text-align: right; /* Asegura que el texto esté centrado */
+  }
+
+  .anuncio_maestro img{
+    width: 85px;
+    height: 85px;
+    margin-left: 10px;
   }
   
-  .texto-bienvenida-Mast{
-    font-family: "Spicy Rice", serif;
-    font-size: 25px;
-    color: rgb(30, 62, 225);
-    text-shadow: black 2px 2px 2px; 
-    margin-left: 1px;
-    height: 2px;
+  /* Estilos del formulario */  
+  label{
+    padding-left: 7.5%;
+    text-align: left;
+    display: block  ;
   }
   
-  /* Estilos del formulario */
-  .formularioregistMast {
-    font-family: "Spicy Rice", serif;
-    background: linear-gradient(90deg, #b28aca, #b37ee1);
+  .formulario_maestro {
+    font-family: "Contrail One", sans-serif;
+    background-image: url(/public/logos/fondov3.png);
     height: 103vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding-top: 150px; /* Asegura que el contenido no se solape con la navbar fija */
   }
-  .formulario_registroMast {
-    background: linear-gradient(-23deg, #0c4558, #999997);
+  .forma_form_maestro {
+    background-image: url(/public/logos/FondoMastForm.jpg);
     padding: 20px;
-    width: 400px;
+    width: 100vh;
     margin: 50px auto;
     border-radius: 30px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
   }
   
-  .formulario_registroMast h2 {
-    color: white;
-    -webkit-text-stroke: 0.8px rgb(0, 0, 0);
+  .forma_form_maestro h2 {
+    color: #4cbdff;
+    -webkit-text-stroke: 0.05px #4c7cff;
     font-size: 40px;
     margin-bottom: 15px;
   }
   
-  .CrearUsuario label {
+  .campo_form_maestro label {
     display: block;
-    color: white;
+    color: rgb(0, 0, 0);
     -webkit-text-stroke: 0.8px rgb(0, 0, 0);
-    font-size: 24px;
-    margin-top: -2px;
+    font-size: 21px  ;
+    margin-top: 10px;
   }
 
-  .CrearUsuario input:hover {
-    width: 100%;
-    padding: 8px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px solid white;
-    border-radius: 5px;
-    box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  .CrearUsuario input {
-    width: 100%;
+  .campo_form_maestro input {
+    width: 85%;
     padding: 8px;
     margin-top: 5px;
     border: 1px solid white;
     border-radius: 5px;
     box-sizing: border-box;
     background-color: rgba(255, 255, 255, 0.8);
-    transition: 1s;
-  }
-  .campo-formulario label {
-    display: block;
-    color: white;
-    -webkit-text-stroke: 0.8px rgb(0, 0, 0);
-    font-size: 24px;
-    margin-top: -2px;
-  }
-
-  .campo-formulario input:hover {
-    width: 100%;
-    padding: 8px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px solid white;
-    border-radius: 5px;
-    box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  .campo-formulario input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid white;
-    border-radius: 5px;
-    box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.8);
-    transition: 1s;
-  }
-  .contraseña-confirmMast label {
-    display: block;
-    color: white;
-    -webkit-text-stroke: 0.8px rgb(0, 0, 0);
-    font-size: 24px;
-    margin-top: 10px;
-    transition: 1s;
-  }
-
-  .crearcontraMast label {
-    display: block;
-    color: white;
-    -webkit-text-stroke: 0.8px rgb(0, 0, 0);
-    font-size: 24px;
-    margin-top: 10px;
     transition: 1s;
   }
 
@@ -159,14 +121,14 @@
     background-color: rgba(255, 255, 255, 0.8);
   }
   
-  .BotocrearMast {
+  .boton_crear_maestro {
     margin-top: 15px;
     padding: 10px;
-    width: 100%;
-    background-color: #2a952a;
+    width: 85%;
+    background-color: #ffae00;
     border: none;
     font-family: "Jersey 10", sans-serif;
-    -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+    -webkit-text-stroke: 0.5px rgb(0, 0, 0);
     color: rgb(255, 255, 255);
     font-size: 35px;
     border: none;
@@ -175,25 +137,34 @@
     transition: 0.7s;
   }
   
-  .BotocrearMast:hover {
-    background-color: #00371e;
+  .boton_crear_maestro:hover {
+    background-color: #bd8100;
     font-size: 30px;
   }
   
-  .usuariosesionMast a {
-    font-family: "Spicy Rice", serif;
-    font-size: 20px;
-    color: rgb(148, 194, 159);
-    -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+  .inicio_sesion_maestro a {
+    font-family: "Contrail One", sans-serif;
+      font-size: 20px;
+      color: rgb(0, 0, 0);
+    -webkit-text-stroke: 0.8px rgb(0, 0, 0);
     display: block;
     margin-top: 10px;
     text-decoration: none;
     transition: 0.5s;
   }
   
-  .usuariosesionMast a:hover {
+  .inicio_sesion_maestro a:hover {
     text-decoration: underline;
-    color: rgb(0, 44, 175);
+    color: rgb(0, 47, 187);
     font-size: 22px;
   }
   
+  .campo_form_maestro input::placeholder{
+    color: black;
+    font-size: 17px;
+    font: bolder;
+  }
+
+  .campo_form_maestro input[type="date"] {
+  font-size: 19px;
+  }

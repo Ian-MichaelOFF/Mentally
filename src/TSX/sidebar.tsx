@@ -38,6 +38,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
     const handleNavigateToPerfil = () => {
       navigate("/Perfil"); // Redirige a la página de Grupos
     };
+    const handleNavigateToMedallas = () => {
+      navigate("/Medallas"); // Redirige a la página de Grupos
+    }
 
   return (
     <>
@@ -60,6 +63,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
           </li>
           <li>
           <a href="#" onClick={handleNavigateToJuegos}>Juegos</a> {/* Enlaza al hacer clic */}
+          </li>
+          <li>
+          <a href="#" onClick={handleNavigateToMedallas}>Medallas</a> {/* Enlaza al hacer clic */}
           </li>
           <li>
             <a href="#" onClick={handleLogout}>Salir</a> {/* Llama a handleLogout al hacer clic */}

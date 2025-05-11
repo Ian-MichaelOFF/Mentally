@@ -6,7 +6,7 @@ import logomemoria from "/logos/memoria.png";
 import logoconcentracion from "/logos/rana.png";
 import logoagilidad from "/logos/cartoon-capybara.png";
 import { useNavigate } from "react-router-dom";
-import Medallas from "../TSX/Medallas";
+
 
 const PaginaJuegos: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

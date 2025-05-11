@@ -21,6 +21,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 app.use("/uploads", express.static("uploads"));
+app.use('/logos', express.static(path.join(__dirname, 'logos')));
 
 
 // Función para generar tokens (añade esto al inicio del archivo)
@@ -375,21 +376,21 @@ app.put("/api/maestro", (req, res) => {
 // RUTAS PARA GRUPOS (MAESTROS)
 // -----------------------------------------------------
 
-// Crear un nuevo grupo
+// Modificación de la ruta para crear un nuevo grupo (incluyendo nuevos campos)
 app.post('/api/grupos', (req, res) => {
   if (!req.session.user || req.session.user.tipo !== "maestro") {
     return res.status(401).json({ message: "No autorizado" });
   }
 
-  const { nombre } = req.body;
+  const { nombre, Nombre_Escuela, Descripcion } = req.body;
   if (!nombre) {
     return res.status(400).json({ message: "Nombre del grupo es requerido" });
   }
 
   const token = generateToken();
-  const query = "INSERT INTO grupos (nombre, token, maestro_id) VALUES (?, ?, ?)";
+  const query = "INSERT INTO grupos (nombre, token, maestro_id, Nombre_Escuela, Descripcion) VALUES (?, ?, ?, ?, ?)";
 
-  pool.query(query, [nombre, token, req.session.user.IDmaestro], (err, results) => {
+  pool.query(query, [nombre, token, req.session.user.IDmaestro, Nombre_Escuela || null, Descripcion || null], (err, results) => {
     if (err) {
       console.error("Error al crear grupo:", err);
       return res.status(500).json({ message: "Error al crear grupo" });
@@ -400,20 +401,24 @@ app.post('/api/grupos', (req, res) => {
       grupo: {
         id: results.insertId,
         nombre,
-        token
+        token,
+        Nombre_Escuela,
+        Descripcion,
+        total_alumnos: 0,
+        fecha_creacion: new Date()
       }
     });
   });
 });
 
-// Obtener todos los grupos de un maestro
+// Modificación de la ruta para obtener todos los grupos de un maestro (incluyendo nuevos campos)
 app.get('/api/grupos', (req, res) => {
   if (!req.session.user || req.session.user.tipo !== "maestro") {
     return res.status(401).json({ message: "No autorizado" });
   }
 
   const query = `
-    SELECT g.id, g.nombre, g.token, g.fecha_creacion, 
+    SELECT g.id, g.nombre, g.token, g.fecha_creacion, g.Nombre_Escuela, g.Descripcion,
            COUNT(ga.alumno_id) as total_alumnos
     FROM grupos g
     LEFT JOIN grupo_alumnos ga ON g.id = ga.grupo_id
@@ -942,7 +947,7 @@ app.post("/api/actualizar-password-maestro", (req, res) => {
   });
 });
 
-// Ruta para guardar los resultados de una partida
+// Ruta para guardar partida con manejo correcto de dificultad y medallas
 app.post("/api/guardar-partida", (req, res) => {
   if (!req.session.user || !req.session.user.IDalumno) {
     return res.status(401).json({ message: "No autorizado" });
@@ -950,10 +955,11 @@ app.post("/api/guardar-partida", (req, res) => {
 
   const { IDjuego, dificultad, puntuacion } = req.body;
   
-  if (!IDjuego || !dificultad || !puntuacion) {
+  if (!IDjuego || dificultad === undefined || puntuacion === undefined) {
     return res.status(400).json({ message: "Datos incompletos" });
   }
 
+  // Primero guardamos la partida
   const query = `
     INSERT INTO partidas (IDalumno, IDjuego, dificultad, puntuacion) 
     VALUES (?, ?, ?, ?)
@@ -968,10 +974,114 @@ app.post("/api/guardar-partida", (req, res) => {
         return res.status(500).json({ message: "Error al guardar partida" });
       }
       
-      res.json({ message: "Partida guardada exitosamente" });
+      // Ahora obtenemos el nombre del juego para otorgar la medalla
+      const juegoQuery = "SELECT nombre FROM juegos WHERE IDjuego = ?";
+      
+      pool.query(juegoQuery, [IDjuego], (err, juegos) => {
+        if (err || juegos.length === 0) {
+          console.error("Error al buscar juego:", err || "Juego no encontrado");
+          // Si hay error o no se encuentra el juego, seguimos sin asignar medalla
+          return res.json({ 
+            message: "Partida guardada exitosamente",
+            medalla: false
+          });
+        }
+        
+        const nombreJuego = juegos[0].nombre;
+        let nivelDificultad;
+        
+        // Convertir el valor de dificultad a texto
+        // Primero asegurémonos de que dificultad sea un número
+        const dificultadValue = Number(dificultad) || parseInt(dificultad) || 1;
+
+        // Convertir a texto exactamente como aparece en la tabla
+        switch (dificultadValue) {
+          case 1:
+            nivelDificultad = "Facil";  // Exactamente como aparece en tu tabla
+            break;
+          case 2:
+            nivelDificultad = "Medio";  // Exactamente como aparece en tu tabla
+            break;
+          case 3:
+            nivelDificultad = "Dificil";  // Exactamente como aparece en tu tabla
+            break;
+          default:
+            console.log(`Dificultad no reconocida: ${dificultad}`);
+            nivelDificultad = "Facil";  // Valor por defecto
+        }
+        
+        console.log(`Buscando medalla para juego: ${nombreJuego}, dificultad: ${nivelDificultad}`);
+        
+        // Consulta para buscar la medalla correspondiente
+        const medallaQuery = "SELECT id FROM medallas WHERE juego = ? AND dificultad = ?";
+        
+        pool.query(medallaQuery, [nombreJuego, nivelDificultad], (err, medallas) => {
+          if (err) {
+            console.error("Error al buscar medalla:", err);
+            return res.json({ 
+              message: "Partida guardada exitosamente",
+              medalla: false
+            });
+          }
+          
+          if (medallas.length === 0) {
+            console.log(`No se encontró medalla para: ${nombreJuego} - ${nivelDificultad}`);
+            return res.json({ 
+              message: "Partida guardada exitosamente",
+              medalla: false
+            });
+          }
+          
+          const medallaId = medallas[0].id;
+          console.log(`Medalla encontrada con ID: ${medallaId}`);
+          
+          // Verificar si el alumno ya tiene esta medalla
+          const checkMedallaQuery = "SELECT id FROM alumno_medallas WHERE alumno_id = ? AND medalla_id = ?";
+          
+          pool.query(checkMedallaQuery, [req.session.user.IDalumno, medallaId], (err, existentes) => {
+            if (err) {
+              console.error("Error al verificar medalla existente:", err);
+              return res.json({ 
+                message: "Partida guardada exitosamente",
+                medalla: false
+              });
+            }
+            
+            // Si ya tiene la medalla, no hacemos nada más
+            if (existentes.length > 0) {
+              console.log(`El alumno ya tiene la medalla ID: ${medallaId}`);
+              return res.json({ 
+                message: "Partida guardada exitosamente",
+                medalla: false
+              });
+            }
+            
+            // Si no tiene la medalla, se la asignamos
+            const asignarMedallaQuery = "INSERT INTO alumno_medallas (alumno_id, medalla_id) VALUES (?, ?)";
+            
+            pool.query(asignarMedallaQuery, [req.session.user.IDalumno, medallaId], (err, result) => {
+              if (err) {
+                console.error("Error al asignar medalla:", err);
+                return res.json({ 
+                  message: "Partida guardada exitosamente",
+                  medalla: false
+                });
+              }
+              
+              console.log(`Medalla ID: ${medallaId} asignada al alumno ID: ${req.session.user.IDalumno}`);
+              res.json({ 
+                message: "Partida guardada exitosamente",
+                medalla: true,
+                medallaId: medallaId
+              });
+            });
+          });
+        });
+      });
     }
   );
 });
+
 // Ruta para obtener el historial de partidas de un alumno
 app.get("/api/historial/:alumnoId", (req, res) => {
   if (!req.session.user || req.session.user.tipo !== "maestro") {
@@ -999,7 +1109,352 @@ app.get("/api/historial/:alumnoId", (req, res) => {
   });
 });
 
+// -------------------------------------------------
+// RUTAS PARA MEDALLAS
+// -------------------------------------------------
 
+// Ruta para obtener todas las medallas de un alumno - versión corregida
+app.get("/api/mis-medallas", (req, res) => {
+  if (!req.session.user || !req.session.user.IDalumno) {
+    return res.status(401).json({ message: "No autorizado" });
+  }
+
+  const alumnoId = req.session.user.IDalumno;
+
+  const query = `
+    SELECT 
+      m.id,
+      m.nombre,
+      m.descripcion,
+      m.juego,
+      m.dificultad,
+      m.imagen,
+      CASE WHEN am.id IS NOT NULL THEN TRUE ELSE FALSE END AS obtenida
+    FROM 
+      medallas m
+    LEFT JOIN 
+      alumno_medallas am ON m.id = am.medalla_id AND am.alumno_id = ?
+    ORDER BY 
+      m.juego, m.dificultad
+  `;
+
+  pool.query(query, [alumnoId], (err, results) => {
+    if (err) {
+      console.error("Error al obtener medallas:", err);
+      return res.status(500).json({ message: "Error al obtener medallas" });
+    }
+
+    res.json(results);
+  });
+});
+
+// Script para verificar la estructura de la base de datos (ejecutar al inicio)
+app.get("/api/verificar-tablas-medallas", (req, res) => {
+  // Solo para administradores
+  if (!req.session.user || req.session.user.tipo !== "administrador") {
+    return res.status(401).json({ message: "No autorizado" });
+  }
+
+  // Verificar la tabla de medallas
+  pool.query("SHOW TABLES LIKE 'medallas'", (err, tables) => {
+    if (err) {
+      return res.status(500).json({ error: "Error al verificar tablas: " + err.message });
+    }
+    
+    if (tables.length === 0) {
+      return res.status(404).json({ error: "No existe la tabla 'medallas'" });
+    }
+    
+    // Verificar la estructura de la tabla medallas
+    pool.query("DESCRIBE medallas", (err, fields) => {
+      if (err) {
+        return res.status(500).json({ error: "Error al verificar estructura: " + err.message });
+      }
+      
+      // Ahora verificar la tabla alumno_medallas
+      pool.query("SHOW TABLES LIKE 'alumno_medallas'", (err, tables) => {
+        if (err) {
+          return res.status(500).json({ error: "Error al verificar tablas: " + err.message });
+        }
+        
+        if (tables.length === 0) {
+          return res.status(404).json({ error: "No existe la tabla 'alumno_medallas'" });
+        }
+        
+        // Verificar la estructura de alumno_medallas
+        pool.query("DESCRIBE alumno_medallas", (err, amFields) => {
+          if (err) {
+            return res.status(500).json({ error: "Error al verificar estructura: " + err.message });
+          }
+          
+          // Verificar contenido de la tabla medallas
+          pool.query("SELECT COUNT(*) as total FROM medallas", (err, count) => {
+            if (err) {
+              return res.status(500).json({ error: "Error al contar medallas: " + err.message });
+            }
+            
+            res.json({
+              status: "OK",
+              mensaje: "Estructura de tablas verificada",
+              estructuraMedallas: fields,
+              estructuraAlumnoMedallas: amFields,
+              totalMedallas: count[0].total
+            });
+          });
+        });
+      });
+    });
+  });
+});
+
+// Ruta para obtener los detalles de una medalla específica por ID
+app.get("/api/medalla/:id", (req, res) => {
+  if (!req.session.user || !req.session.user.IDalumno) {
+    return res.status(401).json({ message: "No autorizado" });
+  }
+
+  const medallaId = req.params.id;
+
+  if (!medallaId) {
+    return res.status(400).json({ message: "ID de medalla requerido" });
+  }
+
+  const query = "SELECT nombre, descripcion, imagen FROM medallas WHERE id = ?";
+
+  pool.query(query, [medallaId], (err, results) => {
+    if (err) {
+      console.error("Error al obtener detalles de medalla:", err);
+      return res.status(500).json({ message: "Error al obtener detalles de medalla" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: "Medalla no encontrada" });
+    }
+
+    res.json(results[0]);
+  });
+});
+
+// Ruta para asignar una medalla al alumno cuando completa un nivel
+app.post("/api/otorgar-medalla", (req, res) => {
+  if (!req.session.user || !req.session.user.IDalumno) {
+    return res.status(401).json({ message: "No autorizado" });
+  }
+
+  const { juego, dificultad } = req.body;
+  const alumnoId = req.session.user.IDalumno;
+
+  if (!juego || !dificultad) {
+    return res.status(400).json({ message: "Juego y dificultad son requeridos" });
+  }
+
+  // Primero encontramos la medalla correspondiente
+  const findMedallaQuery = "SELECT id FROM medallas WHERE juego = ? AND dificultad = ?";
+
+  pool.query(findMedallaQuery, [juego, dificultad], (err, medallas) => {
+    if (err) {
+      console.error("Error al buscar medalla:", err);
+      return res.status(500).json({ message: "Error al buscar medalla" });
+    }
+
+    if (medallas.length === 0) {
+      return res.status(404).json({ message: "Medalla no encontrada" });
+    }
+
+    const medallaId = medallas[0].id;
+
+    // Ahora verificamos si el alumno ya tiene esta medalla
+    const checkMedallaQuery = "SELECT id FROM alumno_medallas WHERE alumno_id = ? AND medalla_id = ?";
+
+    pool.query(checkMedallaQuery, [alumnoId, medallaId], (err, existentes) => {
+      if (err) {
+        console.error("Error al verificar medalla:", err);
+        return res.status(500).json({ message: "Error al verificar medalla" });
+      }
+
+      // Si ya tiene la medalla, no hacemos nada más
+      if (existentes.length > 0) {
+        return res.json({ 
+          message: "Ya tienes esta medalla", 
+          nueva: false,
+          medallaId
+        });
+      }
+
+      // Si no tiene la medalla, se la asignamos
+      const asignarMedallaQuery = "INSERT INTO alumno_medallas (alumno_id, medalla_id) VALUES (?, ?)";
+
+      pool.query(asignarMedallaQuery, [alumnoId, medallaId], (err) => {
+        if (err) {
+          console.error("Error al asignar medalla:", err);
+          return res.status(500).json({ message: "Error al asignar medalla" });
+        }
+
+        res.json({ 
+          message: "¡Has obtenido una nueva medalla!", 
+          nueva: true,
+          medallaId
+        });
+      });
+    });
+  });
+});
+
+// Ruta para obtener estadísticas de las medallas del alumno
+app.get("/api/estadisticas-medallas", (req, res) => {
+  if (!req.session.user || !req.session.user.IDalumno) {
+    return res.status(401).json({ message: "No autorizado" });
+  }
+
+  const alumnoId = req.session.user.IDalumno;
+
+  const query = `
+    SELECT 
+      COUNT(DISTINCT m.id) AS total_medallas,
+      COUNT(DISTINCT am.medalla_id) AS medallas_obtenidas
+    FROM 
+      medallas m
+    LEFT JOIN 
+      alumno_medallas am ON m.id = am.medalla_id AND am.alumno_id = ?
+  `;
+
+  pool.query(query, [alumnoId], (err, results) => {
+    if (err) {
+      console.error("Error al obtener estadísticas:", err);
+      return res.status(500).json({ message: "Error al obtener estadísticas" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: "No se encontraron estadísticas" });
+    }
+
+    const stats = results[0];
+    stats.porcentaje = stats.total_medallas > 0 
+      ? Math.round((stats.medallas_obtenidas / stats.total_medallas) * 100) 
+      : 0;
+
+    res.json(stats);
+  });
+});
+
+// Ruta para verificar la existencia de archivos de imágenes
+app.get("/api/verificar-imagenes", (req, res) => {
+  if (!req.session.user || req.session.user.tipo !== "administrador") {
+    return res.status(401).json({ message: "No autorizado" });
+  }
+  
+  // Consultar todas las rutas de imágenes en la base de datos
+  const query = "SELECT id, nombre, imagen FROM medallas";
+  
+  pool.query(query, [], (err, medallas) => {
+    if (err) {
+      console.error("Error al obtener lista de medallas:", err);
+      return res.status(500).json({ message: "Error al verificar imágenes" });
+    }
+    
+    // Verificar la existencia de cada archivo
+    const fs = require('fs');
+    const resultados = [];
+    
+    medallas.forEach(medalla => {
+      // Quitar la barra inicial si existe para convertir a ruta relativa
+      const rutaRelativa = medalla.imagen.startsWith('/') ? 
+        medalla.imagen.substring(1) : medalla.imagen;
+      
+      // Verificar si el archivo existe
+      const rutaCompleta = path.join(__dirname, rutaRelativa);
+      const existe = fs.existsSync(rutaCompleta);
+      
+      resultados.push({
+        id: medalla.id,
+        nombre: medalla.nombre,
+        rutaEnBD: medalla.imagen,
+        rutaCompleta: rutaCompleta,
+        existe: existe
+      });
+    });
+    
+    // Verificar también la estructura de directorios
+    const directorios = {
+      logos: fs.existsSync(path.join(__dirname, 'logos')),
+      uploads: fs.existsSync(path.join(__dirname, 'uploads'))
+    };
+    
+    // Obtener información sobre la estructura de carpetas
+    let contenidoLogos = [];
+    if (directorios.logos) {
+      try {
+        contenidoLogos = fs.readdirSync(path.join(__dirname, 'logos'));
+      } catch (e) {
+        contenidoLogos = ["Error al leer directorio: " + e.message];
+      }
+    }
+    
+    res.json({
+      directorios,
+      contenidoLogos,
+      totalMedallas: medallas.length,
+      medallasVerificadas: resultados
+    });
+  });
+});
+
+// Endpoint para corregir rutas de imágenes
+app.post("/api/corregir-rutas-imagenes", (req, res) => {
+  if (!req.session.user || req.session.user.tipo !== "administrador") {
+    return res.status(401).json({ message: "No autorizado" });
+  }
+  
+  // Este endpoint puede usarse para renombrar archivos, 
+  // actualizar rutas en la BD, o ambos, dependiendo del problema
+  const { accion } = req.body;
+  
+  if (accion === "actualizar-bd") {
+    // Actualizar rutas en la BD eliminando la barra inicial
+    const query = "UPDATE medallas SET imagen = SUBSTRING(imagen, 2) WHERE imagen LIKE '/%'";
+    
+    pool.query(query, [], (err, resultado) => {
+      if (err) {
+        console.error("Error al actualizar rutas:", err);
+        return res.status(500).json({ message: "Error al actualizar rutas" });
+      }
+      
+      res.json({
+        mensaje: "Rutas actualizadas en la base de datos",
+        filasActualizadas: resultado.affectedRows
+      });
+    });
+  } else if (accion === "crear-directorio") {
+    // Crear directorio de logos si no existe
+    const fs = require('fs');
+    const logosDir = path.join(__dirname, 'logos');
+    
+    try {
+      if (!fs.existsSync(logosDir)) {
+        fs.mkdirSync(logosDir, { recursive: true });
+        res.json({ mensaje: "Directorio de logos creado correctamente" });
+      } else {
+        res.json({ mensaje: "El directorio de logos ya existe" });
+      }
+    } catch (err) {
+      console.error("Error al crear directorio:", err);
+      res.status(500).json({ mensaje: "Error al crear directorio: " + err.message });
+    }
+  } else {
+    res.status(400).json({ mensaje: "Acción no reconocida" });
+  }
+});
+
+// Ruta para verificar cómo se sirven las imágenes estáticas
+app.get("/api/test-imagen/:nombre", (req, res) => {
+  const nombreImagen = req.params.nombre;
+  
+  // Respuesta con la URL correcta para acceder a la imagen
+  res.json({
+    urlCompleta: `${req.protocol}://${req.get('host')}/logos/${nombreImagen}`,
+    rutaRelativa: `/logos/${nombreImagen}`
+  });
+});
 
 // -----------------------------------------------------
 // Ruta para cerrar sesión
@@ -1013,7 +1468,6 @@ app.post("/logout", (req, res) => {
     res.json({ message: "Sesión cerrada exitosamente" });
   });
 });
-
 
 // -----------------------------------------------------
 // Manejo de errores

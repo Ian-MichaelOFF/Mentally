@@ -5,7 +5,6 @@ import logomemoria from "/logos/memoria.png";
 import logoconcentracion from "/logos/rana.png";
 import logoagilidad from "/logos/cartoon-capybara.png";
 import { useNavigate } from "react-router-dom";
-
 import SidebarM from "../TSX/sidebarmast";
 
 const PaginaPrinMast: React.FC = () => {

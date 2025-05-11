@@ -165,16 +165,18 @@ const RecuperarContraseñaMaestro = () => {
   };
 
   return (
-    <div className="formularioregist2">
-      <nav className="navegacionbar2">
-        <div className="logoregist">
+    <div className="formulario_maestro">
+      <nav className="navbarra">
+        <div className="logomentally">
+          <img src="/logos/mascota2.png" alt="Logo del sitio" />
           MENTALLY
-          <img src="/logos/cerebro.png" alt="Logo del sitio" />
         </div>
-        <div className="texto-bienvenida">RECUPERA TU ACCESO - MAESTROS</div>
+        <div className="anuncio_maestro">RECUPERA TU ACCESO, MAESTRO
+           <img src="/logos/tc3v2.png" alt="Logo del anuncio" />
+        </div>
       </nav>
 
-      <div className="formulario_registro">
+      <div className="forma_form_maestro">
         {error && <div className="error-message">{error}</div>}
         {mensaje && <div className="success-message">{mensaje}</div>}
 
@@ -182,7 +184,7 @@ const RecuperarContraseñaMaestro = () => {
           <form onSubmit={handleSubmitValidacion}>
             <h2>Recuperar Contraseña - Maestros</h2>
 
-            <div className="CrearUsuario">
+            <div className="campo_form_maestro">
               <label htmlFor="correo">Correo Electrónico:</label>
               <input
                 type="email"
@@ -196,7 +198,7 @@ const RecuperarContraseñaMaestro = () => {
               />
             </div>
 
-            <div className="fecha-nacimiento">
+            <div className="campo_form_maestro">
               <label htmlFor="fechaNacimiento">Fecha de Nacimiento:</label>
               <input
                 type="date"
@@ -206,12 +208,12 @@ const RecuperarContraseñaMaestro = () => {
                 value={formatDateForInput(formData.fechaNacimiento)}
                 onChange={handleChange}
               />
-              <small>Debe coincidir con la fecha registrada en el sistema</small>
+              <small><br></br>Debe coincidir con la fecha registrada en el sistema</small>
             </div>
 
-            <div className="Crearboton">
+            <div className="boton_validar">
               <button 
-                className="Botocrear" 
+                className="boton_validar_datos_maestro" 
                 type="submit" 
                 disabled={cargando || !correoVerificado}
               >
@@ -227,7 +229,7 @@ const RecuperarContraseñaMaestro = () => {
               <p><strong>Correo:</strong> {formData.correo}</p>
             </div>
 
-            <div className="CrearContraseña">
+            <div className="campo_form_maestro">
               <label htmlFor="nueva-contraseña">Nueva Contraseña:</label>
               <input
                 type="password"
@@ -241,7 +243,7 @@ const RecuperarContraseñaMaestro = () => {
               />
             </div>
 
-            <div className="ConfirmarContraseña">
+            <div className="campo_form_maestro">
               <label htmlFor="confirmar-nueva-contraseña">Confirmar Nueva Contraseña:</label>
               <input
                 type="password"
@@ -254,15 +256,15 @@ const RecuperarContraseñaMaestro = () => {
               />
             </div>
 
-            <div className="Crearboton">
-              <button className="Botocrear" type="submit" disabled={cargando}>
+            <div className="boton_actualizar">
+              <button className="boton_actualizar_datos_maestro" type="submit" disabled={cargando}>
                 {cargando ? "Actualizando..." : "Actualizar Contraseña"}
               </button>
             </div>
           </form>
         )}
 
-        <div className="usuariosesion">
+        <div className="inicio_sesion_maestro">
           <Link to="/Formulario-Mast">Volver a Iniciar Sesión</Link>
         </div>
       </div>

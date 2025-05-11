@@ -60,24 +60,26 @@ const LoginMaestro: React.FC = () => {
   };
 
   return (
-    <div className="formulario-pageM">
-      <nav className="navbarforM">
-        <div className="logoformM">
+    <div className="formulario_maestro">
+      <nav className="navbarra">
+        <div className="logomentally">
+          <img src="logos/mascota2.png" alt="Logo del sitio" />
           MENTALLY
-          <img src="logos/cerebro.png" alt="Logo del sitio" />
         </div>
-        <div className="textobienvM">BIENVENIDO MAESTRO!</div>
+        <div className="anuncio_maestro">¡BIENVENIDO MAESTRO!
+          <img src="logos/tc3v2.png" alt="Logo del anuncio" />
+        </div>
       </nav>
 
-      <div className="formularioM">
+      <div className="forma_form_maestro">
         <form onSubmit={handleSubmit}>
           <div className="tituloform">
-            <h2>Inicio de Sesión <br /> Maestro</h2>
+            <h2>Inicio de Sesión de Maestro</h2>
           </div>
 
           {error && <p className="error-message">{error}</p>}
 
-          <div className="usuarioform">
+          <div className="campo_form_maestro">
             <label htmlFor="correo">Correo electrónico:</label>
             <input
               type="email"
@@ -90,7 +92,7 @@ const LoginMaestro: React.FC = () => {
             />
           </div>
 
-          <div className="contraseñaform">
+          <div className="campo_form_maestro">
             <label htmlFor="contraseña">Contraseña:</label>
             <input
               type="password"
@@ -103,20 +105,20 @@ const LoginMaestro: React.FC = () => {
             />
           </div>
 
-          <div className="recuperar">
+          <div className="recuperar_contra_maestro">
             <a href="/Recuperar-ContraseñaMast">¿Se te olvidó la contraseña?</a>
           </div>
 
           <div className="buttons-form">
-            <button className="button1" type="submit" disabled={loading}>
+            <button className="boton_iniciar_sesion_maestro" type="submit" disabled={loading}>
               {loading ? "Iniciando..." : "Iniciar Sesión"}
             </button>
-            <button className="button2" type="button" onClick={() => navigate("/RegistroMast")}>
+            <button className="boton_registrar_maestro" type="button" onClick={() => navigate("/RegistroMast")}>
               Registrarse
             </button>
           </div>
 
-          <div className="mast">
+          <div className="eres_alumno">
             <a href="#" onClick={handleNavigateToAlumno}>¿Eres Alumno?</a>
           </div>
         </form>

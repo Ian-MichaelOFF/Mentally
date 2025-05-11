@@ -5,23 +5,24 @@ import { Link } from 'react-router-dom'; // Asegúrate de tener este archivo en 
 const HomePage: React.FC = () => {
   return (
     <div className="main-container">
-      <div className="logo">
-        <div className="logo-text">
-          <span style={{ "--i": 1 } as React.CSSProperties}>M</span>
-          <span style={{ "--i": 2 } as React.CSSProperties}>E</span>
-          <span style={{ "--i": 3 } as React.CSSProperties}>N</span>
-          <span style={{ "--i": 4 } as React.CSSProperties}>T</span>
-          <span style={{ "--i": 5 } as React.CSSProperties}>A</span>
-          <span style={{ "--i": 6 } as React.CSSProperties}>L</span>
-          <span style={{ "--i": 7 } as React.CSSProperties}>L</span>
-          <span style={{ "--i": 8 } as React.CSSProperties}>Y</span>
+      <div className="sub-container1">
+        <div className="logo">
+          <div className="logo-text">
+            <span style={{ "--i": 1 } as React.CSSProperties}>M</span>
+            <span style={{ "--i": 2 } as React.CSSProperties}>E</span>
+            <span style={{ "--i": 3 } as React.CSSProperties}>N</span>
+            <span style={{ "--i": 4 } as React.CSSProperties}>T</span>
+            <span style={{ "--i": 5 } as React.CSSProperties}>A</span>
+            <span style={{ "--i": 6 } as React.CSSProperties}>L</span>
+            <span style={{ "--i": 7 } as React.CSSProperties}>L</span>
+            <span style={{ "--i": 8 } as React.CSSProperties}>Y</span>
+          </div>
+        </div>
+
+        <div className="sesion">
+          <p>¡Bienvenido!<br></br>Prepárate para pasar un rato de increíble diversión mientras ejercitas tu mente.</p>
         </div>
       </div>
-
-      <div className="sesion">
-        <p>Bienvenido a Mentally, una plataforma con juegos y diversión!</p>
-      </div>
-
       <div className="Buttons">
         {/* Cambia <a> por <Link> para las rutas internas en React */}
         <Link to="/Formulario-Mast"> {/* Usa la ruta relativa correcta */}

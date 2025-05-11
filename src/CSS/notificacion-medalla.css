@@ -1,0 +1,255 @@
+/* CSS para la notificación de medalla */
+.notificacion-medalla-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+
+.notificacion-medalla-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.notificacion-medalla-overlay.oculto {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.notificacion-medalla-container {
+  background: linear-gradient(135deg, #2c3e50, #1a2a3a);
+  border-radius: 16px;
+  padding: 30px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+  border: 2px solid #f5c056;
+  animation: aparecer 0.5s ease-out;
+  overflow: hidden;
+}
+
+.cerrar-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #f5c056;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.cerrar-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.notificacion-contenido {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.medalla-animacion {
+  position: relative;
+  animation: rotar 7s infinite linear;
+}
+
+.medalla-imagen {
+  width: 120px;
+  height: 120px;
+  filter: drop-shadow(0px 0px 10px #f5c056);
+}
+
+.resplandor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(245, 192, 86, 0.6) 0%, rgba(245, 192, 86, 0) 70%);
+  border-radius: 50%;
+  animation: pulsar 2s infinite ease-in-out;
+}
+
+.texto-medalla {
+  flex: 1;
+  color: #fff;
+  text-align: left;
+}
+
+.texto-medalla h2 {
+  color: #f5c056;
+  margin: 0 0 10px 0;
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+}
+
+.texto-medalla h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  color: #fff;
+}
+
+.texto-medalla p {
+  margin: 0;
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* Confeti para celebración */
+.confeti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confeti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #f5c056;
+  animation: caer 5s linear infinite;
+}
+
+/* Diferentes colores y tamaños de confeti */
+.confeti-0 {
+  background-color: #f5c056;
+  left: 10%;
+  animation-delay: 0s;
+  width: 7px;
+  height: 7px;
+}
+
+.confeti-1 {
+  background-color: #ff9347;
+  left: 20%;
+  animation-delay: 0.2s;
+  width: 12px;
+  height: 12px;
+}
+
+.confeti-2 {
+  background-color: #52c2d0;
+  left: 30%;
+  animation-delay: 0.4s;
+  width: 8px;
+  height: 8px;
+}
+
+.confeti-3 {
+  background-color: #9b59b6;
+  left: 40%;
+  animation-delay: 0.6s;
+}
+
+.confeti-4 {
+  background-color: #2ecc71;
+  left: 50%;
+  animation-delay: 0.8s;
+  width: 10px;
+  height: 10px;
+}
+
+/* Generamos más confeti */
+.confeti-5 { background-color: #f5c056; left: 60%; animation-delay: 1.0s; }
+.confeti-6 { background-color: #ff9347; left: 70%; animation-delay: 1.2s; }
+.confeti-7 { background-color: #52c2d0; left: 80%; animation-delay: 1.4s; }
+.confeti-8 { background-color: #9b59b6; left: 90%; animation-delay: 1.6s; }
+.confeti-9 { background-color: #2ecc71; left: 15%; animation-delay: 1.8s; }
+.confeti-10 { background-color: #f5c056; left: 25%; animation-delay: 2.0s; }
+.confeti-11 { background-color: #ff9347; left: 35%; animation-delay: 2.2s; }
+.confeti-12 { background-color: #52c2d0; left: 45%; animation-delay: 2.4s; }
+.confeti-13 { background-color: #9b59b6; left: 55%; animation-delay: 2.6s; }
+.confeti-14 { background-color: #2ecc71; left: 65%; animation-delay: 2.8s; }
+.confeti-15 { background-color: #f5c056; left: 75%; animation-delay: 3.0s; }
+.confeti-16 { background-color: #ff9347; left: 85%; animation-delay: 3.2s; }
+.confeti-17 { background-color: #52c2d0; left: 95%; animation-delay: 3.4s; }
+.confeti-18 { background-color: #9b59b6; left: 5%; animation-delay: 3.6s; }
+.confeti-19 { background-color: #2ecc71; left: 15%; animation-delay: 3.8s; }
+
+/* Animaciones */
+@keyframes aparecer {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rotar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulsar {
+  0% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+@keyframes caer {
+  0% {
+    top: -10px;
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    top: 100%;
+    transform: translateX(100px) rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .notificacion-contenido {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .texto-medalla {
+    text-align: center;
+  }
+  
+  .medalla-animacion {
+    margin-bottom: 20px;
+  }
+}
