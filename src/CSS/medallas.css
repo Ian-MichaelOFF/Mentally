@@ -1,37 +1,62 @@
 /* Estilos para la página de medallas */
-.navbarMedallas {
+.navbarra {
   display: flex;
-  justify-content: center; /* Centra horizontalmente el contenido */
-  align-items: center;     /* Centra verticalmente */
-  background: linear-gradient(90deg, rgb(255, 113, 234), rgb(249, 132, 132));
-  padding: 10px 20px;
-  height: 60px;
+  justify-content: space-between; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
+  background: #FFB6C1;
+  padding: 20px 40px;
+  height: 120px;
+  position: fixed; /* Fija la navbar en la parte superior */
+  top: 0; /* La coloca en la parte superior de la página */
+  width: 100%; /* Asegura que ocupe todo el ancho */
+  z-index: 10; /* Para que esté por encima de otros elementos */
 }
 
-.logosMed {
-  display: flex;
-  align-items: center;
-}
-
-.logosMed img {
-  width: 35px;
-  height: 35px;
-}
-
-.logos-textMed {
-  font-family: "Rubik bubbles", system-ui;
+.logomentally {
+  font-family: "Aclonica", sans-serif;
   font-size: 50px;
   font-weight: bold;
   color: transparent;
-  background-color: rgb(0, 0, 255);
-  -webkit-text-stroke: 0.5px rgb(20, 22, 100);
+  background-color: rgb(255, 255, 255);
+  /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
   -webkit-background-clip: text;
   background-clip: text;
+  display: flex;
+  justify-content: left; /* Centra el contenido del logo horizontalmente */
+  align-items: center; /* Centra el contenido del logo verticalmente */
+  text-align: left; /* Asegura que el texto esté centrado */
 }
 
+.logomentally img {
+  width: 85px;
+  height: 85px;
+  margin-right: 10px;
+}
 
+.letrero_alumno{
+  font-family: "Contrail One", sans-serif;
+  font-size: 50px;
+  padding-right: 5%;
+  color: #7830a8;
+  background-color: rgb(255, 255, 255);
+  /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: flex;
+  justify-content: right; /* Centra el contenido del logo horizontalmente */
+  align-items: center; /* Centra el contenido del logo verticalmente */
+  text-align: right; /* Asegura que el texto esté centrado */
+}
 
-.medallas-page {
+.pagina-medallas{
+  font-family: "Contrail One", sans-serif;
+  background-image: url(/public/logos/enhanced_9.png  );
+  background-repeat: repeat;
+  min-height: 100vh;
+  padding-top: 150px; /* Asegura que el contenido no se solape con la navbar fija */
+}
+
+.medallas-page-container {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -44,9 +69,10 @@
 }
 
 .medallas-header h1 {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 1rem;
+  color: #4cbdff;
+  -webkit-text-stroke: 0.05px #4c7cff;
+  font-size: 40px;
+  margin-bottom: 15px;
 }
 
 /* Estadísticas y progreso */
@@ -107,6 +133,7 @@
 }
 
 .filter-select {
+  font-family: "Contrail One", sans-serif;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   border: 1px solid #ccc;
@@ -121,6 +148,7 @@
 }
 
 .filter-btn {
+  font-family: "Contrail One", sans-serif;
   padding: 0.5rem 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;

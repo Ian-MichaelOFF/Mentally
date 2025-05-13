@@ -427,12 +427,12 @@ const Memorama = () => {
         aria-label="Regresar"
       >
         <ArrowLeft size={24} />
-      </button>
-      
-      <h1 className="game-title">Memorama</h1>
-      
+      </button>      
       {showSelector && (
         <div className="difficulty-selector">
+          <h1 className="game-title">Memorama</h1>
+          <p className="instrucciones_mem">¡Haz clic en las cartas y descubre las parejas escondidas!</p>
+          <img src="logos/m1.png" alt="Logo Memorama" />
           <p className="difficulty-title">Elige una dificultad:</p>
           <div className="difficulty-buttons">
             <button
@@ -459,9 +459,6 @@ const Memorama = () => {
 
       {showInfo && (
         <div className="game-info">
-          <div className="player-info">
-            <span className="info-label">Jugador:</span> {playerName}
-          </div>
           <div className="game-stats">
             <div>
               <span className="info-label">Intentos:</span> {attempts}

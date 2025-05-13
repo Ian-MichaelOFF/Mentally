@@ -148,31 +148,34 @@ export default function OperadorMisterioso() {
       .replaceAll("_", "<u>_</u>");
   };
 
-  const renderOperatorButtons = () => {
-    const operators = validOperators[currentDifficulty as keyof typeof validOperators];
-    
-    if (currentDifficulty === "dificil") {
-      return operators.flatMap((op1) => 
-        operators.map((op2) => (
-          <button 
-            key={`${op1}${op2}`} 
-            className="operator-button"
-            onClick={() => checkAnswer(`${op1}${op2}`)}
-            dangerouslySetInnerHTML={{ __html: getOperatorIcon(op1) + getOperatorIcon(op2) }}
-          />
-        ))
-      );
-    } else {
-      return operators.map((op) => (
+
+const renderOperatorButtons = () => {
+  const operators = validOperators[currentDifficulty as keyof typeof validOperators];
+  
+  if (currentDifficulty === "dificil") {
+    return operators.flatMap((op1) => 
+      operators.map((op2) => (
         <button 
-          key={op} 
+          key={`${op1}${op2}`} 
           className="operator-button"
-          onClick={() => checkAnswer(op)}
-          dangerouslySetInnerHTML={{ __html: getOperatorIcon(op) }}
-        />
-      ));
-    }
-  };
+          onClick={() => checkAnswer(`${op1}${op2}`)}
+        >
+          <span dangerouslySetInnerHTML={{ __html: getOperatorIcon(op1) + getOperatorIcon(op2) }} />
+        </button>
+      ))
+    );
+  } else {
+    return operators.map((op) => (
+      <button 
+        key={op} 
+        className="operator-button"
+        onClick={() => checkAnswer(op)}
+      >
+        <span dangerouslySetInnerHTML={{ __html: getOperatorIcon(op) }} />
+      </button>
+    ));
+  }
+};
 
   const goBackToMenu = () => {
     setIsPlaying(false);

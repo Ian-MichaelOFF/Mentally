@@ -29,12 +29,14 @@ const JuegosAgilidadMst: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="seccion-agilidad">
       {/* Navbar */}
-      <nav className="navbar6M">
-        <div className="logos6M">
-          <span className="logos-text6M">MENTALLY</span>
-          <img src={logoCerebro} alt="Logo6M" />
+      <nav className="navbarra">  
+        <div className="logomentally">
+          <img src="logos/mascota2.png" alt="Logo" />
+          MENTALLY
+        </div>
+        <div className="letrero_maestro">MAESTRO
         </div>
       </nav>
 
@@ -47,7 +49,7 @@ const JuegosAgilidadMst: React.FC = () => {
       )}
 
       {/* Contenido principal */}
-      <div className="Cuerpos6M">
+      <div className="cuerpo-agilidad">
         <button
           onClick={goBack}
           className="back-buttonMemoryMst"
@@ -55,7 +57,7 @@ const JuegosAgilidadMst: React.FC = () => {
         >
           <ArrowLeft size={24} />
         </button>
-        <h1>Bienvenido a la seccion de Agilidad Mental!</h1>
+        <h1>Lógica Matemática</h1>
         <div className="JuegosAgilidadM">
           <button
             className="btn-Agilidad1M"

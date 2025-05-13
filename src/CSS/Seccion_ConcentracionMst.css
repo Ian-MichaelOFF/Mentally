@@ -6,81 +6,113 @@
   }
   
   /* Navbar */
-  .navbar5M {
-    display: flex;
-    justify-content: center; /* Centra horizontalmente el contenido */
-    align-items: center;     /* Centra verticalmente */
-    background: linear-gradient(90deg, rgb(255, 113, 234), rgb(249, 132, 132));
-    padding: 10px 20px;
-    height: 60px;
-  }
+  .navbarra {
+  display: flex;
+  justify-content: space-between; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
+  background: #FFB6C1;
+  padding: 20px 40px;
+  height: 120px;
+  position: fixed; /* Fija la navbar en la parte superior */
+  top: 0; /* La coloca en la parte superior de la página */
+  width: 100%; /* Asegura que ocupe todo el ancho */
+  z-index: 10; /* Para que esté por encima de otros elementos */
+}
+
+.logomentally {
+  font-family: "Aclonica", sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: transparent;
+  background-color: rgb(255, 255, 255);
+  /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: flex;
+  justify-content: left; /* Centra el contenido del logo horizontalmente */
+  align-items: center; /* Centra el contenido del logo verticalmente */
+  text-align: left; /* Asegura que el texto esté centrado */
+}
+
+.logomentally img {
+  width: 85px;
+  height: 85px;
+  margin-right: 10px;
+}
+
+
+/* Estilo del cuerpo */
+.letrero_alumno{
+  font-family: "Contrail One", sans-serif;
+  font-size: 50px;
+  padding-right: 5%;
+  color: #7830a8;
+  background-color: rgb(255, 255, 255);
+  /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: flex;
+  justify-content: right; /* Centra el contenido del logo horizontalmente */
+  align-items: center; /* Centra el contenido del logo verticalmente */
+  text-align: right; /* Asegura que el texto esté centrado */
+}
+/* Estilo del cuerpo */
+.seccion-concentracion{
+  font-family: "Contrail One", sans-serif;
+  background-image: url(/public/logos/FondoJuegos.jpg  );
+  background-repeat: repeat;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px; /* Asegura que el contenido no se solape con la navbar fija */
+}
+
+.seccion-concentracion h1{
+  color: #4cbdff;
+  -webkit-text-stroke: 0.05px #4c7cff;
+  font-size: 100px;
+  margin-bottom: 15px;
+  text-align: center;
+}
   
-  .logos5M {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logos5M img {
-    width: 35px;
-    height: 35px;
-  }
-  
-  .logos-text5M {
-    font-family: "Rubik bubbles", system-ui;
-    font-size: 50px;
-    font-weight: bold;
-    color: transparent;
-    background-color: rgb(0, 0, 255);
-    -webkit-text-stroke: 0.5px rgb(0, 0, 0);
-    -webkit-background-clip: text;
-    background-clip: text;
-  }
-  
-  
-  /* Estilo del cuerpo */
-  .Cuerpos5M {
-    font-family: "Spicy Rice", serif;
-    font-size: 40px;
-    -webkit-text-stroke: 0.5px rgb(0, 0, 0);
-    line-height: 1.0;
-    color: rgb(71, 34, 255);
-    background: linear-gradient(360deg, rgb(103, 7, 98), rgb(205, 191, 206));
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centra verticalmente */
-    align-items: center; /* Centra horizontalmente */
-    padding: 50px;
-    
-  }
-  
-  .btn-Concentracion1M {
+   .btn-Concentracion1M {
     font-family: "Jersey 10", sans-serif;
     -webkit-text-stroke: 0.9px rgb(0, 0, 0);
     position: relative;
+    height: 500px;
+    width: 400px;
     bottom: 264px;
-    background: linear-gradient(10deg, rgb(24, 1, 106), rgb(229, 43, 242));
+    background: linear-gradient(170deg, rgb(48, 213, 200), rgb(19, 99, 223));
     border: none;
     color: white;
     padding: 50px 60px;
-    font-size: 89px;
+    font-size: 60px;
     border-radius: 25px;
     cursor: pointer;
     transition: 1s;
+    background-image: url(/public/logos/Captura5.PNG);
+    background-position-x: -65px;
+    background-repeat: no-repeat;
   }
   .btn-Concentracion2M {
-    font-family: "Jersey 10", sans-serif;
+     font-family: "Jersey 10", sans-serif;
     -webkit-text-stroke: 0.9px rgb(0, 0, 0);
     position: relative;
+    height: 500px;
+    width: 400px;
     bottom: 264px;
-    background: linear-gradient(10deg, rgb(24, 1, 106), rgb(229, 43, 242));
+    background: linear-gradient(170deg, rgb(48, 213, 200), rgb(19, 99, 223));
     border: none;
     color: white;
     padding: 50px 60px;
-    font-size: 89px;
+    font-size: 60px;
     border-radius: 25px;
     cursor: pointer;
     transition: 1s;
+    background-image: url(/public/logos/Captura3.PNG);
+    background-position-x: -65px;
+    background-repeat: no-repeat;
   }
   .btn-Concentracion3M {
     font-family: "Jersey 10", sans-serif;
@@ -110,29 +142,14 @@
     align-items: center;
   }
 
-  .btn-Concentracion1M img:hover {
-    width: 70px;
-    height: 70px;
-  }
-  .btn-Concentracion2M img:hover {
-    width: 70px;
-    height: 70px;
-  }
-  .btn-Concentracion3M img:hover {
-    width: 70px;
-    height: 70px;
-  }
-
   .btn-Concentracion1M:hover {
-    font-size: 85px;
-    background-color: rgb(45, 92, 56);
+    width: 300px;
+    height: 400px;
+    font-size: 40px;           /* Zoom out al hacer hover */
   }
 
   .btn-Concentracion2M:hover {
-    font-size: 85px;
-    background-color: rgb(62, 6, 79);
-  }
-  .btn-Concentracion3M:hover {
-    font-size: 85px;
-    background-color: rgb(0, 38, 48);
+    width: 300px;
+    height: 400px;
+    font-size: 40px;           /* Zoom out al hacer hover */
   }

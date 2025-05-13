@@ -4,6 +4,7 @@ import "../CSS/medallas.css";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../TSX/sidebar";
 import logoCerebro from "/logos/cerebro.png";
+import { ArrowLeft } from "lucide-react";
 
 interface Medalla {
   id: number;
@@ -27,6 +28,9 @@ const Medallas: React.FC = () => {
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+  const goBack = () => {
+    window.history.back(); // Función para regresar a la página anterior
   };
 
   useEffect(() => {
@@ -128,14 +132,25 @@ const Medallas: React.FC = () => {
   }
 
   return (
-    <div>
-            <nav className="navbarMedallas">
-        <div className="logosMed">
-          <span className="logos-textMed">MENTALLY</span>
-          <img src={logoCerebro} alt="LogoMed" />
+    <div className="pagina-medallas">
+      {/* Navbar en la parte superior */}
+      <nav className="navbarra">
+        <div className="logomentally">
+          <img src="/logos/mascota2.png" alt="Logo" />
+          MENTALLY
+        </div>
+        <div className="letrero_alumno">
+          ALUMNO
         </div>
       </nav>
-    <div className="medallas-page">
+                    <button
+          onClick={goBack}
+          className="back-buttonMemoryMst"
+          aria-label="Regresar"
+        >
+          <ArrowLeft size={24} />
+        </button>
+    <div className="medallas-page-container">
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
       {/* Fondo oscuro al abrir la sidebar */}

@@ -29,12 +29,14 @@ const JuegosMemoriaMst: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="seccion-memoria">
       {/* Navbar */}
-      <nav className="navbar4M">
-        <div className="logos4M">
-          <span className="logos-text4M">MENTALLY</span>
-          <img src={logoCerebro} alt="Logo4M" />
+      <nav className="navbarra">  
+        <div className="logomentally">
+          <img src="logos/mascota2.png" alt="Logo" />
+          MENTALLY
+        </div>
+        <div className="letrero_maestro">MAESTRO
         </div>
       </nav>
 
@@ -47,7 +49,7 @@ const JuegosMemoriaMst: React.FC = () => {
       )}
 
       {/* Contenido principal */}
-      <div className="Cuerpos4M">
+      <div className="cuerpo-memoria">
         <button
           onClick={goBack}
           className="back-buttonMemoryMst"
@@ -55,17 +57,17 @@ const JuegosMemoriaMst: React.FC = () => {
         >
           <ArrowLeft size={24} />
         </button>
-        <h1>Bienvenido a la seccion Memoria!</h1>
+        <h1>Memoria</h1>
         <div className="JuegosMemoriaM">
           <button className="btn-Memoria1M" type="button" onClick={handleClick}>
-            Memorama <img src={logomemoria} />
+            Memorama
           </button>
           <button
             className="btn-Memoria2M"
             type="button"
             onClick={handleClick2}
           >
-            Secuencia Colores <img src={logomemoria} />
+            Secuencia Colores
           </button>
         </div>
       </div>

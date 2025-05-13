@@ -74,12 +74,15 @@ const PerfilAlumno: React.FC = () => {
   }
 
   return (
-    <div className="app-container">
+    <div className="perfil_alumno">
       {/* Navbar en la parte superior */}
-      <nav className="navbar7">
-        <div className="logos7">
-          <span className="logos-text7">MENTALLY</span>
-          <img src={logoCerebro} alt="Logo" />
+      <nav className="navbarra">
+        <div className="logomentally">
+          <img src="/logos/mascota2.png" alt="Logo" />
+          MENTALLY
+        </div>
+        <div className="letrero_alumno">
+          ALUMNO
         </div>
       </nav>
 
@@ -90,40 +93,31 @@ const PerfilAlumno: React.FC = () => {
       )}
 
       {/* Contenido principal */}
-      <div className="perfil-background">
-        <div className="perfil-container">
+      <div className="fondo_perfil_alumno">
+        <div className="contenedor_perfil_alumno">
           {alumno && (
             <div className="perfil-content">
               <div className="perfil-header">
                 <div className="avatar-container">
                   <img
-                    src={`/logos/${alumno.Imagen || "default.png"}`}
+                    src={`/logos/${alumno.Imagen || 'default.png'}`}
                     alt={`Perfil de ${alumno.Usuario}`}
                     className="perfil-avatar"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = "/logos/default.png";
+                      (e.target as HTMLImageElement).src = '/logos/default.png';
                     }}
                   />
-                  <button
+                  <button 
                     className="edit-button"
                     onClick={() => setShowModal(true)}
                   >
                     ✏️
                   </button>
                 </div>
-                <h2 className="perfil-nombre">
-                  Nombre: <br /> {alumno.nombre} {alumno.apellido}
-                </h2>
-                <h2 className="perfil-username">
-                  Usuario: <br /> {alumno.Usuario}
-                </h2>
-                <h2 className="perfil-id">
-                  ID: <br />
-                  {alumno.IDalumno}
-                </h2>
-                <h2 className="Respuesta">
-                  Respuesta De Seguridad: <br /> {alumno.Respuesta}
-                </h2>
+                <h2 className="typo_perfil_alumno">Nombre: <span className="dato_perfil_alumno">{alumno.nombre} {alumno.apellido}</span></h2>
+                <h2 className="typo_perfil_alumno">Usuario: <span className="dato_perfil_alumno">{alumno.Usuario}</span></h2>
+                <h2 className="typo_perfil_alumno">ID: <span className="dato_perfil_alumno">{alumno.IDalumno}</span></h2>
+                <h2 className="typo_perfil_alumno">Respuesta De Seguridad: <span className="dato_perfil_alumno">{alumno.Respuesta}</span></h2>
               </div>
 
               <Modal
@@ -142,29 +136,33 @@ const PerfilAlumno: React.FC = () => {
                       className="preview-image"
                     />
                   </div>
-
+                  
                   <div className="image-options">
                     {imagenes.map((img) => (
-                      <div
+                      <div 
                         key={img}
-                        className={`image-option ${
-                          selectedImage === img ? "selected" : ""
-                        }`}
+                        className={`image-option ${selectedImage === img ? 'selected' : ''}`}
                         onClick={() => handleImageChange(img)}
                       >
-                        <img src={`/logos/${img}`} alt={`Opción ${img}`} />
+                        <img
+                          src={`/logos/${img}`}
+                          alt={`Opción ${img}`}
+                        />
                       </div>
                     ))}
                   </div>
 
                   <div className="modal-actions">
-                    <button
+                    <button 
                       className="cancel-button"
                       onClick={() => setShowModal(false)}
                     >
                       Cancelar
                     </button>
-                    <button className="confirm-button" onClick={saveChanges}>
+                    <button
+                      className="confirm-button"
+                      onClick={saveChanges}
+                    >
                       Guardar Cambios
                     </button>
                   </div>

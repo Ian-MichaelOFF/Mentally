@@ -231,22 +231,24 @@ const Anagrama: React.FC = () => {
       >
         <ArrowLeft size={24} />
       </button>
-      <h1 className="main-title">Anagramas</h1>
-
       <div id="game-container">
+        <h1 className="main-title">Anagramas</h1>
         {!gameStarted && !gameEnded && (
           <div id="start-menu" className="menu">
+            <h2 className="welcome">¡Bienvenido!</h2>
+            <p className="description">Un anagrama consiste en acomodar una palabra de manera correcta.</p>
             <img 
               src={cerebrin}
               alt="Imagen de Anagramas" 
               className="game-image" 
             />
-            <h2 className="welcome">¡Bienvenido!</h2>
-            <p className="description">Un anagrama consiste en acomodar una palabra de manera correcta.</p>
+            
             <p className="instructions">Elige una dificultad para comenzar:</p>
-            <button className="menu-button" onClick={() => startGame('facil')}>Fácil</button>
-            <button className="menu-button" onClick={() => startGame('medio')}>Medio</button>
-            <button className="menu-button" onClick={() => startGame('dificil')}>Difícil</button>
+            <div className='dificultybuttons'>
+              <button className="menu-button" onClick={() => startGame('facil')}>Fácil</button>
+              <button className="menu-button" onClick={() => startGame('medio')}>Medio</button>
+              <button className="menu-button" onClick={() => startGame('dificil')}>Difícil</button>
+            </div>
           </div>
         )}
 

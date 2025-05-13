@@ -302,12 +302,14 @@ const PaginaGruposMaestro: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="pagina-grupos-maestro-todo">
       {/* Navbar */}
-      <nav className="navbar55">
-        <div className="logos55">
-          <span className="logos-text55">MENTALLY</span>
-          <img src={logoCerebro} alt="Logo55" />
+      <nav className="navbarra">  
+        <div className="logomentally">
+          <img src="logos/mascota2.png" alt="Logo" />
+          MENTALLY
+        </div>
+        <div className="letrero_maestro">MAESTRO
         </div>
       </nav>
 
@@ -320,8 +322,8 @@ const PaginaGruposMaestro: React.FC = () => {
       )}
 
       {/* Contenido principal */}
-      <div className="Cuerpo3">
-        <h1>Mis Grupos: ({grupos.length})</h1>
+      <div className="cuerpo-grupos-maestro">
+        <h1>GRUPOS</h1>
 
         {!showDetallesGrupo ? (
           <div className="grupos-container">

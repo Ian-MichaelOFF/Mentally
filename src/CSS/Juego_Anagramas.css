@@ -56,12 +56,13 @@
 .instructions {
   font-size: 16px;
   margin: 8px 0;
-  color: #444;
+  color: #333;
+  
 }
 
 .level-title {
   font-size: 26px;
-  color: #3498db;
+  color: #54b3f3;
   margin-top: 10px;
 }
 

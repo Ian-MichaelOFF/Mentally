@@ -16,6 +16,10 @@ const JuegosConcentracionMst: React.FC = () => {
     navigate("/Anagrama");
     navigate(0); // Esto fuerza una recarga
   };
+  const handleClick2 = () => {
+    navigate("/SopaLetras");
+    navigate(0); // Esto fuerza una recarga
+  };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -25,12 +29,14 @@ const JuegosConcentracionMst: React.FC = () => {
     window.history.back(); // Función para regresar a la página anterior
   };
   return (
-    <div>
+    <div className="seccion-concentracion">
       {/* Navbar */}
-      <nav className="navbar5M">
-        <div className="logos5M">
-          <span className="logos-text5M">MENTALLY</span>
-          <img src={logoCerebro} alt="Logo5M" />
+      <nav className="navbarra">  
+        <div className="logomentally">
+          <img src="logos/mascota2.png" alt="Logo" />
+          MENTALLY
+        </div>
+        <div className="letrero_maestro">MAESTRO
         </div>
       </nav>
 
@@ -43,7 +49,7 @@ const JuegosConcentracionMst: React.FC = () => {
       )}
 
       {/* Contenido principal */}
-      <div className="Cuerpos5M">
+      <div className="cuerpo-concentracion">
         <button
           onClick={goBack}
           className="back-buttonMemoryMst"
@@ -51,20 +57,20 @@ const JuegosConcentracionMst: React.FC = () => {
         >
           <ArrowLeft size={24} />
         </button>
-        <h1>Bienvenido a la seccion Concentracion!</h1>
+        <h1>Concentracion</h1>
         <div className="JuegosConcentracionM">
           <button
             className="btn-Concentracion1M"
             type="button"
             onClick={handleClick}
           >
-            Anagramas <img src={logoconcentracion} />
+            Anagramas 
           </button>
-          <button className="btn-Concentracion2M">
-            Juego 2 <img src={logoconcentracion} />
-          </button>
-          <button className="btn-Concentracion3M">
-            Juego 3 <img src={logoconcentracion} />
+          <button className="btn-Concentracion2M"
+            type="button"
+            onClick={handleClick2}>
+            Sopa de Letras
+            
           </button>
         </div>
       </div>

@@ -1,11 +1,13 @@
 /* Main container styles */
 .memorama-container {
+    font-family: 'Chewy', cursive;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     min-height: 100vh;
     padding: 1.5rem 1rem;
-    background-color: #f1f5f9;
+    background-color: #ffd6e0;
   }
   
   /* Header and navigation */
@@ -25,11 +27,10 @@
   }
   
   .game-title {
-    font-size: 1.875rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #1d4ed8;
+    font-size: 5rem;
+    color: #54b3f3;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   
   /* Difficulty selector */
@@ -37,29 +38,44 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    max-width: 24rem;
+    width: 700px;
+    height: 700px;
     padding: 1.5rem;
-    background-color: white;
+    background-color: #b4f2f5;
     border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   }
   
+  .difficulty-selector img{
+    width: 170px;
+    height: 170px;
+    margin-bottom: 20px;
+  }
+
+  .instrucciones_mem{
+    margin-top: 10px;
+    font-size: 1.75rem;
+    color: #333;
+    margin-bottom: 30px;
+  }
+
   .difficulty-title {
-    font-size: 1.25rem;
+    font-size: 1.50rem;
     font-weight: 500;
     margin-bottom: 1.5rem;
+    color: #333;
   }
   
   .difficulty-buttons {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 85%;
     gap: 1rem;
   }
   
   .difficulty-button {
     padding: 0.75rem 1.5rem;
+    font-size: 20px;
     border-radius: 0.5rem;
     font-weight: 500;
     color: white;
@@ -168,7 +184,10 @@
   }
   
   .card-front {
-    background-color: #3b82f6;
+    background-image: url(/public/logos/mascota2.png);
+    background-size: 170px auto; /* Ancho fijo, alto proporcional */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que se repita */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -208,10 +227,10 @@
   
   /* Results panels */
   .result-panel {
-    width: 100%;
-    max-width: 28rem;
+    width: 700px;
+    height: 500px;
     padding: 1.5rem;
-    background-color: white;
+    background-color: #b4f2f5;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -220,28 +239,33 @@
   }
   
   .success-title {
-    font-size: 1.5rem;
+    font-size: 3rem;
+    margin-top: 20px;
     font-weight: 700;
     color: #16a34a;
     margin-bottom: 1rem;
   }
   
   .fail-title {
-    font-size: 1.5rem;
+    font-size: 3rem;
+    margin-bottom: 20px;
     font-weight: 700;
     color: #dc2626;
     margin-bottom: 1rem;
   }
   
   .result-text {
+    font-size: 20px;
     text-align: center;
-    margin-bottom: 0.75rem;
+    margin-top: 25px;
+    margin-bottom: 25px;
   }
   
   .score-text {
-    font-size: 1.25rem;
+    margin-top: 20px;
+    font-size: 25px;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: 25px;
   }
   
   .message-text {
@@ -252,7 +276,7 @@
   
   .play-again-button {
     padding: 0.75rem 1.5rem;
-    background-color: #3b82f6;
+    background-color: #0012b8;
     color: white;
     border-radius: 0.5rem;
     font-weight: 500;
@@ -260,5 +284,5 @@
   }
   
   .play-again-button:hover {
-    background-color: #2563eb;
+    background-color: #0f0053;
   }

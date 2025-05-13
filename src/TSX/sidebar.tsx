@@ -62,9 +62,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
           <a href="#" onClick={handleNavigateToInicio}>Inicio</a>
           </li>
           <li>
-          <a href="#" onClick={handleNavigateToJuegos}>Juegos</a> {/* Enlaza al hacer clic */}
-          </li>
-          <li>
           <a href="#" onClick={handleNavigateToMedallas}>Medallas</a> {/* Enlaza al hacer clic */}
           </li>
           <li>

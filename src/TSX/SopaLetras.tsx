@@ -562,8 +562,6 @@ const SopaDeLetras: React.FC = () => {
       </button>
       <div id="game-container">
         <h1>Sopa de Letras</h1>
-        <img src={cerebrin} alt="Logo del juego" id="game-logo" />
-
         {/* Mensaje de bienvenida */}
         {!gameStarted && (
           <div id="welcome-description">
@@ -571,6 +569,8 @@ const SopaDeLetras: React.FC = () => {
               👋 <strong>Bienvenido</strong>, elige un nivel de dificultad y
               encuentra todas las palabras escondidas en la sopa de letras.
             </p>
+            <img src="logos/CEREBRITIN.png" alt="cerebritin" />
+            <h1>Elige una dificultad:</h1>
           </div>
         )}
 

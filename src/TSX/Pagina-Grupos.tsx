@@ -4,6 +4,7 @@ import Sidebar from "../TSX/sidebar"; // Importa la sidebar
 import "../CSS/PaginaGrupos.css";
 import logoCerebro from "/logos/cerebro.png";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 // Definición de tipos
 interface Alumno {
@@ -57,6 +58,10 @@ const GruposAlumnos: React.FC = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+    const goBack = () => {
+    window.history.back(); // Función para regresar a la página anterior
+  };
+
 
   // Cargar grupos al iniciar
   useEffect(() => {
@@ -161,12 +166,14 @@ const GruposAlumnos: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="pagina-grupos-alumno-todo">
       {/* Navbar */}
-      <nav className="navbar-grupos">
-        <div className="logos-grupos">
-          <span className="logos-text-grupos">MENTALLY</span>
-          <img src={logoCerebro} alt="Logo" />
+      <nav className="navbarra">  
+        <div className="logomentally">
+          <img src="logos/mascota2.png" alt="Logo" />
+          MENTALLY
+        </div>
+        <div className="letrero_alumno">ALUMNO
         </div>
       </nav>
 
@@ -179,13 +186,20 @@ const GruposAlumnos: React.FC = () => {
       )}
 
       {/* Contenido principal */}
-      <div className="cuerpo-grupos">
-        <h1>MIS GRUPOS</h1>
+              <button
+          onClick={goBack}
+          className="back-buttonMemoryMst"
+          aria-label="Regresar"
+        >
+          <ArrowLeft size={24} />
+        </button>
+      <div className="cuerpo-grupos-alumno">
+        <h1>GRUPOS</h1>
         
         {/* Formulario para unirse a grupo */}
-        <div className="contenedor-formulario">
+        <div className="contenedor-formulario-alumno">
           <h2>Unirse a un Grupo</h2>
-          <form onSubmit={unirseAGrupo} className="form-unirse">
+          <form onSubmit={unirseAGrupo} className="form-unirse-alumno">
             <input
               type="text"
               placeholder="Ingresa el token del grupo"
@@ -195,7 +209,7 @@ const GruposAlumnos: React.FC = () => {
             />
             <button 
               type="submit" 
-              className="btn-unirse"
+              className="btn-unirse-alumno"
               disabled={cargando}
             >
               {cargando ? 'Procesando...' : 'Unirse al Grupo'}
@@ -208,45 +222,45 @@ const GruposAlumnos: React.FC = () => {
         {mensaje && <div className="mensaje-exito">{mensaje}</div>}
 
         {/* Vista de detalles de un grupo o lista de grupos */}
-        <div className="contenedor-principal">
+        <div className="contenedor-principal-grupo-alumno">
           {grupoSeleccionado ? (
-            <div className="detalles-grupo">
-              <div className="cabecera-detalles">
+            <div className="detalles-grupo-alumno">
+              <div className="cabecera-detalles-grupo-alumno">
                 <h2>Detalles del Grupo</h2>
                 <button 
                   onClick={volverALista}
-                  className="btn-volver"
+                  className="btn-volver-lista-grupos-alumno"
                 >
                   Volver a la lista
                 </button>
               </div>
               
-              <div className="info-grupo">
-                <p className="nombre-grupo">{grupoSeleccionado.grupo.nombre}</p>
-                <p className="detalle-grupo">
-                  <span className="etiqueta">Profesor:</span> {grupoSeleccionado.grupo.maestro_nombre} {grupoSeleccionado.grupo.maestro_apellido}
+              <div className="info-grupo-alumno">
+                <p className="nombre-grupo-alumno">{grupoSeleccionado.grupo.nombre}</p>
+                <p className="detalle-grupo-alumno">
+                  <span className="etiqueta-alumno">Profesor:</span> {grupoSeleccionado.grupo.maestro_nombre} {grupoSeleccionado.grupo.maestro_apellido}
                 </p>
-                <p className="detalle-grupo">
-                  <span className="etiqueta">Token:</span> {grupoSeleccionado.grupo.token}
+                <p className="detalle-grupo-alumno">
+                  <span className="etiqueta-alumno">Token:</span> {grupoSeleccionado.grupo.token}
                 </p>
-                <p className="detalle-grupo">
-                  <span className="etiqueta">Fecha de creación:</span> {new Date(grupoSeleccionado.grupo.fecha_creacion).toLocaleDateString()}
+                <p className="detalle-grupo-alumno">
+                  <span className="etiqueta-alumno">Fecha de creación:</span> {new Date(grupoSeleccionado.grupo.fecha_creacion).toLocaleDateString()}
                 </p>
               </div>
 
-              <div className="seccion-alumnos">
-                <div className="cabecera-alumnos">
+              <div className="seccion-alumnos-alumno">
+                <div className="cabecera-alumnos-alumno">
                   <h3>Alumnos en este grupo ({grupoSeleccionado.alumnos.length})</h3>
                   <button 
                     onClick={() => salirDeGrupo(grupoSeleccionado.grupo.id)}
-                    className="btn-salir"
+                    className="btn-salir-grupo-alumno"
                     disabled={cargando}
                   >
                     {cargando ? 'Procesando...' : 'Salir del grupo'}
                   </button>
                 </div>
                 
-                <div className="lista-alumnos-container">
+                <div className="lista-alumnos-container-alumno">
                   {grupoSeleccionado.alumnos.length > 0 ? (
                     <ul className="lista-alumnos">
                       {grupoSeleccionado.alumnos.map(alumno => (
@@ -278,29 +292,29 @@ const GruposAlumnos: React.FC = () => {
             </div>
           ) : (
             /* Lista de grupos */
-            <div className="lista-grupos-container">
+            <div className="lista-grupos-container-alumno">
               <h2>Mis Grupos</h2>
               {cargando ? (
                 <p className="mensaje-cargando">Cargando grupos...</p>
               ) : grupos.length > 0 ? (
                 <div className="grupos-grid">
                   {grupos.map(grupo => (
-                    <div key={grupo.id} className="tarjeta-grupo">
-                      <h3 className="titulo-tarjeta">{grupo.nombre}</h3>
-                      <p className="profesor-tarjeta">Profesor: {grupo.maestro_nombre} {grupo.maestro_apellido}</p>
-                      <p className="fecha-tarjeta">
+                    <div key={grupo.id} className="tarjeta-grupo-alumno">
+                      <h3 className="titulo-tarjeta-alumno">{grupo.nombre}</h3>
+                      <p className="profesor-tarjeta-alumno">Profesor: {grupo.maestro_nombre} {grupo.maestro_apellido}</p>
+                      <p className="fecha-tarjeta-alumno">
                         Creado: {new Date(grupo.fecha_creacion).toLocaleDateString()}
                       </p>
-                      <div className="acciones-tarjeta">
+                      <div className="acciones-tarjeta-alumno">
                         <button 
                           onClick={() => verDetallesGrupo(grupo.id)}
-                          className="btn-ver"
+                          className="btn-ver-alumno"
                         >
                           Ver detalles
                         </button>
                         <button 
                           onClick={() => salirDeGrupo(grupo.id)}
-                          className="btn-salir-tarjeta"
+                          className="btn-salir-tarjeta-alumno"
                         >
                           Salir
                         </button>

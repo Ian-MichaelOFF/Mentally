@@ -356,12 +356,16 @@ const FrutasMatematicas = () => {
       </button>
       <div className="game-container">
         <h1>Frutas Matemáticas</h1>
-
         {!gameVisible && !showResults && (
-          <div className="level-selector">
-            <button onClick={() => startGame('facil')}>facil</button>
-            <button onClick={() => startGame('normal')}>Normal</button>
-            <button onClick={() => startGame('dificil')}>Difícil</button>
+          <div className="area-nogame">
+            <h1>¡Según el valor de cada fruta, resuelve las operaciones!</h1>
+            <img src="logos/cerebrin2.png" alt="Cerebrin2" />
+            <h2>Elige una dificultad:</h2>
+            <div className="level-selector">
+              <button onClick={() => startGame('facil')}>Fácil</button>
+              <button onClick={() => startGame('normal')}>Normal</button>
+              <button onClick={() => startGame('dificil')}>Difícil</button>
+            </div>
           </div>
         )}
 
@@ -426,7 +430,7 @@ const FrutasMatematicas = () => {
           <div className="results-screen">
             <h2>¡Juego Completado!</h2>
             <div className="results-content">
-              <p>Nivel: <strong>{currentLevel === 'facil' ? 'facil' : currentLevel === 'normal' ? 'Normal' : 'Difícil'}</strong></p>
+              <p>Nivel: <strong>{currentLevel === 'facil' ? 'Fácil' : currentLevel === 'normal' ? 'Normal' : 'Difícil'}</strong></p>
               <p>Aciertos: <span className="correct-count">{correctCount}</span></p>
               <p>Errores: <span className="incorrect-count">{incorrectCount}</span></p>
               <p className="final-score">Puntaje Final: <strong>{finalScore}</strong></p>

@@ -8,44 +8,70 @@
 }
 
 /* Navbar */
-.navbar-grupos {
+.navbarra {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(90deg, rgb(113, 195, 255), rgb(132, 184, 249));
-  padding: 10px 20px;
-  height: 60px;
+  justify-content: space-between; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
+  background: #FFB6C1;
+  padding: 20px 40px;
+  height: 120px;
+  position: fixed; /* Fija la navbar en la parte superior */
+  top: 0; /* La coloca en la parte superior de la página */
+  width: 100%; /* Asegura que ocupe todo el ancho */
+  z-index: 10; /* Para que esté por encima de otros elementos */
 }
 
-.logos-grupos {
-  display: flex;
-  align-items: center;
-}
-
-.logos-grupos img {
-  width: 35px;
-  height: 35px;
-}
-
-.logos-text-grupos {
-  font-family: "Rubik bubbles", system-ui;
+.logomentally {
+  font-family: "Aclonica", sans-serif;
   font-size: 50px;
   font-weight: bold;
   color: transparent;
-  background-color: rgb(0, 0, 255);
-  -webkit-text-stroke: 0.5px rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
   -webkit-background-clip: text;
   background-clip: text;
+  display: flex;
+  justify-content: left; /* Centra el contenido del logo horizontalmente */
+  align-items: center; /* Centra el contenido del logo verticalmente */
+  text-align: left; /* Asegura que el texto esté centrado */
+}
+
+.logomentally img {
+  width: 85px;
+  height: 85px;
+  margin-right: 10px;
+}
+
+.letrero_alumno{
+  font-family: "Contrail One", sans-serif;
+  font-size: 50px;
+  padding-right: 5%;
+  color: #7830a8;
+  background-color: rgb(255, 255, 255);
+  /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: flex;
+  justify-content: right; /* Centra el contenido del logo horizontalmente */
+  align-items: center; /* Centra el contenido del logo verticalmente */
+  text-align: right; /* Asegura que el texto esté centrado */
+}
+
+.pagina-grupos-alumno-todo{
+  font-family: "Contrail One", sans-serif;
+  background-image: url(/public/logos/enhanced_9.png  );
+  background-repeat: repeat;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px; /* Asegura que el contenido no se solape con la navbar fija */
 }
 
 /* Estilos del contenido principal */
-.cuerpo-grupos {
-  font-family: "Spicy Rice", serif;
+.cuerpo-grupos-alumno {
   font-size: 40px;
-  -webkit-text-stroke: 0.5px rgb(0, 0, 0);
-  line-height: 1.0;
-  color: rgb(76, 126, 189);
-  background: linear-gradient(10deg, rgb(103, 207, 249), rgb(246, 247, 248));
+  margin-bottom: 15px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -53,33 +79,38 @@
   padding: 30px;
 }
 
-.cuerpo-grupos h1 {
-  margin-bottom: 30px;
+.cuerpo-grupos-alumno h1 {
+  color: #83ff89;
+  -webkit-text-stroke: 0.05px #000000;
+  margin-top: 25px ;
   text-align: center;
-  color: rgb(24, 82, 177);
 }
 
 /* Formulario para unirse a grupo */
-.contenedor-formulario {
-  background-color: rgba(255, 255, 255, 0.8);
+.contenedor-formulario-alumno {
+  background-image: url(/public/logos/ChatGPT\ Image\ 11\ may\ 2025\,\ 14_58_12.png);
   border-radius: 25px;
   padding: 20px;
-  width: 90%;
-  max-width: 800px;
+  width: 800px;
+  margin-top: 5px;
   margin-bottom: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.contenedor-formulario h2 {
-  font-size: 30px;
-  margin-bottom: 15px;
-  text-align: center;
-  color: rgb(24, 82, 177);
-}
-
-.form-unirse {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.contenedor-formulario-alumno h2 {
+  font-size: 45px;
+  margin-bottom: 25px;
+  text-align: center;
+  color: rgb(13, 116, 0);
+}
+
+.form-unirse-alum {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente */
   gap: 15px;
 }
 
@@ -96,6 +127,7 @@
   border: 2px solid #a0c4ff;
   border-radius: 15px;
   transition: all 0.3s ease;
+  width: 700px;
 }
 
 .input-token:focus {
@@ -104,24 +136,36 @@
   box-shadow: 0 0 0 3px rgba(66, 135, 245, 0.3);
 }
 
-.btn-unirse {
+.btn-unirse-alumno {
   font-family: "Jersey 10", sans-serif;
-  background: linear-gradient(90deg, rgb(24, 82, 177), rgb(76, 126, 189));
+  background: #83ff89;
   border: none;
   color: white;
   padding: 12px 25px;
-  font-size: 20px;
+  font-size: 30px;
   border-radius: 15px;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: block;
+  margin: 15px auto;
+  text-shadow:
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+  -1px  1px 0 #000,
+   1px  1px 0 #000;
 }
 
-.btn-unirse:hover {
-  background: linear-gradient(90deg, rgb(19, 68, 148), rgb(59, 100, 151));
+.btn-unirse-alumno:hover {
+  background: rgb(13, 116, 0);
+  text-shadow:
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+  -1px  1px 0 #000, 
+   1px  1px 0 #000;
   transform: translateY(-2px);
 }
 
-.btn-unirse:disabled {
+.btn-unirse-alumno:disabled {
   opacity: 0.7;
   cursor: not-allowed;
   transform: none;
@@ -157,17 +201,20 @@
 }
 
 /* Contenedor principal */
-.contenedor-principal {
-  background-color: rgba(255, 255, 255, 0.8);
+.contenedor-principal-grupo-alumno {
+  background-image: url(/public/logos/ChatGPT\ Image\ 11\ may\ 2025\,\ 14_58_12.png);
   border-radius: 25px;
-  padding: 25px;
-  width: 90%;
-  max-width: 1000px;
+  padding: 20px;
+  width: 800px;
+  margin-bottom: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Detalles del grupo */
-.cabecera-detalles {
+.cabecera-detalles-grupo-alumno {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -176,69 +223,83 @@
   padding-bottom: 10px;
 }
 
-.cabecera-detalles h2 {
-  font-size: 30px;
-  color: rgb(24, 82, 177);
+.cabecera-detalles-grupo-alumno h2 {
+  font-size: 40px;
+  color: rgb(13, 116, 0);
+  margin-right: 10px;
 }
 
-.btn-volver {
+.btn-volver-lista-grupos-alumno {
   font-family: "Jersey 10", sans-serif;
-  background: none;
+  background: #83ff89;
   border: none;
-  color: #4287f5;
-  font-size: 18px;
+  border-radius: 15px;
+  color: #ffffff;
+  font-size: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-shadow:
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+  -1px  1px 0 #000,
+   1px  1px 0 #000;
+   padding: 9px 15px;
 }
 
-.btn-volver:hover {
-  color: rgb(24, 82, 177);
-  text-decoration: underline;
+.btn-volver-lista-grupos-alumno:hover {
+  background: rgb(13, 116, 0);
+  text-shadow:
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+  -1px  1px 0 #000, 
+   1px  1px 0 #000;
+  transform: translateY(-2px);
 }
 
-.info-grupo {
-  margin-bottom: 30px;
+.info-grupo-alumno {
+  margin-bottom: 30px;  
+  width: 700px;
 }
 
-.nombre-grupo {
-  font-size: 28px;
+.nombre-grupo-alumno {
+  font-size: 30px;
   margin-bottom: 15px;
-  color: rgb(24, 82, 177);
+  color:rgb(13, 116, 0);
 }
 
-.detalle-grupo {
-  font-size: 20px;
+.detalle-grupo-alumno {
+  font-size: 25px;
   margin-bottom: 10px;
-  color: #333;
+  color: #000000;
   -webkit-text-stroke: 0px;
   font-family: Arial, sans-serif;
 }
 
-.etiqueta {
+.etiqueta-alumno {
   font-weight: bold;
-  color: rgb(24, 82, 177);
+  color: rgb(13, 116, 0);
 }
 
 /* Sección de alumnos */
-.seccion-alumnos {
+.seccion-alumnos-alumno {
   margin-top: 20px;
 }
 
-.cabecera-alumnos {
+.cabecera-alumnos-alumno {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
 }
 
-.cabecera-alumnos h3 {
+.cabecera-alumnos-alumno h3 {
   font-size: 24px;
-  color: rgb(24, 82, 177);
+  color: rgb(13, 116, 0);
 }
 
-.btn-salir {
-  font-family: "Jersey 10", sans-serif;
-  background: linear-gradient(90deg, #ff6363, #ff9494);
+.btn-salir-grupo-alumno {
+  font-family: "Jersey 10", sans-serif; 
+  background: red;
   border: none;
   color: white;
   padding: 8px 15px;
@@ -246,24 +307,37 @@
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-shadow:
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+  -1px  1px 0 #000,
+   1px  1px 0 #000;
+   padding: 9px 15px;
 }
 
-.btn-salir:hover {
-  background: linear-gradient(90deg, #e50000, #ff6363);
+.btn-salir-grupo-alumno:hover {
+  background: darkred;
   transform: translateY(-2px);
+  text-shadow:
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+  -1px  1px 0 #000,
+   1px  1px 0 #000;
+   padding: 9px 15px;
 }
 
-.btn-salir:disabled {
+.btn-salir-grupo-alumno:disabled {
   opacity: 0.7;
   cursor: not-allowed;
   transform: none;
 }
 
-.lista-alumnos-container {
-  background-color: rgba(240, 248, 255, 0.8);
+.lista-alumnos-container-alumno {
+  background-color: white;
   padding: 15px;
   border-radius: 15px;
 }
+
 
 .lista-alumnos {
   list-style-type: none;
@@ -273,7 +347,7 @@
   display: flex;
   align-items: center;
   padding: 12px 0;
-  border-bottom: 1px solid #dce7ff;
+  border-bottom: 1px solid #0051ff;
 }
 
 .alumno-item:last-child {
@@ -315,7 +389,7 @@
 .nombre-alumno {
   font-size: 18px;
   font-weight: bold;
-  color: #333;
+  color: #000000;
   margin-bottom: 3px;
   -webkit-text-stroke: 0px;
   font-family: Arial, sans-serif;
@@ -329,17 +403,17 @@
 }
 
 /* Lista de grupos */
-.lista-grupos-container h2 {
-  font-size: 30px;
+.lista-grupos-container-alumno h2 {
+  font-size: 45px;
   margin-bottom: 20px;
   text-align: center;
-  color: rgb(24, 82, 177);
+  color: rgb(13, 116, 0);
 }
 
 .mensaje-cargando,
 .mensaje-vacio {
   text-align: center;
-  color: #555;
+  color: #000000;
   padding: 20px;
   font-size: 20px;
   -webkit-text-stroke: 0px;
@@ -364,78 +438,90 @@
   }
 }
 
-.tarjeta-grupo {
-  background: linear-gradient(145deg, #f2f8ff, #e6f0ff);
+.tarjeta-grupo-alumno {
+  width: 250px;
+  height: 200px;
+  background: white;
   border-radius: 20px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
-.tarjeta-grupo:hover {
+.tarjeta-grupo-alumno:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
-.titulo-tarjeta {
+.titulo-tarjeta-alumno {
   font-size: 22px;
-  margin-bottom: 10px;
-  color: rgb(24, 82, 177);
+  margin-bottom: 15px;
+  color: rgb(13, 116, 0);
 }
 
-.profesor-tarjeta {
+.profesor-tarjeta-alumno {
   font-size: 16px;
-  color: #333;
+  color: #000000;
   margin-bottom: 5px;
   -webkit-text-stroke: 0px;
   font-family: Arial, sans-serif;
 }
 
-.fecha-tarjeta {
+.fecha-tarjeta-alumno {
   font-size: 14px;
-  color: #666;
+  color: #000000;
   margin-bottom: 15px;
   -webkit-text-stroke: 0px;
   font-family: Arial, sans-serif;
 }
 
-.acciones-tarjeta {
+.acciones-tarjeta-alumno {
   display: flex;
   justify-content: space-between;
-  margin-top: 15px;
+  margin-top: 25px;
 }
 
-.btn-ver {
+.btn-ver-alumno {
   font-family: "Jersey 10", sans-serif;
-  background: linear-gradient(90deg, #4287f5, #6fa5ff);
+  background: #83ff89;
   border: none;
   color: white;
   padding: 8px 15px;
-  font-size: 16px;
+  font-size: 20px;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-shadow:
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+  -1px  1px 0 #000,
+   1px  1px 0 #000;
 }
 
-.btn-ver:hover {
-  background: linear-gradient(90deg, #3b78dd, #5d93e8);
+.btn-ver-alumno:hover {
+  background: rgb(13, 116, 0);
   transform: translateY(-2px);
 }
 
-.btn-salir-tarjeta {
+.btn-salir-tarjeta-alumno {
   font-family: "Jersey 10", sans-serif;
-  background: linear-gradient(90deg, #ff6363, #ff9494);
+  background: red;
   border: none;
   color: white;
   padding: 8px 15px;
-  font-size: 16px;
+  font-size: 20px;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-shadow:
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+  -1px  1px 0 #000,
+   1px  1px 0 #000;
 }
 
-.btn-salir-tarjeta:hover {
-  background: linear-gradient(90deg, #e50000, #ff6363);
+.btn-salir-tarjeta-alumno:hover {
+  background: darkred;
   transform: translateY(-2px);
 }
 

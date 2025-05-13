@@ -1,54 +1,69 @@
 /* Estilos base */
-.app-container {
+.perfil_alumno {
+  font-family: "Contrail One", sans-serif;
+  background-image: url(/public/logos/enhanced_9.png);
+  height: 103vh;
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding-top: 150px; /* Asegura que el contenido no se solape con la navbar fija */
 }
 
-.perfil-background {
-  background: linear-gradient(10deg, rgb(249, 103, 213), rgb(246, 247, 248));
-    height: 100vh;
+  .navbarra {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "spicy Rice", serif;
-  }
-  .navbar7 {
-    display: flex;
-    justify-content: center; /* Centra horizontalmente el contenido */
-    align-items: center;     /* Centra verticalmente */
-    background: linear-gradient(90deg, rgb(255, 113, 234), rgb(249, 132, 132));
-    padding: 10px 20px;
-    height: 60px;
+    justify-content: space-between; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    background: #FFB6C1;
+    padding: 20px 40px;
+    height: 120px;
+    position: fixed; /* Fija la navbar en la parte superior */
+    top: 0; /* La coloca en la parte superior de la página */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    z-index: 10; /* Para que esté por encima de otros elementos */
   }
   
-  .logos7 {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logos7 img {
-    width: 35px;
-    height: 35px;
-  }
-  
-  .logos-text7 {
-    font-family: "Rubik bubbles", system-ui;
+  .logomentally {
+    font-family: "Aclonica", sans-serif;
     font-size: 50px;
     font-weight: bold;
     color: transparent;
-    background-color: rgb(0, 0, 255);
-    -webkit-text-stroke: 0.5px rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
     -webkit-background-clip: text;
     background-clip: text;
+    display: flex;
+    justify-content: left; /* Centra el contenido del logo horizontalmente */
+    align-items: center; /* Centra el contenido del logo verticalmente */
+    text-align: left; /* Asegura que el texto esté centrado */
   }
   
+  .logomentally img {
+    width: 85px;
+    height: 85px;
+    margin-right: 10px;
+  }
+  
+  .letrero_alumno{
+  font-family: "Contrail One", sans-serif;
+  font-size: 50px;
+  padding-right: 5%;
+  color: #7830a8;
+  background-color: rgb(255, 255, 255);
+  /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: flex;
+  justify-content: right; /* Centra el contenido del logo horizontalmente */
+  align-items: center; /* Centra el contenido del logo verticalmente */
+  text-align: right; /* Asegura que el texto esté centrado */
+}
+  
   /* Contenedor del perfil */
-.perfil-container {
-    max-width: 500px;
+.contenedor_perfil_alumno {
+    width: 800px;
     margin: 2rem auto;
     padding: 1rem;
-    background: linear-gradient(10deg, rgb(142, 25, 124), rgb(249, 132, 132));
+    background: #7830a8BF;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
@@ -96,11 +111,21 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center;  
   }
 
-.perfil-id{
-    font-family: "spicy Rice", serif;
+  .typo_perfil_alumno{
+    margin: 0;
+    color: #000000;
+    font-size: 2.5rem;
+    border-bottom: 1px solid black; /* Línea negra debajo de cada párrafo */
+    padding-bottom: 10px; /* Espacio debajo del párrafo */
+    margin-bottom: 10px; /* Espacio adicional entre los párrafos */     
+    width: 100%; /* Asegura que la línea ocupe todo el ancho disponible */
+    text-align: center; /* Centra el texto */
+  }
+  
+  .dato_perfil_alumno{
     margin: 0;
     color: #ffffff;
     font-size: 2.5rem;
@@ -109,32 +134,8 @@
     margin-bottom: 10px; /* Espacio adicional entre los párrafos */     
     width: 100%; /* Asegura que la línea ocupe todo el ancho disponible */
     text-align: center; /* Centra el texto */
-} 
+  }
 
-.perfil-username {
-    font-family: "spicy Rice", serif;
-    margin: 0;
-    color: #ffffff;
-    font-size: 2.4rem;
-    border-top: 1px solid black; /* Línea negra encima de cada párrafo */
-    border-bottom: 1px solid black; /* Línea negra debajo de cada párrafo */
-    padding-bottom: 10px; /* Espacio debajo del párrafo */
-    margin-bottom: 10px;
-    width: 100%; /* Asegura que la línea ocupe todo el ancho disponible */
-    text-align: center; /* Centra el texto */
-}
-.Respuesta{
-    font-family: "spicy Rice", serif;
-    margin: 0;
-    color: #ffffff;
-    font-size: 2.4rem;
-    border-bottom: 1px solid black; /* Línea negra debajo de cada párrafo */
-    padding-bottom: 10px; /* Espacio debajo del párrafo */
-    margin-bottom: 10px;
-    width: 100%; /* Asegura que la línea ocupe todo el ancho disponible */
-    text-align: center; /* Centra el texto */
-}
-  
   /* Modal */
   .modal-overlay {
     position: fixed;
@@ -149,9 +150,10 @@
     z-index: 1000;
   }
   
+
   .modal-container {
-    background: linear-gradient(10deg, rgb(142, 25, 124), rgb(249, 132, 132));
-    font-family: "spicy Rice",serif;
+    font-family: "Contrail One", sans-serif;
+    background: #989898;
     border-radius: 8px;
     padding: 2rem;
     width: 90%;

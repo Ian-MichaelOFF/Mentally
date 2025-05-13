@@ -1,19 +1,15 @@
 /* Estilos base */
-.app-containerM {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.perfil-backgroundM {
-  background: linear-gradient(10deg, rgb(9, 173, 75), rgb(246, 247, 248));
-  height: 100vh;
+.perfil_maestro {
+  font-family: "Contrail One", sans-serif;
+  background-image: url(/public/logos/fondov3.png);
+  height: 103vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "spicy Rice", serif;
+  padding-top: 150px; /* Asegura que el contenido no se solape con la navbar fija */
 }
-.navbar7M {
+
+.navbarra {
   display: flex;
   justify-content: center; /* Centra horizontalmente el contenido */
   align-items: center; /* Centra verticalmente */
@@ -22,35 +18,62 @@
   height: 60px;
 }
 
-.logos7M {
-  display: flex;
-  align-items: center;
-}
+.navbarra {
+    display: flex;
+    justify-content: space-between; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    background: #FFB6C1;
+    padding: 20px 40px;
+    height: 120px;
+    position: fixed; /* Fija la navbar en la parte superior */
+    top: 0; /* La coloca en la parte superior de la página */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    z-index: 10; /* Para que esté por encima de otros elementos */
+  }
+  
+  .logomentally {
+    font-family: "Aclonica", sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: transparent;
+    background-color: rgb(255, 255, 255);
+    /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+    -webkit-background-clip: text;
+    background-clip: text;
+    display: flex;
+    justify-content: left; /* Centra el contenido del logo horizontalmente */
+    align-items: center; /* Centra el contenido del logo verticalmente */
+    text-align: left; /* Asegura que el texto esté centrado */
+  }
+  
+  .logomentally img {
+    width: 85px;
+    height: 85px;
+    margin-right: 10px;
+  }
 
-.logos7M img {
-  width: 35px;
-  height: 35px;
-}
-
-.logos-text7M {
-  font-family: "Rubik bubbles", system-ui;
-  font-size: 50px;
-  font-weight: bold;
-  color: transparent;
-  background-color: rgb(0, 0, 255);
-  -webkit-text-stroke: 0.5px rgb(0, 0, 0);
+  .letrero_maestro{
+  font-family: "Contrail One", sans-serif;
+  font-size: 50px ;
+  padding-right: 5%;
+  color: #30a830;
+  background-color: rgb(255, 255, 255);
+  /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
   -webkit-background-clip: text;
   background-clip: text;
+  display: flex;
+  justify-content: right; /* Centra el contenido del logo horizontalmente */
+  align-items: center; /* Centra el contenido del logo verticalmente */
+  text-align: right; /* Asegura que el texto esté centrado */
 }
-
 /* Contenedor del perfil */
-.perfil-containerM {
-  max-width: 500px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background: linear-gradient(10deg, rgb(142, 25, 124), rgb(249, 132, 132));
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.contenedor_perfil_maestro {
+    width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: #30a830BF;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .loading-containerM {
@@ -99,52 +122,28 @@
   justify-content: center;
 }
 
-.perfil-idM {
-  font-family: "spicy Rice", serif;
-  margin: 0;
-  color: #ffffff;
-  font-size: 2.5rem;
-  border-bottom: 3px solid black; /* Línea negra debajo de cada párrafo */
-  padding-bottom: 10px; /* Espacio debajo del párrafo */
-  margin-bottom: 10px; /* Espacio adicional entre los párrafos */
-  width: 100%; /* Asegura que la línea ocupe todo el ancho disponible */
-  text-align: center; /* Centra el texto */
-}
-
-.perfil-usernameM {
-  font-family: "spicy Rice", serif;
-  margin: 0;
-  color: #ffffff;
-  font-size: 2.4rem;
-  border-top: 3px solid black; /* Línea negra encima de cada párrafo */
-  border-bottom: 3px solid black; /* Línea negra debajo de cada párrafo */
-  padding-bottom: 10px; /* Espacio debajo del párrafo */
-  margin-bottom: 10px;
-  width: 100%; /* Asegura que la línea ocupe todo el ancho disponible */
-  text-align: center; /* Centra el texto */
-}
-.CorreoM {
-  font-family: "spicy Rice", serif;
-  margin: 0;
-  color: #ffffff;
-  font-size: 2.4rem;
-  border-bottom: 3px solid black; /* Línea negra debajo de cada párrafo */
-  padding-bottom: 10px; /* Espacio debajo del párrafo */
-  margin-bottom: 10px;
-  width: 100%; /* Asegura que la línea ocupe todo el ancho disponible */
-  text-align: center; /* Centra el texto */
-}
-.FechaM{
-    font-family: "spicy Rice", serif;
+.typo_perfil_maestro{
     margin: 0;
-    color: #ffffff;
-    font-size: 2.4rem;
-    border-bottom: 3px solid black; /* Línea negra debajo de cada párrafo */
+    color: #000000;
+    font-size: 2.5rem;
+    border-bottom: 1px solid black; /* Línea negra debajo de cada párrafo */
     padding-bottom: 10px; /* Espacio debajo del párrafo */
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* Espacio adicional entre los párrafos */     
     width: 100%; /* Asegura que la línea ocupe todo el ancho disponible */
     text-align: center; /* Centra el texto */
 }
+
+.dato_perfil_maestro{
+    margin: 0;
+    color: #ffffff;
+    font-size: 2.5rem;
+    border-bottom: 1px solid black; /* Línea negra debajo de cada párrafo */
+    padding-bottom: 10px; /* Espacio debajo del párrafo */
+    margin-bottom: 10px; /* Espacio adicional entre los párrafos */     
+    width: 100%; /* Asegura que la línea ocupe todo el ancho disponible */
+    text-align: center; /* Centra el texto */
+  }
+
 
 /* Modal */
 .modal-overlayM {
@@ -161,8 +160,8 @@
 }
 
 .modal-containerM {
-  background: linear-gradient(10deg, rgb(142, 25, 124), rgb(249, 132, 132));
-  font-family: "spicy Rice", serif;
+  background: #989898;
+  font-family: "Contrail One", sans-serif;
   border-radius: 8px;
   padding: 2rem;
   width: 90%;

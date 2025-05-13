@@ -30,12 +30,14 @@ const JuegosConcentracion: React.FC = () => {
     window.history.back(); // Función para regresar a la página anterior
   };
   return (
-    <div>
+    <div className="seccion-concentracion">
       {/* Navbar */}
-      <nav className="navbar5">
-        <div className="logos5">
-          <span className="logos-text5">MENTALLY</span>
-          <img src={logoCerebro} alt="Logo5" />
+      <nav className="navbarra">  
+        <div className="logomentally">
+          <img src="logos/mascota2.png" alt="Logo" />
+          MENTALLY
+        </div>
+        <div className="letrero_alumno">ALUMNO
         </div>
       </nav>
 
@@ -48,7 +50,7 @@ const JuegosConcentracion: React.FC = () => {
       )}
 
       {/* Contenido principal */}
-      <div className="Cuerpos5">
+      <div className="cuerpo-concentracion">
         <button
           onClick={goBack}
           className="back-buttonMemoryMst"
@@ -56,22 +58,21 @@ const JuegosConcentracion: React.FC = () => {
         >
           <ArrowLeft size={24} />
         </button>
-        <h1>Bienvenido a la seccion Concentracion!</h1>
+        <h1>Concentracion</h1>
         <div className="JuegosConcentracion">
           <button
-            className="btn-Concentracion1"
+            className="btn-Concentracion1M"
             type="button"
             onClick={handleClick}
           >
-            Anagramas <img src={logoconcentracion} />
+            Anagramas 
           </button>
           <button
-            className="btn-Concentracion2"
+            className="btn-Concentracion2M"
             type="button"
             onClick={handleClick2}
           >
             Sopa De Letras
-            <img src={logoconcentracion} />
           </button>
         </div>
       </div>

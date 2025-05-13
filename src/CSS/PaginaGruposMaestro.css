@@ -1,14 +1,97 @@
-.Cuerpo3 {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar */
+.navbarra {
+  display: flex;
+  justify-content: space-between; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
+  background: #FFB6C1;
+  padding: 20px 40px;
+  height: 120px;
+  position: fixed; /* Fija la navbar en la parte superior */
+  top: 0; /* La coloca en la parte superior de la página */
+  width: 100%; /* Asegura que ocupe todo el ancho */
+  z-index: 10; /* Para que esté por encima de otros elementos */
+}
+
+.logomentally {
+  font-family: "Aclonica", sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: transparent;
+  background-color: rgb(255, 255, 255);
+  /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: flex;
+  justify-content: left; /* Centra el contenido del logo horizontalmente */
+  align-items: center; /* Centra el contenido del logo verticalmente */
+  text-align: left; /* Asegura que el texto esté centrado */
+}
+
+.logomentally img {
+  width: 85px;
+  height: 85px;
+  margin-right: 10px;
+}
+
+.letrero_maestro{
+  font-family: "Contrail One", sans-serif;
+  font-size: 50px;
+  padding-right: 5%;
+  color: #30a830;
+  background-color: rgb(255, 255, 255);
+  /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: flex;
+  justify-content: right; /* Centra el contenido del logo horizontalmente */
+  align-items: center; /* Centra el contenido del logo verticalmente */
+  text-align: right; /* Asegura que el texto esté centrado */
+}
+
+.pagina-grupos-maestro-todo{
+  font-family: "Contrail One", sans-serif;
+  background-image: url(/public/logos/enhanced_9.png  );
+  background-repeat: repeat;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  padding-top: 100px; /* Asegura que el contenido no se solape con la navbar fija */
+}
+
+
+.cuerpo-grupos-maestro {
     padding: 20px;
-    margin-left: 250px;
+    margin-left: 50px;
     transition: margin-left 0.3s;
   }
   
+.cuerpo-grupos-maestro h1{
+  font-size: 80px;
+  color: #83ff89;
+  -webkit-text-stroke: 0.05px #000000;
+  margin-top: 25px ;
+  text-align: center;
+}
+
   .grupos-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     margin-top: 20px;
+    background-image: url(/public/logos/ChatGPT\ Image\ 11\ may\ 2025\,\ 14_58_12.png);
+  border-radius: 25px;
+  padding: 20px;
+  width: 850px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
   
   .nuevo-grupo-card, .grupo-card {
@@ -24,7 +107,7 @@
   }
   
   .nuevo-grupo-card {
-    border: 2px dashed #ccc;
+    border: 2px dashed #1100ff;
     background-color: rgba(255, 255, 255, 0.1);
   }
   
@@ -51,15 +134,59 @@
   }
   
   .btn-agregar-alumno {
-    margin-top: 10px;
-    padding: 5px 10px;
-    background-color: #4CAF50;
-    color: white;
+     font-family: "Jersey 10", sans-serif;
+    background: #83ff89;
     border: none;
-    border-radius: 4px;
+    border-radius: 15px;
+    color: #ffffff;
+    font-size: 15px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px  1px 0 #000,
+    1px  1px 0 #000;
+    padding: 9px 15px;
   }
   
+.btn-agregar-alumno:hover{
+  background: rgb(13, 116, 0);
+  text-shadow:
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+  -1px  1px 0 #000, 
+   1px  1px 0 #000;
+  transform: translateY(-2px);
+}
+
+.btn-eliminar-grupo{
+  font-family: "Jersey 10", sans-serif;
+    background: red;
+    border: none;
+    border-radius: 15px;
+    color: #ffffff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px  1px 0 #000,
+    1px  1px 0 #000;
+    padding: 9px 15px;
+}
+
+.btn-eliminar-grupo:hover{
+  background: darkred;
+  text-shadow:
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+  -1px  1px 0 #000, 
+   1px  1px 0 #000;
+  transform: translateY(-2px);
+}
+
   .modal-overlay {
     position: fixed;
     top: 0;
@@ -119,12 +246,12 @@
     gap: 20px;
   }
   .grupo-detalle {
-    background-color: #fff;
+    background-image: url(/public/logos/ChatGPT\ Image\ 11\ may\ 2025\,\ 14_58_12.png);
     border-radius: 16px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 24px;
     margin: 20px 0;
-    width: 100%;
+    width: 850px;
     animation: fadeIn 0.3s ease-in-out;
   }
   
@@ -136,17 +263,24 @@
   }
   
   .btn-volver {
-    background-color: #f2f2f2;
+    font-family: "Jersey 10", sans-serif; 
+    background-color: #83ff89;
     border: none;
-    border-radius: 8px;
-    padding: 8px 16px;
-    font-size: 16px;
+    color: white;
+    border-radius: 15px;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px  1px 0 #000,
+    1px  1px 0 #000;
+    padding: 9px 15px;
+    font-size: 22px;
     cursor: pointer;
     transition: background-color 0.2s;
   }
   
   .btn-volver:hover {
-    background-color: #e6e6e6;
+    background-color: #4CAF50;
   }
   
   .grupo-info {
@@ -173,20 +307,44 @@
   }
   
   .btn-copiar {
-    background-color: #4CAF50;
-    color: white;
+    font-family: "Jersey 10", sans-serif; 
+    background-color: #83ff89;
     border: none;
-    border-radius: 4px;
-    padding: 4px 8px;
+    color: white;
+    border-radius: 15px;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px  1px 0 #000,
+    1px  1px 0 #000;
+    padding: 9px 15px;
+    font-size: 16px;
     cursor: pointer;
-    font-size: 14px;
     transition: background-color 0.2s;
   }
   
   .btn-copiar:hover {
-    background-color: #45a049;
+    background-color: #4CAF50;
   }
   
+  .grupo-detalle-header h2{
+    font-size: 30px;
+    text-align: center;
+  color: rgb(13, 116, 0);
+  }
+
+  .escuela-detalle{
+    font-size: 25px;
+  }
+
+  .descripcion-detalle{
+    font-size: 25px;
+  }
+
+  .grupo-detalle h3{
+    color: rgb(13, 116, 0);
+  }
+
   .grupo-acciones {
     display: flex;
     gap: 10px;
@@ -244,17 +402,30 @@
   }
   
   .btn-eliminar-alumno {
-    background-color: #f44336;
-    color: white;
+    font-family: "Jersey 10", sans-serif; 
+    background-color: red;
     border: none;
-    border-radius: 4px;
-    padding: 6px 12px;
+    color: white;
+    border-radius: 15px;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px  1px 0 #000,
+    1px  1px 0 #000;
+    padding: 9px 15px;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s;
   }
   
   .btn-eliminar-alumno:hover {
-    background-color: #d32f2f;
+    background: darkred;
+  text-shadow:
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+  -1px  1px 0 #000, 
+   1px  1px 0 #000;
+  transform: translateY(-2px);
   }
   
   /* Hacer más visibles los grupo-card cuando son clickeables */
@@ -284,17 +455,30 @@
 /* Estilos para el botón activo de historial */
 
   .btn-historial-alumno {
-    background-color: #0fab17;
-    color: white;
+    font-family: "Jersey 10", sans-serif; 
+    background-color: #83ff89;
     border: none;
-    border-radius: 4px;
-    padding: 6px 12px;
+    color: white;
+    border-radius: 15px;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px  1px 0 #000,
+    1px  1px 0 #000;
+    padding: 9px 15px;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s;
   }
   
   .btn-historial-alumno:hover {
-    background-color: #197e27;
+    background: rgb(13, 116, 0);
+  text-shadow:
+  -1px -1px 0 #000,  
+   1px -1px 0 #000,
+  -1px  1px 0 #000, 
+   1px  1px 0 #000;
+  transform: translateY(-2px);
   }
 /* Estilos para la fila de historial */
 .historial-row {
@@ -312,7 +496,7 @@
 .historial-panel h4 {
   margin-top: 0;
   margin-bottom: 15px;
-  color: #023047;
+  color: rgb(13, 116, 0);
   font-size: 16px;
 }
 

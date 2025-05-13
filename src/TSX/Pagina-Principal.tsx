@@ -17,12 +17,14 @@ const PaginaPrincipal: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="pagina_inicio_alumno">
       {/* Navbar */}
-      <nav className="navbar2">
-        <div className="logos">
-          <span className="logos-text">MENTALLY</span>
-          <img src={logoCerebro} alt="Logo" />
+      <nav className="navbarra">  
+        <div className="logomentally">
+          <img src="logos/mascota2.png" alt="Logo" />
+          MENTALLY
+        </div>
+        <div className="letrero_alumno">ALUMNO
         </div>
       </nav>
 
@@ -35,32 +37,27 @@ const PaginaPrincipal: React.FC = () => {
       )}
 
       {/* Contenido principal */}
-      <div className="Cuerpo">
-        <h1>REGRESA A TUS JUEGOS!</h1>
+      <div className="cuerpo_alumno">
+        <h1>¿Qué jugarás hoy?</h1>
         <div className="BotonJuegos">
-          <button
-            className="btn-juego1"
-            type="button"
-            onClick={() => navigate("/Seccion_Memoria")}
-          >
+        <button className="boton_memoria" type="button" onClick={() => navigate("/Seccion_Memoria")}>
             Memoria
-            <img src={logomemoria} alt="Logo Memoria" />
           </button>
-          <button
-            className="btn-juego2"
-            type="button"
-            onClick={() => navigate("/Seccion_Concentracion")}
-          >
+          <button className="boton_concentracion" type="button" onClick={() => navigate("/Seccion_Concentracion")}>
             Concentracion
-            <img src={logoconcentracion} alt="Logo Memoria" />
           </button>
-          <button
-            className="btn-juego3"
-            type="button"
-            onClick={() => navigate("/Seccion_AgilidadM")}
-          >
-            Agilidad Mental
-            <img src={logoagilidad} />
+          <button className="boton_agilidad" type="button" onClick={()=> navigate("/Seccion_AgilidadM")}>
+            Lógica Matemática 
+            </button>
+        </div>
+        <div className="BotonMiscelaneos">
+        <button className="boton_grupos" type="button" onClick={() => navigate("/Pagina-Grupos")}>
+            Grupos
+            <img src="logos/grupov1.png" alt="Icono_boton" />
+          </button>
+          <button className="boton_insignias" type="button" onClick={() => navigate("/Medallas")}>
+            Medallas
+            <img src="logos/medalla.png" alt="Icono_medalla" />
           </button>
         </div>
       </div>

@@ -17,12 +17,14 @@ const PaginaPrinMast: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="pagina_inicio_maestro">
       {/* Navbar */}
-      <nav className="navbarMst">
-        <div className="logosMst">
-          <span className="logos-textMst">MENTALLY</span>
-          <img src={logoCerebro} alt="LogoMst" />
+      <nav className="navbarra">  
+        <div className="logomentally">
+          <img src="logos/mascota2.png" alt="Logo" />
+          MENTALLY
+        </div>
+        <div className="letrero_maestro">MAESTRO
         </div>
       </nav>
 
@@ -35,32 +37,24 @@ const PaginaPrinMast: React.FC = () => {
       )}
 
       {/* Contenido principal */}
-      <div className="CuerpoMst">
-        <h1>!Sigue Tu Racha! &#128293;</h1>
-        <div className="BotonJuegosMst">
-          <button
-            className="btn-juego1M"
-            type="button"
-            onClick={() => navigate("/Seccion_MemoriaMaster")}
-          >
+      <div className="cuerpo_maestro">
+        
+        <h1>¿Qué jugarás hoy?</h1>
+        <div className="BotonJuegos">
+        <button className="boton_memoria" type="button" onClick={() => navigate("/Seccion_MemoriaMaster")}>
             Memoria
-            <img src={logomemoria} alt="Logo Memoria" />
           </button>
-          <button
-            className="btn-juego2M"
-            type="button"
-            onClick={() => navigate("/Seccion_ConcentracionMaster")}
-          >
+          <button className="boton_concentracion" type="button" onClick={() => navigate("/Seccion_ConcentracionMaster")}>
             Concentracion
-            <img src={logoconcentracion} alt="Logo Memoria" />
           </button>
-          <button
-            className="btn-juego3M"
-            type="button"
-            onClick={() => navigate("/Seccion_AgilidadMaster")}
-          >
-            Agilidad Mental
-            <img src={logoagilidad} />
+          <button className="boton_agilidad" type="button" onClick={()=> navigate("/Seccion_AgilidadMaster")}>
+            Lógica Matemática 
+            </button>
+        </div>
+        <div className="BotonMiscelaneos">
+        <button className="boton_grupos" type="button" onClick={() => navigate("/Pagina-Grupos-Mast")}>
+            Grupos
+            <img src="logos/grupov1.png" alt="Icono_boton" />
           </button>
         </div>
       </div>

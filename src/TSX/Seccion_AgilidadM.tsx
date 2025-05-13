@@ -28,12 +28,14 @@ const JuegosAgilidad: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="seccion-agilidad">
       {/* Navbar */}
-      <nav className="navbar6">
-        <div className="logos6">
-          <span className="logos-text6">MENTALLY</span>
-          <img src={logoCerebro} alt="Logo6" />
+      <nav className="navbarra">  
+        <div className="logomentally">
+          <img src="logos/mascota2.png" alt="Logo" />
+          MENTALLY
+        </div>
+        <div className="letrero_alumno">ALUMNO
         </div>
       </nav>
 
@@ -46,7 +48,7 @@ const JuegosAgilidad: React.FC = () => {
       )}
 
       {/* Contenido principal */}
-      <div className="Cuerpos6">
+      <div className="cuerpo-agilidad">
         <button
           onClick={goBack}
           className="back-buttonMemoryMst"
@@ -54,18 +56,18 @@ const JuegosAgilidad: React.FC = () => {
         >
           <ArrowLeft size={24} />
         </button>
-        <h1>Bienvenido a la seccion de Agilidad Mental!</h1>
+        <h1>Lógica Matemática</h1>
         <div className="JuegosAgilidad">
-          <button className="btn-Agilidad1" type="button" onClick={handleClick}>
+          <button className="btn-Agilidad1M" type="button" onClick={handleClick}>
             Operaciones <b /> Frutales
-            <img src={logoagilidad} alt="Logo Agiidad" />
+        
           </button>
           <button
-            className="btn-Agilidad2"
+            className="btn-Agilidad2M"
             type="button"
             onClick={handleClick2}
           >
-            Operador Misterioso <img src={logoagilidad} />
+            Operador Misterioso 
           </button>
         </div>
       </div>
