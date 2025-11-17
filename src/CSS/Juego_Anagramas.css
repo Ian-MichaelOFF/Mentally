@@ -1,0 +1,134 @@
+/* Estilos para el juego de Anagramas */
+
+#main-wrapper {
+  height: 100vh;
+  background-color: #ffe6f0; /* Fondo general rosa claro */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', cursive, sans-serif;
+}
+
+.main-title {
+  font-size: 40px;
+  color: #ff66a3;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#game-container {
+  width: 90%;
+  max-width: 500px;
+  padding: 30px;
+  background-color: wheat;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+}
+
+.menu-button,
+.submit-button {
+  margin: 10px;
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #85c1ff;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
+}
+
+.menu-button:hover,
+.submit-button:hover {
+  background-color: #5dade2;
+}
+
+.welcome,
+.description,
+.instructions {
+  font-size: 16px;
+  margin: 8px 0;
+  color: #333;
+  
+}
+
+.level-title {
+  font-size: 26px;
+  color: #54b3f3;
+  margin-top: 10px;
+}
+
+.timer-display {
+  font-size: 24px;
+  margin: 10px 0;
+  color: #e67e22;
+}
+
+.anagram-box {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 20px 0;
+  background-color: #fff2f7;
+  border: 2px dashed #ff66a3;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.answer-input {
+  padding: 12px;
+  width: 80%;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  margin-bottom: 15px;
+}
+
+.feedback-text {
+  font-size: 18px;
+  margin-top: 10px;
+  color: #27ae60;
+}
+
+.result-message {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #8e44ad;
+}
+
+.hidden {
+  display: none;
+}
+
+.game-image {
+  width: 80%; /* Tamaño de la imagen */
+  max-width: 200px; /* Máximo tamaño */
+  margin-bottom: 20px; /* Espacio entre la imagen y el texto de bienvenida */
+  border-radius: 10px; /* Bordes redondeados */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-section {
+  width: 100%;
+}
+
+.result-section {
+  width: 100%;
+}

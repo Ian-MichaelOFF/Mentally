@@ -1,0 +1,257 @@
+/* Reinicio básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar */
+.navbarra {
+  display: flex;
+  justify-content: space-between; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
+  background: #FFB6C1;
+  padding: 20px 40px;
+  height: 120px;
+  position: fixed; /* Fija la navbar en la parte superior */
+  top: 0; /* La coloca en la parte superior de la página */
+  width: 100%; /* Asegura que ocupe todo el ancho */
+  z-index: 10; /* Para que esté por encima de otros elementos */
+}
+
+.logomentally {
+  font-family: "Aclonica", sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: transparent;
+  background-color: rgb(255, 255, 255);
+  /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: flex;
+  justify-content: left; /* Centra el contenido del logo horizontalmente */
+  align-items: center; /* Centra el contenido del logo verticalmente */
+  text-align: left; /* Asegura que el texto esté centrado */
+}
+
+.logomentally img {
+  width: 85px;
+  height: 85px;
+  margin-right: 10px;
+}
+
+
+/* Estilo del cuerpo */
+.letrero_alumno{
+  font-family: "Contrail One", sans-serif;
+  font-size: 50px;
+  padding-right: 5%;
+  color: #7830a8;
+  background-color: rgb(255, 255, 255);
+  /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: flex;
+  justify-content: right; /* Centra el contenido del logo horizontalmente */
+  align-items: center; /* Centra el contenido del logo verticalmente */
+  text-align: right; /* Asegura que el texto esté centrado */
+}
+
+.pagina_inicio_alumno{
+  font-family: "Contrail One", sans-serif;
+  background-image: url(/public/logos/enhanced_9.png  );
+  background-repeat: repeat;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px; /* Asegura que el contenido no se solape con la navbar fija */
+}
+
+.cuerpo_alumno{
+  color: #4cbdff;
+  -webkit-text-stroke: 0.05px #4c7cff;
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.boton_memoria {
+  background-image: url('/logos/119d0b20-8582-42c1-b83b-6b02a11efd55.png');
+  background-size: 400px auto;         /* Ajusta imagen sin recorte */
+  background-repeat: no-repeat;
+  background-position: center 32%;
+  width: 400px;
+  height: 350px;
+  font-family: "Jersey 10", sans-serif;
+  -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+  text-align: center;
+  position: relative;
+  bottom: 264px;
+  border: none;
+  color: white;
+  padding: 20px 80px;
+  font-size: 50px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.boton_concentracion {
+  background-image: url('/logos/f063338d-4106-4ab2-a102-9a0b78f65cd6.png');
+  background-size: 400px auto;         /* Ajusta imagen sin recorte */
+  background-repeat: no-repeat;
+  background-position: center 32%;
+  width: 400px;
+  height: 350px;
+  font-family: "Jersey 10", sans-serif;
+  -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+  text-align: center;
+  position: relative;
+  bottom: 264px;
+  border: none;
+  color: white;
+  padding: 20px 80px;
+  font-size: 50px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 1s;
+}
+.boton_agilidad {
+  background-image: url('/logos/de1604ea-8f02-4003-8b9e-6eae3827b451.png');
+  background-size: 400px auto;         /* Ajusta imagen sin recorte */
+  background-repeat: no-repeat;
+  background-position: center 32%;
+  width: 400px;
+  height: 350px;
+  font-family: "Jersey 10", sans-serif;
+  -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+  text-align: center;
+  position: relative;
+  bottom: 264px;
+  border: none;
+  color: white;
+  padding: 20px 80px;
+  font-size: 50px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.cuerpo_alumno h1{
+  margin-top: 50px  ;
+  text-align: center;
+}
+
+.BotonJuegos {
+  display: flex;
+  justify-content: center;
+  margin-top: 320px;
+  gap: 110px;
+  align-items: center;
+}
+
+.boton_grupos {
+  background-color: #83ff89;
+  width: 500px;
+  height: 150px;
+  margin-top: -400px;
+  font-family: "Jersey 10", sans-serif;
+  -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: white;
+  padding: 20px 80px;
+  font-size: 60px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.boton_insignias {
+  background-color: #83f7ff;
+  width: 500px;
+  height: 150px;
+  margin-top: -400px;
+  font-family: "Jersey 10", sans-serif;
+  -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: white;
+  padding: 20px 80px;
+  font-size: 60px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.boton_grupos img{
+  width: 85px;
+  height: 85px;
+  margin-left: 20px;
+  transition: transform 1s ease;
+}
+
+.boton_insignias img{
+  width: 85px;
+  height: 85px;
+  margin-left: 10px;
+  transition: transform 1s ease;
+}
+
+.BotonMiscelaneos {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  gap: 200px;
+  align-items: center;
+}
+
+.boton_memoria:hover {
+  font-size: 35px;
+  background-size: 300px auto;
+  width: 300px;
+  height: 275px;
+}
+
+.boton_concentracion:hover {
+  font-size: 35px;
+  background-size: 300px auto;
+  width: 300px;
+  height: 275px;
+}
+
+.boton_agilidad:hover {
+  font-size: 35px;
+  background-size: 300px auto;
+  width: 300px;
+  height: 275px;
+}
+
+.boton_grupos:hover{
+  font-size: 35px;
+  background-size: 300px auto;
+  width: 400px;
+  height: 100px;
+}
+
+.boton_grupos:hover img {
+  transform: scale(0.7);
+  transition: transform 1s ease;
+}
+
+.boton_insignias:hover img {
+  transform: scale(0.7);
+  transition: transform 1s ease;
+}
+
+.boton_insignias:hover{
+  font-size: 35px;
+  background-size: 300px auto;
+  width: 400px;
+  height: 100px;
+}
+

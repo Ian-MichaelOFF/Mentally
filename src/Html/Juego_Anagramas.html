@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Anagramas</title>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+<body>
+    <h1>Anagramas</h1>
+    <div id="difficulty-container">
+        <label for="difficulty">Elige la dificultad:</label>
+        <select id="difficulty">
+            <option value="easy">Baja</option>
+            <option value="medium">Media</option>
+            <option value="hard">Alta</option>
+        </select>
+        <button id="start-btn">Iniciar Juego</button>
+    </div>
+
+    <div id="game-container" style="display: none;">
+        <p id="round"></p>
+        <p id="anagram"></p>
+        <input type="text" id="user-input" placeholder="Escribe la palabra...">
+        <button id="submit-btn">Comprobar</button>
+        <p id="message"></p>
+        <p id="timer"></p>
+        <button id="exit-btn">Salir</button>  <!-- Botón para salir del juego -->
+    </div>
+
+    <script src="/Funcionalidad/Juego.js"></script>
+</body>
+</html>

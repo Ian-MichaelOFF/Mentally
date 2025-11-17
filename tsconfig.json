@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "public/Juego_Anagramas.js", "public/memorama_script.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

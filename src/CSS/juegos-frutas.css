@@ -1,0 +1,414 @@
+/* Estilos para el botón de flecha de retroceso */
+.back-button {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 45px;
+    height: 45px;
+    background-color: #ff0099;
+    border: 3px solid #810666;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+    background-color: #e4009c;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+.back-button svg {
+    color: #ffffff;
+    font-size: 24px;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+}
+
+.back-button:active {
+    transform: scale(0.95);
+}
+
+.Fondo {
+    font-family: 'Chewy', cursive;
+    background-color: #ffd6e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.game-container {
+    background-color: #b4f2f5;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    width: 500px;
+    min-height: 100px;
+    text-align: center;
+}
+
+.game-container h1 {
+    color: #54b3f3;
+    margin-bottom: 20px;
+}
+
+.game-container img{
+    width: 150px;
+    height: 150px;
+}
+
+.area-nogame h1{
+    color: #333;
+    font-size: 25px;
+    margin-top: 50px;
+}
+
+.area-nogame h2{
+    color: #333;
+    font-size: 25px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.level-selector {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Aplicar estilos de botones por posición en lugar de ID */
+.level-selector button:nth-child(1) {
+    background-color: #a2ff00;
+    color: #006b7d;
+}
+
+.level-selector button:nth-child(2) {
+    background-color: #ffcc00;
+    color: #b34700;
+}
+
+.level-selector button:nth-child(3) {
+    background-color: #ff6666;
+    color: white;
+}
+
+/* Modo GOD - si se implementa más adelante */
+.level-selector button:nth-child(4) {
+    background-color: #6a096d;
+    color: #ff0000;
+    font-weight: bold;
+    text-shadow: 0 0 3px #fff;
+    box-shadow: 0 0 10px #ff0000;
+}
+
+.level-selector button:nth-child(4):hover {
+    background-color: #4a0252;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #ff0000;
+}
+
+.god-stats {
+    display: none;
+    justify-content: space-around;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    background-color: rgba(106, 9, 109, 0.2);
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.god-stats span {
+    font-weight: bold;
+}
+
+/* Estilos para el indicador de rondas */
+.round-indicator {
+    background-color: #ffcc00;
+    color: #6a096d;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 2px dashed #6a096d;
+}
+
+.combo {
+    color: #00ff00;
+    animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px #00ff00; }
+    to { text-shadow: 0 0 15px #00ff00; }
+}
+
+/* Efectos */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes pulse {
+    from { box-shadow: 0 0 5px #ff0000; }
+    to { box-shadow: 0 0 20px #ff00ff; }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}
+
+.level-selector button:hover {
+    transform: scale(1.05);
+}
+
+/* Importante: Cambiado de display: none a display: block para React */
+.game-area {
+    display: block;
+}
+
+.timer {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #e91e63;
+    margin-bottom: 10px;
+}
+
+.fruit-values {
+    background-color: #c2f5ff;
+    border-radius: 100px;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    border: 10px dashed #2fdeea;
+}
+
+.fruit-values p {
+    margin: 8px 0;
+    color: #006b7d;
+    position: relative;
+    padding-left: 25px; /* Espacio para el checkbox */
+    font-size: 2.9rem; 
+}
+
+.fruit-values p:first-child {
+    font-size: 1.1rem;
+}
+
+.equation {
+    font-size: 2.5rem;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px; /* Reducir espacio entre cajas */
+    flex-wrap: wrap;
+}
+
+.fruit {
+    font-size: 2.8rem;
+    filter: drop-shadow(15px 15px 1px rgba(0,0,0,0.1));
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.controls input {
+    padding: 10px;
+    font-size: 1.2rem;
+    border: 3px solid #00f652;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #f8fff9;
+}
+
+.level-selector button {
+    padding: 10px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+}
+
+.controls button {
+    padding: 10px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+    background-color: #11ff00;
+    color: #ffffff;
+    border: 2px solid #06810c;
+}
+
+.controls button:hover {
+    transform: scale(1.05);
+    background-color: #0ed000;
+}
+
+.feedback {
+    min-height: 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.feedback.correct {
+    background-color: #e8f5e9;
+    color: #4caf50;
+    border: 2px solid #4caf50;
+}
+
+.feedback.incorrect {
+    background-color: #ffebee;
+    color: #f44336;
+    border: 2px solid #f44336;
+}
+
+.feedback.hint {
+    background-color: #fff3e0;
+    color: #ff9800;
+    border: 2px solid #ff9800;
+    animation: pulse 1.5s infinite;
+}
+
+.feedback.timeout {
+    background-color: #ffebee;
+    color: #f44336;
+    border: 2px solid #f44336;
+    font-size: 1.3rem;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.score {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.1rem;
+    margin-top: 15px;
+}
+
+.score span span {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.score span:last-child span {
+    color: #f44336;
+}
+
+.timer.urgent {
+    color: #F44336;
+    font-weight: bold;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Estilos para la pantalla de resultados */
+.results-screen {
+    background-color: #ffebf3;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.results-screen h2 {
+    color: #6a096d;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.results-content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.results-content p {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.correct-count {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.incorrect-count {
+    color: #f44336;
+    font-weight: bold;
+}
+
+.final-score {
+    font-size: 1.4rem !important;
+    margin: 15px 0 !important;
+    color: #6a096d;
+    background-color: #f0f0f0;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.encouragement {
+    font-style: italic;
+    color: #ff6bcd;
+    font-size: 1.3rem !important;
+}
+
+.play-again-btn {
+    background-color: #11ff00;
+    color: #fff;
+    border: 2px solid #06810c;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.play-again-btn:hover {
+    transform: scale(1.05);
+    background-color: #0ed000;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}

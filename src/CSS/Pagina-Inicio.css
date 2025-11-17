@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%; /* Asegura que el cuerpo ocupe toda la altura de la pantalla */
+  width: 100%;
+}
+
+/* Contenedor principal */
+.main-container {
+  font-family: "Contrail One", sans-serif;
+  line-height: 1;
+  color: rgb(0, 0, 0);
+  background-image: url(/public/logos/BM2.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10vh 5vw 10vh 5vw; /* Padding proporcional: 10% del alto y 5% del ancho */
+}
+
+/* Animación para el texto */
+@keyframes wave {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Texto del logo */
+.logo-text {
+  font-family: "Aclonica", sans-serif;  
+  color: transparent;
+  background-color: rgb(0, 0, 255);
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: inline-block;
+  margin-top: 0;
+  font-size: 8vw; /* Tamaño proporcional basado en el ancho de la pantalla */
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  width: 100%;
+}
+
+.logo-text span {
+  display: inline-block;
+  animation: wave 1.5s ease-in-out infinite;
+  animation-delay: calc(0.1s * var(--i));
+}
+
+/* Estilo de los botones */
+.btn {
+  background-color: #4cbdff;
+  border: none;
+  font-family: "Jersey 10", sans-serif;
+  color: rgb(255, 255, 255);
+  -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+  padding: 2vh 5vw; /* Padding proporcional */
+  font-size: 4vw; /* Tamaño proporcional al ancho de la pantalla */
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+/* Contenedor de los botones */
+.Buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30vw; /* Espaciado proporcional entre los botones */
+}
+
+/* Efecto hover en los botones */
+.btn:hover {
+  font-size: 3vw; /* Cambio proporcional en el tamaño */
+  background-color: #008ada;
+}
+
+/* Estilo de la sesión */
+.sesion {
+  border: none;
+  font-family: "Contrail One", sans-serif;
+  color: rgb(0, 0, 0);
+  -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+  padding: 2vh 5vw; /* Padding proporcional */
+  font-size: 3vw; /* Tamaño proporcional al ancho de la pantalla */
+  text-align: center;
+}
+
+
+/*@media (max-width: 1024px) {
+  .logo-text {
+    font-size: 60px;
+  }
+
+  .btn {
+    font-size: 35px;
+    padding: 15px 40px;
+  }
+
+  .Buttons {
+    gap: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-text {
+    font-size: 45px;
+  }
+
+  .btn {
+    font-size: 30px;
+    padding: 12px 30px;
+  }
+
+  .Buttons {
+    gap: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text {
+    font-size: 30px;
+  }
+
+  .btn {
+    font-size: 24px;
+    padding: 10px 20px;
+  }
+
+  .Buttons {
+    flex-direction: column;
+    gap: 20px;
+  }
+}*/

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Spicy+Rice&display=swap" rel="stylesheet">
+    <title>Memorama</title>
+    <link rel="stylesheet" href="memorama_css.css">
+</head>
+
+<body>
+    <div id="selector-dificultad">
+        <p id="seleccion">Elige una dificultad:</p>
+        <button class="boton boton-facil" onclick="iniciarJuego(4,2,'facil')">Fácil</button>
+        <button class="boton boton-medio"onclick="iniciarJuego(4,3,'medio')">Medio</button>
+        <button class="boton boton-dificil"onclick="iniciarJuego(5,4,'dificil')">Díficil</button>
+    </div>
+
+    <div id="informacionPartida">
+        <div id="jugador">Jugador: <span id="nombreJugador">Jugador</span></div>
+        <div id="intentos_tiempo">
+            <div id="intentos">Intentos: <span id="numeroIntentos">0</span></div>
+            <div id="tiempo">Tiempo: <span id="tiempoJuego">0:00</span></div>
+        </div>
+        <div id="tablero"></div>
+    </div>
+
+    <div id="pantallaCompletado">
+        <p id="completo">Bien hecho!! Haz completado la dificultad en <span id="numeroIntentosFinal">0</span> clicks y en un tiempo de <span id="tiempoJuegoFinal">0:00</span> segundos</p>
+    </div>
+
+    <div id="pantallaFallido">
+        <p id="fallo">Se termino el tiempo, intentalo de nuevo!</p>
+        <button class="boton reiniciar" onclick="reiniciarJuego()">Reiniciar</button>
+    </div>
+
+    <script src="memorama_script.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+/* Reinicio básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar */
+.navbarra {
+  display: flex;
+  justify-content: space-between; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
+  background: #FFB6C1;
+  padding: 20px 40px;
+  height: 120px;
+  position: fixed; /* Fija la navbar en la parte superior */
+  top: 0; /* La coloca en la parte superior de la página */
+  width: 100%; /* Asegura que ocupe todo el ancho */
+  z-index: 10; /* Para que esté por encima de otros elementos */
+}
+
+.logomentally {
+  font-family: "Aclonica", sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: transparent;
+  background-color: rgb(255, 255, 255);
+  /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: flex;
+  justify-content: left; /* Centra el contenido del logo horizontalmente */
+  align-items: center; /* Centra el contenido del logo verticalmente */
+  text-align: left; /* Asegura que el texto esté centrado */
+}
+
+.logomentally img {
+  width: 85px;
+  height: 85px;
+  margin-right: 10px;
+}
+
+
+/* Estilo del cuerpo */
+.letrero_alumno{
+  font-family: "Contrail One", sans-serif;
+  font-size: 50px;
+  padding-right: 5%;
+  color: #7830a8;
+  background-color: rgb(255, 255, 255);
+  /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: flex;
+  justify-content: right; /* Centra el contenido del logo horizontalmente */
+  align-items: center; /* Centra el contenido del logo verticalmente */
+  text-align: right; /* Asegura que el texto esté centrado */
+}
+/* Estilo del cuerpo */
+.seccion-agilidad{
+  font-family: "Contrail One", sans-serif;
+  background-image: url(/public/logos/FondoJuegos.jpg  );
+  background-repeat: repeat;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 150px; /* Asegura que el contenido no se solape con la navbar fija */
+}
+
+.seccion-agilidad h1{
+  color: #4cbdff;
+  -webkit-text-stroke: 0.05px #4c7cff;
+  font-size: 100px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.btn-Agilidad1M {
+    font-family: "Jersey 10", sans-serif;
+    -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+    position: relative;
+    height: 500px;
+    width: 400px;
+    bottom: 264px;
+    background: linear-gradient(170deg, rgb(48, 213, 200), rgb(19, 99, 223));
+    border: none;
+    color: white;
+    padding: 50px 60px;
+    font-size: 60px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 1s;
+    background-image: url(/public/logos/Captura2.PNG);
+    background-position-x: -65px;
+    background-repeat: no-repeat;
+  }
+
+  .btn-Agilidad2M {
+    font-family: "Jersey 10", sans-serif;
+    -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+    position: relative;
+    height: 500px;
+    width: 400px;
+    bottom: 264px;
+    background: linear-gradient(170deg, rgb(48, 213, 200), rgb(19, 99, 223));
+    border: none;
+    color: white;
+    padding: 50px 60px;
+    font-size: 60px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 1s;
+    background-image: url(/public/logos/Captura4.PNG);
+    background-position-x: -65px;
+    background-repeat: no-repeat;
+  }
+
+.JuegosAgilidadM img {
+  width: 90px;
+  height: 90px;
+  gap: 90px;
+  transition: 1s;
+}
+.JuegosAgilidadM {
+  display: flex;
+  justify-content: center;
+  margin-top: 320px;
+  gap: 90px;
+  align-items: center;
+}
+
+.btn-Agilidad1M:hover {
+    width: 300px;
+    height: 400px;
+    font-size: 40px;           /* Zoom out al hacer hover */
+  }
+
+  .btn-Agilidad2M:hover {
+    width: 300px;
+    height: 400px;
+    font-size: 40px;           /* Zoom out al hacer hover */
+  }
+

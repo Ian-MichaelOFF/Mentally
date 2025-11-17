@@ -1,0 +1,258 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .navbarra {
+    display: flex;
+    justify-content: space-between; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    background: #FFB6C1;
+    padding: 20px 40px;
+    height: 120px;
+    position: fixed; /* Fija la navbar en la parte superior */
+    top: 0; /* La coloca en la parte superior de la página */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    z-index: 10; /* Para que esté por encima de otros elementos */
+  }
+  
+  .logomentally img {
+    width: 85px;
+    height: 85px;
+    margin-right: 10px;
+  }
+
+  .logomentally{
+    font-family: "Aclonica", sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: transparent;
+    background-color: rgb(255, 255, 255);
+    /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+    -webkit-background-clip: text;
+    background-clip: text;
+    display: flex;
+    justify-content: left; /* Centra el contenido del logo horizontalmente */
+    align-items: center; /* Centra el contenido del logo verticalmente */
+    text-align: left; /* Asegura que el texto esté centrado */
+  }
+  
+  .anuncio_maestro{
+    font-family: "Contrail One", sans-serif;
+    font-size: 50px ;
+    color: #30a830;
+    background-color: rgb(255, 255, 255);
+    /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+    -webkit-background-clip: text;
+    background-clip: text;
+    display: flex;
+    justify-content: right; /* Centra el contenido del logo horizontalmente */
+    align-items: center; /* Centra el contenido del logo verticalmente */
+    text-align: right; /* Asegura que el texto esté centrado */
+  }
+
+  .anuncio_maestro img{
+    width: 85px;
+    height: 85px;
+    margin-left: 10px;
+  }
+  
+  /* Estilos del formulario */  
+  label{
+    padding-left: 7.5%;
+    text-align: left;
+    display: block  ;
+  }
+  
+  .formulario_maestro {
+    font-family: "Contrail One", sans-serif;
+    background-image: url(/logos/fondov3.png);
+    height: 103vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 150px; /* Asegura que el contenido no se solape con la navbar fija */
+  }
+  .forma_form_maestro {
+    background-image: url(/logos/FondoMastForm.jpg);
+    padding: 20px;
+    width: 100vh;
+    margin: 50px auto;
+    border-radius: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .formulario_maestro h2 {
+    color: #4cbdff;
+    -webkit-text-stroke: 0.05px #4c7cff;
+    font-size: 40px;
+    margin-bottom: 15px;
+  }
+  
+  .campo_form_maestro label {
+    display: block;
+    color: rgb(0, 0, 0);
+    -webkit-text-stroke: 0.8px rgb(0, 0, 0);
+    font-size: 21px  ;
+    margin-top: 10px;
+  }
+
+  .campo_form_maestro input {
+    width: 85%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: 1s;
+  }
+
+
+  .preguntaseguridad label {
+    display: block;
+    color: white;
+    font-size: 24px;
+    -webkit-text-stroke: 0.8px rgb(0, 0, 0);
+    margin-top: 10px;
+    transition: 1s;
+  }
+  .preguntaseguridad select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.8);
+    
+  }
+
+  
+  input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .boton_validar_datos_maestro {
+    margin-top: 15px;
+    padding: 10px;
+    width: 85%;
+    background-color: #ffae00;
+    border: none;
+    font-family: "Jersey 10", sans-serif;
+    -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    font-size: 35px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.7s;
+  }
+  
+  .boton_validar_datos_maestro:hover {
+    background-color: #bd8100;
+    font-size: 30px;
+  }
+
+  .boton_actualizar_datos_maestro{
+    margin-top: 15px;
+    padding: 10px;
+    width: 85%;
+    background-color: #ffae00;
+    border: none;
+    font-family: "Jersey 10", sans-serif;
+    -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    font-size: 35px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;  
+    transition: 0.7s;
+  }
+  
+  .boton_actualizar_datos_maestro:hover{
+    background-color: #bd8100;
+    font-size: 30px;
+  }
+
+  .inicio_sesion_maestro a {
+    font-family: "Contrail One", sans-serif;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    -webkit-text-stroke: 0.8px rgb(0, 0, 0);
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    transition: 0.5s;
+  }
+  
+  .inicio_sesion_maestro a:hover {
+    text-decoration: underline;
+    color: rgb(0, 44, 175);
+    font-size: 22px;
+  }
+
+/* Estilos adicionales para mensajes de éxito y loading */
+.success-message {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .error-message {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .info-usuario {
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border-left: 4px solid #007bff;
+  }
+  
+  /* Estilo para botones deshabilitados */
+  .boton_validar_datos_maestro:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7; 
+  }
+  
+  /* Estilo para select deshabilitado */
+  select:disabled {
+    background-color: #f0f0f0;
+    border-color: #d0d0d0;
+  }
+  
+  /* Ajustes para diseño responsive */
+  @media (max-width: 768px) {
+    .formulario_registro {
+      width: 90%;
+      padding: 15px;
+    }
+    
+    .formulario_registro input,
+    .formulario_registro select,
+    .formulario_registro button {
+      width: 100%;
+    }
+  }
