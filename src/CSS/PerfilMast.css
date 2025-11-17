@@ -1,0 +1,268 @@
+/* Estilos base */
+.perfil_maestro {
+  font-family: "Contrail One", sans-serif;
+  background-image: url(/public/logos/fondov3.png);
+  height: 103vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 150px; /* Asegura que el contenido no se solape con la navbar fija */
+}
+
+.navbarra {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente el contenido */
+  align-items: center; /* Centra verticalmente */
+  background: linear-gradient(90deg, rgb(110, 28, 168), rgb(195, 136, 234));
+  padding: 10px 20px;
+  height: 60px;
+}
+
+.navbarra {
+    display: flex;
+    justify-content: space-between; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    background: #FFB6C1;
+    padding: 20px 40px;
+    height: 120px;
+    position: fixed; /* Fija la navbar en la parte superior */
+    top: 0; /* La coloca en la parte superior de la página */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    z-index: 10; /* Para que esté por encima de otros elementos */
+  }
+  
+  .logomentally {
+    font-family: "Aclonica", sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: transparent;
+    background-color: rgb(255, 255, 255);
+    /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+    -webkit-background-clip: text;
+    background-clip: text;
+    display: flex;
+    justify-content: left; /* Centra el contenido del logo horizontalmente */
+    align-items: center; /* Centra el contenido del logo verticalmente */
+    text-align: left; /* Asegura que el texto esté centrado */
+  }
+  
+  .logomentally img {
+    width: 85px;
+    height: 85px;
+    margin-right: 10px;
+  }
+
+  .letrero_maestro{
+  font-family: "Contrail One", sans-serif;
+  font-size: 50px ;
+  padding-right: 5%;
+  color: #30a830;
+  background-color: rgb(255, 255, 255);
+  /*-webkit-text-stroke: 0.0000001px #4cbdff;*/
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: flex;
+  justify-content: right; /* Centra el contenido del logo horizontalmente */
+  align-items: center; /* Centra el contenido del logo verticalmente */
+  text-align: right; /* Asegura que el texto esté centrado */
+}
+/* Contenedor del perfil */
+.contenedor_perfil_maestro {
+    width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: #30a830BF;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.loading-containerM {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+/* Encabezado del perfil */
+.perfil-headerM {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar-containerM {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.perfil-avatarM {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #4a6fa5;
+  transition: all 0.3s ease;
+}
+
+.edit-buttonM {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: #4a6fa5;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.typo_perfil_maestro{
+    margin: 0;
+    color: #000000;
+    font-size: 2.5rem;
+    border-bottom: 1px solid black; /* Línea negra debajo de cada párrafo */
+    padding-bottom: 10px; /* Espacio debajo del párrafo */
+    margin-bottom: 10px; /* Espacio adicional entre los párrafos */     
+    width: 100%; /* Asegura que la línea ocupe todo el ancho disponible */
+    text-align: center; /* Centra el texto */
+}
+
+.dato_perfil_maestro{
+    margin: 0;
+    color: #ffffff;
+    font-size: 2.5rem;
+    border-bottom: 1px solid black; /* Línea negra debajo de cada párrafo */
+    padding-bottom: 10px; /* Espacio debajo del párrafo */
+    margin-bottom: 10px; /* Espacio adicional entre los párrafos */     
+    width: 100%; /* Asegura que la línea ocupe todo el ancho disponible */
+    text-align: center; /* Centra el texto */
+  }
+
+
+/* Modal */
+.modal-overlayM {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-containerM {
+  background: #989898;
+  font-family: "Contrail One", sans-serif;
+  border-radius: 8px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.current-imageM {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.preview-imageM {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #4a6fa5;
+}
+
+.image-optionsM {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.image-optionM {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.image-optionM img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  border: 2px solid transparent;
+}
+
+.image-optionM.selected img {
+  border-color: #4a6fa5;
+}
+
+.image-optionM:hover {
+  transform: scale(1.05);
+}
+
+.modal-actionsM {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.cancel-buttonM,
+.confirm-buttonM {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cancel-buttonM {
+  background-color: #f0f0f0;
+}
+
+.confirm-buttonM {
+  background-color: #4a6fa5;
+  color: white;
+}
+
+.confirm-buttonM:hover {
+  background-color: #3a5a80;
+}
+.upload-buttonM {
+  transition: background-color 0.3s ease;
+}
+
+.upload-buttonM:hover {
+  background-color: #45a049 !important;
+}
+
+.upload-buttonM:disabled {
+  background-color: #cccccc !important;
+  cursor: not-allowed;
+}
+
+.confirm-buttonM:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

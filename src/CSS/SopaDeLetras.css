@@ -1,0 +1,194 @@
+/* Estilos generales para el juego Sopa de Letras */
+#game-wrapper {
+    font-family: 'Chewy', cursive;
+    background-color: #ffd6e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    flex-direction: column;
+    color: #333;
+    padding: 20px 0;
+}
+
+#game-container {
+    background-color: #b4f2f5;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 95%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    margin: 20px 0;
+}
+
+#game-container h1 {
+    font-size: 35px;
+    color: #54b3f3;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#game-container img{
+    width: 150px;
+    height: 150px;
+}
+
+#game-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 6px;
+    border-radius: 8px;
+    border: none;
+    background-color: #f48fb1;
+    color: white;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#game-container button:hover {
+    background-color: #ec407a;
+}
+
+#difficulty {
+    margin-bottom: 15px;
+}
+
+#timer p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f44336;
+    background-color: #ffffff;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+#grid-container {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-gap: 4px;
+    justify-content: center;
+    margin-top: 15px;
+    width: 100%;
+}
+
+#grid-container div {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #bbdefb;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-transform: none;
+}
+
+#grid-container div:hover {
+    background-color: #90caf9;
+}
+
+#grid-container div.selected {
+    background-color: #fff59d;
+    color: #f57c00;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+}
+
+#grid-container div.found {
+    background-color: #c8e6c9;
+    color: #2e7d32;
+}
+
+#message {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4caf50;
+    margin-top: 15px;
+}
+
+#end-options {
+    margin-top: 20px;
+}
+
+#words-to-find {
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+#words-to-find h3 {
+    color: #2196f3;
+}
+
+#words-to-find ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#words-to-find li {
+    font-weight: bold;
+    color: #3f51b5;
+    margin: 4px 0;
+}
+
+/* Estilo del mensaje de bienvenida */
+#welcome-description p{
+    margin-top: 20px;
+    font-size: 25px;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+#welcome-description h1{
+    margin-top: 20px;
+    font-size: 20px;
+    color: #333;
+}
+
+/* Asegurarse que los botones de fin de juego sean visibles */
+#end-options button {
+    display: inline-block;
+}
+
+/* Estilo responsivo para pantallas pequeñas */
+@media (max-width: 768px) {
+    #grid-container {
+        grid-template-columns: repeat(10, 30px);
+    }
+    
+    #grid-container div {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+    
+    #game-container {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    #grid-container {
+        grid-template-columns: repeat(10, 25px);
+    }
+    
+    #grid-container div {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+    }
+    
+    #game-container h1 {
+        font-size: 24px;
+    }
+}
